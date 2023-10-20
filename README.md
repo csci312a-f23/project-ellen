@@ -1,4 +1,4 @@
-# Project Skeleton
+# Project MiddHousing
 
 TODO: Implement CI badges, provide a link to the deployed version of your application, and provide a brief description of the application functionality.
 
