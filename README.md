@@ -1,5 +1,4 @@
-# Work Badge
-![example workflow](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
+
 
 # Project Skeleton
 
