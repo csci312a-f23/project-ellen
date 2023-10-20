@@ -1,3 +1,5 @@
+![example workflow](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
+
 # Project Skeleton
 
 TODO: Implement CI badges, provide a link to the deployed version of your application, and provide a brief description of the application functionality.
