@@ -1,4 +1,4 @@
-![example workflow](https://github.com/github/docs/actions/workflows/node.js.yml/badge.svg)
+[![Node.js CI](https://github.com/csci312a-f23/project-ellen/actions/workflows/node.js.yml/badge.svg?branch=test-pull-request)](https://github.com/csci312a-f23/project-ellen/actions/workflows/node.js.yml)
 
 # Project Skeleton
 
