@@ -6,7 +6,6 @@
     "Emmanuel Towner <etowner@middlebury.edu>",
     "Julian Sandoval <sandoval@middlebury.edu>",
     "Vy Diep <vdiep@middlebury.edu>",
-    "Nathan Tardiff <",
     "Siri Ahern <seahern@middlebury.edu",
     "Caroline Haggerty <chaggerty@middlebury.edu",
     "Nate harris <ndharris@middlebury.edu>"
@@ -23,7 +22,8 @@
     "next": "13.5.4",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "bootstrap": "8.19.2"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
