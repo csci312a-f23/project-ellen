@@ -1,0 +1,33 @@
+.mapContainer {
+  position: relative;
+  width: 1200px;
+  height: 700px;
+}
+
+.title {
+  text-align: center;
+  padding: 25px 0;
+}
+
+.dot {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: pink;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.info {
+  position: absolute;
+  bottom: 100%;
+  left: calc(-60px + 50%);
+  transform: translateX(-50%) translateY(-10px);
+  background-color: #faf3e0;
+  color: rgb(55, 83, 140);
+  border: 1px solid #a0a1a1;
+  padding: 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+}

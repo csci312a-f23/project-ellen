@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
 import SearchBar from "@/components/SearchBar";
+import InteractiveMap from "@/components/InteractiveMap";
 import styles from "../styles/main.module.css";
-import campusmap from "../images/campusmap_720.png";
 
 const dorms = [
   "Battel",
@@ -46,15 +45,7 @@ export default function Home() {
             </article>
           </div>
           <div className={styles.rightHalf}>
-            <article>
-              <h2>Choose a dorm!</h2>
-              <Image
-                height={700}
-                width={1200}
-                src={campusmap}
-                alt="campus map"
-              />
-            </article>
+            <InteractiveMap />
           </div>
         </section>
       </main>
