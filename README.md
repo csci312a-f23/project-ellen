@@ -1,4 +1,14 @@
-# Project MiddHousing
+[![Node.js CI](https://github.com/csci312a-f23/project-ellen/actions/workflows/node.js.yml/badge.svg?branch=test-pull-request)](https://github.com/csci312a-f23/project-ellen/actions/workflows/node.js.yml)
+
+# Project Description
+
+MiddHousing is a webApp that allows students to find accurate information about individual dorm rooms and rate previous rooms they have lived in. Students will also have the ability to sort their searches based on specific preferences and see the campus map for specific locations.
+
+# Link to deployment
+
+[Depoyed Web App](https://ellen.csci312.dev)
+
+# Project Skeleton
 
 TODO: Implement CI badges, provide a link to the deployed version of your application, and provide a brief description of the application functionality.
 
