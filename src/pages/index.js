@@ -1,10 +1,9 @@
+/* eslint-disable spaced-comment */
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import searchBarStyles from "@/styles/SearchBar.module.css";
+
 import SearchBar from "@/components/SearchBar";
-import campusmap from "../components/campusmap.png";
+import InteractiveMap from "@/components/InteractiveMap";
+import styles from "../styles/main.module.css";
 
 export default function Home() {
   const dorms = [
@@ -12,23 +11,24 @@ export default function Home() {
     "Allen",
     "Hepburn",
     "Stewart",
-    "Cook",
     "Gifford",
     "Hadley",
-    "Hillcrest",
     "Milliken",
     "Painter",
+    "Atwater",
+    "Coffrin",
+    "Lang",
+    "Kelly",
+    "Pearsons",
+    "Cook",
+    "Hillcrest",
     "Palmer",
     "Ross",
-    "Sunderland",
-    "Wright",
-    "Atwater",
     "Chellis",
-    "Coffrin",
-    "Larocque",
-    "Munroe",
-    "Pearsons",
+    "Munford",
+    "Chrome",
   ];
+
   return (
     <>
       <Head>
@@ -37,11 +37,19 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <SearchBar className={searchBarStyles.searchBar} dorms={dorms} />
-          <Image height={700} width={1200} src={campusmap} alt="Campus Map" />
-        </div>
+      <main className={styles.body}>
+        <div className={styles.h1}>Middlebury Housing</div>
+        <section className={styles.container}>
+          <div className={styles.leftHalf}>
+            <article>
+              <h2>Find A Dorm</h2>
+              <SearchBar dorms={dorms} />
+            </article>
+          </div>
+          <div className={styles.rightHalf}>
+            <InteractiveMap />
+          </div>
+        </section>
       </main>
     </>
   );
