@@ -2,7 +2,9 @@
 import Head from "next/head";
 import SearchBar from "@/components/SearchBar";
 import InteractiveMap from "@/components/InteractiveMap";
+import Image from "next/image";
 import styles from "../styles/main.module.css";
+import panther from "../images/panther.png";
 
 export default function Home() {
   const dorms = [
@@ -32,11 +34,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
-        <div className={styles.h1}>Middlebury Housing</div>
+        <div className={styles.h1}>
+          <Image height={100} width={300} src={panther} alt="panther" />
+          Middlebury Housing
+        </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
             <article>
               <h2>Find A Dorm</h2>
+
               <SearchBar dorms={dorms} />
             </article>
           </div>
