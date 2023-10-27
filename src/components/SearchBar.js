@@ -15,7 +15,7 @@ function SearchBar({ dorms }) {
 
   const handleOnClick = () => {
     const filteredDorms = dorms.filter((dorm) =>
-      dorm.toLowerCase().includes(searchTerm.toLowerCase()),
+      dorm.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setResults(filteredDorms);
     if (selectedOption !== "All") {
