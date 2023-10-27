@@ -2,7 +2,7 @@
   font-family: sans-serif;
   font-size: 1.25rem;
   line-height: 150%;
-  background-color: #faf3e0;
+  background-color: white;
 }
 
 .article {
@@ -14,12 +14,15 @@
 }
 
 .h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 4rem;
   font-family: "Times New Roman", Times, serif;
   text-align: center;
   /*background-color: white; */
-  color: rgb(55, 83, 140);
-  text-shadow: 0 2px 2px #89b2ff;
+  color: rgb(18, 57, 93);
+  text-shadow: 0 2px 2px rgb(117, 163, 205);
   border-color: #a0a1a1;
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,15 +30,13 @@
 }
 
 .h2 {
-  font-size: 4rem;
+  font-size: 2rem;
   padding-bottom: 2rem;
   padding-top: 1rem;
   font-family: "Times New Roman", Times, serif;
   text-align: center;
-  background-color: white;
-  color: #00008b;
+  color: white;
   text-shadow: 0 2px 2px #040409;
-  border-color: white;
 }
 
 /* Pattern styles */
@@ -46,11 +47,11 @@
 }
 
 .leftHalf {
-  background: #89b2ff;
+  background: rgb(117, 163, 205);
   grid-column: 1;
 }
 
 .rightHalf {
-  background: rgb(55, 83, 140);
+  background: rgb(18, 57, 93);
   grid-column: 2;
 }

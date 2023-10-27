@@ -15,7 +15,6 @@ function InteractiveMap() {
 
   return (
     <article>
-      <h2 className={styles.title}>Select a dorm!</h2>
       <div className={styles.mapContainer}>
         <Image height={700} width={1200} src={campusmap} alt="campus map" />
         {locations.map((place) => (
