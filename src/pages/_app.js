@@ -10,7 +10,6 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className="title">MiddHousing</h1>
         <Component {...pageProps} />
       </main>
     </div>
