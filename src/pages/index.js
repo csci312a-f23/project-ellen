@@ -20,11 +20,9 @@ export default function Home() {
     "Lang",
     "Kelly",
     "Pearsons",
-    "Cook",
+
     "Hillcrest",
-    "Palmer",
-    "Ross",
-    "Chellis",
+
     "Munford",
     "Chrome",
   ];
