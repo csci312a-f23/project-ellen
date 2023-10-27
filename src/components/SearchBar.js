@@ -11,18 +11,16 @@ function SearchBar({ dorms }) {
     if (selectedOption !== "All") {
       setResults(dorms.filter((dorm) => dorm === selectedOption));
     }
-  }, [selectedOption, searchTerm]);
+  }, [selectedOption]);
 
   const handleOnClick = () => {
     const filteredDorms = dorms.filter((dorm) =>
-      dorm.toLowerCase().includes(searchTerm.toLowerCase())
+      dorm.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setResults(filteredDorms);
     if (selectedOption !== "All") {
       setSelectedOption("All");
     }
-
-    console.log("clicked");
   };
 
   return (
