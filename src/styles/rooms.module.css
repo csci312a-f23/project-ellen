@@ -14,7 +14,7 @@
 }
 
 .h1 {
-  font-size: 4rem;
+  font-size: 5rem;
   padding-bottom: 2rem;
   padding-top: 1rem;
   font-family: "Times New Roman", Times, serif;
@@ -26,7 +26,7 @@
 }
 
 .h2 {
-  font-size: 4rem;
+  font-size: 3rem;
   padding-bottom: 2rem;
   padding-top: 1rem;
   font-family: "Times New Roman", Times, serif;
@@ -72,6 +72,8 @@
   padding: 25px 50px 35px;
   border-radius: 25px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  margin: 0 auto; /* Center horizontally */
+  text-align: center; /* Center text content */
 }
 .rating-box header {
   font-size: 22px;
@@ -86,11 +88,23 @@
   gap: 25px;
 }
 .stars i {
-  color: #e6e6e6;
+  color: #bebebe;
   font-size: 35px;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 .stars i.active {
   color: #ff9c1a;
+}
+.starscontainer {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  /* any additional styling as needed */
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
 }
