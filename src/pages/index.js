@@ -1,30 +1,13 @@
 /* eslint-disable spaced-comment */
 import Head from "next/head";
-import SearchBar from "@/components/SearchBar";
+import MainSearchBar from "@/components/MainSearchBar";
 import InteractiveMap from "@/components/InteractiveMap";
 import Image from "next/image";
+
 import styles from "../styles/main.module.css";
 import panther from "../images/panther.png";
 
 export default function Home() {
-  const dorms = [
-    "Battel",
-    "Allen",
-    "Hepburn",
-    "Stewart",
-    "Gifford",
-    "Hadley",
-    "Milliken",
-    "Painter",
-    "Atwater",
-    "Coffrin",
-    "Lang",
-    "Kelly",
-    "Pearsons",
-    "Munford",
-    "Chrome",
-  ];
-
   return (
     <>
       <Head>
@@ -43,8 +26,8 @@ export default function Home() {
             <article>
               <div className={styles.h2}>
                 <p>Find a dorm</p>
-              </div>
-              <SearchBar dorms={dorms} />
+              </div>{" "}
+              <MainSearchBar />
             </article>
           </div>
           <div className={styles.rightHalf}>
