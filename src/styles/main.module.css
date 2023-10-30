@@ -54,3 +54,29 @@
   background: rgb(55, 83, 140);
   grid-column: 2;
 }
+
+.profileButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #0074b3;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  width: 150px;
+  height: 50px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.userIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
