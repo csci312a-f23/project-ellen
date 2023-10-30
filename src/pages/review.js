@@ -17,8 +17,12 @@ function Review() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Do something with the rating and comment, like send it to a server
+    // const data = {
+    //   rating,
+    //   comment,
+    //   posted: new Date().toISOString,
+    // };
+    // send data to server
   };
 
   const handleCancel = (event) => {
@@ -45,13 +49,15 @@ function Review() {
           <label>Comment:</label>
           <br />
           <textarea
+            className={styles.textarea}
             value={comment}
             onChange={handleCommentChange}
-            style={{ width: "100%", height: "200px", padding: "10px" }}
           />
         </div>
         <br />
-        <button type="submit">Submit Review</button>
+        <button type="submit" onClick={handleSubmit}>
+          Submit Review
+        </button>
         <button type="button" onClick={handleCancel}>
           Cancel
         </button>

@@ -26,7 +26,7 @@ export default function Home() {
             <article>
               <div className={styles.h2}>
                 <p>Find a dorm</p>
-              </div>{" "}
+              </div>
               <MainSearchBar />
             </article>
           </div>

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 // import PropTypes from "prop-types";
+import styles from "../styles/SearchBar.module.css";
 
 function SearchBar() {
   const [selectedOption, setSelectedOption] = useState("All");
@@ -12,7 +13,8 @@ function SearchBar() {
     "Battel",
     "Allen",
     "Hepburn",
-    "Stewart, Forest(Feb Area)",
+    "Stewart",
+    "Forest(Feb Area)",
   ];
   const sophomoreDorms = [
     "Gifford",
@@ -48,17 +50,27 @@ function SearchBar() {
     "Allen",
     "Hepburn",
     "Stewart",
+    "Forest(Feb Area)",
     "Gifford",
     "Hadley",
     "Milliken",
     "Coffrin",
+    "Pearsons",
+    "LaForce",
     "Lang",
     "Kelly",
-    "Pearsons",
     "Painter",
     "Atwater",
     "Munford",
     "Chrome",
+    "Forest",
+    "Voter",
+    "Star",
+    "Ridgeline",
+    "German House - The Deanery",
+    "Arabic House - Sperry House",
+    "Spanish House - Perkins",
+    "Italian House - Longwell",
   ];
 
   function sortDorms() {
@@ -107,8 +119,8 @@ function SearchBar() {
   };
 
   return (
-    <div className="SearchBar">
-      <div className="SearchBar-header">
+    <div className={styles.container}>
+      <div>
         <input
           type="text"
           placeholder="Search..."
@@ -116,6 +128,7 @@ function SearchBar() {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <select
+          className={styles.select}
           value={selectedOption}
           onChange={(e) => setSelectedOption(e.target.value)}
         >
