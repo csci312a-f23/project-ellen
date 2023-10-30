@@ -14,7 +14,7 @@ export default function Rooms() {
   async function getRoom(Room) {
     // how would this function with this being called elsewhere, like when do we tell it what room to call
     if (!Room) {
-      setDormName("Battell");
+      setDormName("Stewart");
       setDormDimensions(173);
       setDormReview("Comfortable and clean room.");
       setDormRating(4);
@@ -74,6 +74,10 @@ export default function Rooms() {
           <div className={styles.starscontainer}>
             {Array.from({ length: dormRating }, (_, i) => (
               <i key={i} className="fas fa-star is-active" />
+            ))}
+            {/* Add unfilled stars */}
+            {Array.from({ length: 5 - dormRating }, (_, i) => (
+              <i key={i} className="far fa-star unfilled-star" />
             ))}
           </div>
         </div>
