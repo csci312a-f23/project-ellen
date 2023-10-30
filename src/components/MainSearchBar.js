@@ -115,7 +115,7 @@ function SearchBar() {
 
   const handleDormView = (e) => {
     const dorm = e.target.innerText;
-    router.push(`/${dorm}/dorm`);
+    router.push(`dorms/${dorm}`);
   };
 
   return (
