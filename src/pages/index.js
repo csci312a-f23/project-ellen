@@ -36,17 +36,19 @@ export default function Home() {
       <main className={styles.body}>
         <div className={styles.h1}>
           <Image height={100} width={300} src={panther} alt="panther" />
-          Middlebury Housing
+          <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
             <article>
-              <h2>Find A Dorm</h2>
-
+              <div className={styles.h2}>
+                <p>Find a dorm</p>
+              </div>
               <SearchBar dorms={dorms} />
             </article>
           </div>
           <div className={styles.rightHalf}>
+            <div className={styles.h2}>Select a dorm!</div>
             <InteractiveMap />
           </div>
         </section>
