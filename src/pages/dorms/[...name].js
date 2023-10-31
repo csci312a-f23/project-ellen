@@ -2,9 +2,10 @@
 // import { useRouter } from "next/router";
 // import { useState } from "react";
 import Head from "next/head";
-import MainSearchBar from "../../components/MainSearchBar";
 import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
+import DormSearchBar from "../../components/DormSearchBar";
+// import IMG from "../../images/Battell_F1.png";
 
 export default function DormView() {
   // const router = useRouter();
@@ -24,7 +25,7 @@ export default function DormView() {
         <div className={styles.h1}>Middlebury Housing</div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <MainSearchBar />
+            <DormSearchBar />
           </div>
 
           <div className={styles.rightHalf}>
