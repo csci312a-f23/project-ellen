@@ -1,29 +1,62 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Image from "next/image";
 import styles from "../styles/DormMaps.module.css";
-import B1F from "../../public/images/B1F.png";
-// import B2F from "../images/B2F.png";
 
-function dormMaps({ selectedDorm }) {
+function DormMaps({ selectedDorm }) {
+  const dormImages = {
+    Battell: {
+      firstFloor: "/images/Battell1F.png",
+      secondFloor: "/images/Battell2F.png",
+    },
+    Stewart: {
+      firstFloor: "/images/StewartF1.png",
+      secondFloor: "/images/StewartF2.png",
+      thirdFloor: "/images/StewartF3.png",
+      fourthFloor: "/images/StewartF4.png",
+      fifthFloor: "/images/StewartF5.png",
+    },
+    Hepburn: {
+      firstFloor: "/images/HepburnF1.png",
+      secondFloor: "/images/HepburnF2.png",
+      thirdFloor: "/images/HepburnF3.png",
+      fourthFloor: "/images/HepburnF4.png",
+      fifthFloor: "/images/HepburnF5.png",
+    },
+    Allen: {
+      basement: "/images/AllenB.png",
+      firstFloor: "/images/AllenF1.png",
+      secondFloor: "/images/AllenF2.png",
+      thirdFloor: "/images/AllenF3.png",
+    },
+  };
+  const selectedDormImages = dormImages[selectedDorm] || {};
+
   return (
     <div>
       <h1 className={styles.dormTitle}>{selectedDorm}</h1>
-      <h4 className={styles.floorTitle}>First Floor</h4>
-      <Image height={700} width={1200} src={B1F} alt="First floor image" />
-      <h4 className={styles.floorTitle}>Second Floor</h4>
-      <Image
-        height={700}
-        width={1200}
-        src="/images/B2F.png"
-        alt="Second floor image"
-      />
+      {Object.entries(selectedDormImages).map(([floorName, imagePath]) => (
+        <div key={floorName}>
+          <h4 className={styles.floorTitle}>
+            {floorName
+              .replace(/([A-Z])/g, " $1")
+              .trim()
+              .replace(/^./, (str) => str.toUpperCase())}
+          </h4>
+          <img
+            className={styles.dormImage}
+            height={500}
+            width={700}
+            src={imagePath}
+            alt={`${floorName} image`}
+          />
+        </div>
+      ))}
     </div>
   );
 }
 
-dormMaps.propTypes = {
-  selectedDorm: PropTypes.string,
+DormMaps.propTypes = {
+  selectedDorm: PropTypes.string.isRequired,
 };
 
-export default dormMaps;
+export default DormMaps;

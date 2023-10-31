@@ -46,7 +46,7 @@ function SearchBar() {
   ];
 
   const dorms = [
-    "Battel",
+    "Battell",
     "Allen",
     "Hepburn",
     "Stewart",
