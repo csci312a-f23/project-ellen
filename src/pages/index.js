@@ -5,7 +5,6 @@ import InteractiveMap from "@/components/InteractiveMap";
 import Image from "next/image";
 
 import styles from "../styles/main.module.css";
-import panther from "../images/panther.png";
 
 export default function Home() {
   return (
@@ -18,7 +17,12 @@ export default function Home() {
       </Head>
       <main className={styles.body}>
         <div className={styles.h1}>
-          <Image height={100} width={300} src={panther} alt="panther" />
+          <Image
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
+          />
           <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>

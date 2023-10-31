@@ -3,8 +3,8 @@
 // import { useState } from "react";
 import Head from "next/head";
 import MainSearchBar from "../../components/MainSearchBar";
+import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
-// import IMG from "../../images/Battell_F1.png";
 
 export default function DormView() {
   // const router = useRouter();
@@ -28,7 +28,7 @@ export default function DormView() {
           </div>
 
           <div className={styles.rightHalf}>
-            <h1 className={styles.dormTitle}>Battell</h1>
+            <DormMaps />
           </div>
         </section>
       </main>

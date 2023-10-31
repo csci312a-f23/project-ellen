@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "../styles/Review.module.css";
 
 function Review() {
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
   const router = useRouter();
 
@@ -32,8 +32,8 @@ function Review() {
 
   return (
     <div className={styles.review}>
-      <h1 className={styles.header}>Review</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className={styles.header}>Leave a Review!</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div>
           <label>Rating:</label>
           <input
@@ -42,7 +42,9 @@ function Review() {
             max="5"
             value={rating}
             onChange={handleRatingChange}
+            className={styles.ratingInp}
           />
+          <p className={styles.ratingTotal}> / 5</p>
         </div>
         <br />
         <div className={styles.comment}>
@@ -55,10 +57,18 @@ function Review() {
           />
         </div>
         <br />
-        <button type="submit" onClick={handleSubmit}>
+        <button
+          type="submit"
+          className={`${styles.button}`}
+          onClick={handleSubmit}
+        >
           Submit Review
         </button>
-        <button type="button" onClick={handleCancel}>
+        <button
+          type="button"
+          className={`${styles.cancelButton} ${styles.button}`}
+          onClick={handleCancel}
+        >
           Cancel
         </button>
       </form>
