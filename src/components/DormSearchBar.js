@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import battellinfo from "../BattellRoomInfo.json";
+import battellinfo from "../../data/BattelRoomInfo.json";
+
 import styles from "../styles/SearchBar.module.css";
 
 function DormSearchBar() {
   // const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   // const [results, setResults] = useState();
-  const [rooms, setRooms] = useState();
+  const [rooms, setRooms] = useState([]);
   const router = useRouter();
   const dorm = battellinfo;
 

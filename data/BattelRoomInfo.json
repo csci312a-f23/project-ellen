@@ -1,0 +1,165 @@
+[
+  {
+    "number": "100",
+    "type": "Triple",
+    "beds": 1,
+    "dimensions": 298,
+    "reviews": [{ "review": "Comfortable and clean number.", "rating": 5 }]
+  },
+  {
+    "number": "101",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 184,
+    "reviews": [
+      { "review": "Noisy neighbors, but great location.", "rating": 3 }
+    ]
+  },
+  {
+    "number": "102",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 184,
+    "reviews": [{ "review": "Spacious and well-furnished.", "rating": 4 }]
+  },
+  {
+    "number": "103",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 184,
+    "reviews": [
+      { "review": "Cozy atmosphere, but limited storage space.", "rating": 3 }
+    ]
+  },
+  {
+    "number": "104",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 184,
+    "reviews": [
+      { "review": "Excellent facilities and friendly staff.", "rating": 5 }
+    ]
+  },
+  {
+    "number": "105",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 184,
+    "reviews": [{ "review": "Small number, but great price.", "rating": 3 }]
+  },
+  {
+    "number": "106",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 184,
+    "reviews": [
+      { "review": "Convenient location, but outdated furniture.", "rating": 4 }
+    ]
+  },
+  {
+    "number": "107",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 184,
+    "reviews": [{ "review": "Clean and tidy, but slow internet.", "rating": 3 }]
+  },
+  {
+    "number": "108",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [
+      { "review": "Comfortable beds and quiet surroundings.", "rating": 5 }
+    ]
+  },
+  {
+    "number": "109",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [{ "review": "Limited parking options.", "rating": 1 }]
+  },
+  {
+    "number": "110",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [{ "review": "Friendly and helpful staff.", "rating": 5 }]
+  },
+  {
+    "number": "111",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [{ "review": "Well-maintained common areas.", "rating": 4 }]
+  },
+  {
+    "number": "112",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [
+      { "review": "Decent size number, but outdated decor.", "rating": 3 }
+    ]
+  },
+  {
+    "number": "114",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [{ "review": "Noisy ventilation system.", "rating": 2 }]
+  },
+  {
+    "number": "115",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [{ "review": "Good Wi-Fi connectivity.", "rating": 4 }]
+  },
+  {
+    "number": "116",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [{ "review": "Poor sound insulation.", "rating": 1 }]
+  },
+  {
+    "number": "117",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [
+      { "review": "Close to campus and dining options.", "rating": 5 }
+    ]
+  },
+  {
+    "number": "118",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 186,
+    "reviews": [{ "review": "Cozy and homely atmosphere.", "rating": 4 }]
+  },
+  {
+    "number": "119",
+    "type": "Double",
+    "beds": 1,
+    "dimensions": 170,
+    "reviews": [
+      { "review": "Insufficient lighting in the number.", "rating": 2 }
+    ]
+  },
+  {
+    "number": "120",
+    "type": "Single",
+    "beds": 1,
+    "dimensions": 107,
+    "reviews": [{ "review": "Responsive maintenance team.", "rating": 5 }]
+  },
+  {
+    "number": "200",
+    "type": "Triple",
+    "beds": 1,
+    "dimensions": 302,
+    "reviews": [{ "review": "Adequate kitchen facilities.", "rating": 3 }]
+  }
+]
