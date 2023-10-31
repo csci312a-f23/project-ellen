@@ -16,7 +16,12 @@ function InteractiveMap() {
   return (
     <article>
       <div className={styles.mapContainer}>
-        <Image height={700} width={1200} alt="campus map" />
+        <Image
+          height={700}
+          width={1200}
+          src="/images/campusmap.png"
+          alt="campus map"
+        />
         {locations.map((place) => (
           <div
             key={place.id}

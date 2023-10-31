@@ -1,5 +1,5 @@
 // import PropTypes from "prop-types";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 // import { useState } from "react";
 import Head from "next/head";
 import DormMaps from "../../components/dormMaps";
@@ -8,8 +8,10 @@ import DormSearchBar from "../../components/DormSearchBar";
 // import IMG from "../../images/Battell_F1.png";
 
 export default function DormView() {
-  // const router = useRouter();
+  const router = useRouter();
   // const [currentDorm, setCurrentDorm] = useState("");
+
+  const { name } = router.query;
 
   return (
     <>
@@ -29,7 +31,7 @@ export default function DormView() {
           </div>
 
           <div className={styles.rightHalf}>
-            <DormMaps />
+            <DormMaps selectedDorm={name} />
           </div>
         </section>
       </main>

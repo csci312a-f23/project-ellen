@@ -1,7 +1,7 @@
 [
   {
     "Hall": "Battell Center",
-    "Room": "BTC 100",
+    "Number": "BTC 100",
     "Room Type": "Triple",
     "Bed": 1,
     "Dimensions(ft squared)": 298,
@@ -10,7 +10,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 101",
+    "Number": "BTC 101",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 184,
@@ -19,7 +19,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 102",
+    "Number": "BTC 102",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 184,
@@ -28,7 +28,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 103",
+    "Number": "BTC 103",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 184,
@@ -37,7 +37,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 104",
+    "Number": "BTC 104",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 184,
@@ -46,7 +46,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 105",
+    "Number": "BTC 105",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 184,
@@ -55,7 +55,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 106",
+    "Number": "BTC 106",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 184,
@@ -64,7 +64,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 107",
+    "Number": "BTC 107",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 184,
@@ -73,7 +73,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 108",
+    "Number": "BTC 108",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 170,
@@ -82,7 +82,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 109",
+    "Number": "BTC 109",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 170,
@@ -91,7 +91,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 110",
+    "Number": "BTC 110",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 170,
@@ -100,7 +100,7 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 111",
+    "Number": "BTC 111",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 170,
@@ -109,83 +109,11 @@
   },
   {
     "Hall": "Battell Center",
-    "Room": "BTC 112",
+    "Number": "BTC 112",
     "Room Type": "Double",
     "Bed": 1,
     "Dimensions(ft squared)": 170,
     "Reviews": "Decent size room, but outdated decor.",
-    "Rating (out of 5)": 3
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 114",
-    "Room Type": "Double",
-    "Bed": 1,
-    "Dimensions(ft squared)": 170,
-    "Reviews": "Noisy ventilation system.",
-    "Rating (out of 5)": 2
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 115",
-    "Room Type": "Double",
-    "Bed": 1,
-    "Dimensions(ft squared)": 170,
-    "Reviews": "Good Wi-Fi connectivity.",
-    "Rating (out of 5)": 4
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 116",
-    "Room Type": "Double",
-    "Bed": 1,
-    "Dimensions(ft squared)": 170,
-    "Reviews": "Poor sound insulation.",
-    "Rating (out of 5)": 1
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 117",
-    "Room Type": "Double",
-    "Bed": 1,
-    "Dimensions(ft squared)": 170,
-    "Reviews": "Close to campus and dining options.",
-    "Rating (out of 5)": 5
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 118",
-    "Room Type": "Double",
-    "Bed": 1,
-    "Dimensions(ft squared)": 186,
-    "Reviews": "Cozy and homely atmosphere.",
-    "Rating (out of 5)": 4
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 119",
-    "Room Type": "Double",
-    "Bed": 1,
-    "Dimensions(ft squared)": 170,
-    "Reviews": "Insufficient lighting in the room.",
-    "Rating (out of 5)": 2
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 120",
-    "Room Type": "Single",
-    "Bed": 1,
-    "Dimensions(ft squared)": 107,
-    "Reviews": "Responsive maintenance team.",
-    "Rating (out of 5)": 5
-  },
-  {
-    "Hall": "Battell Center",
-    "Room": "BTC 200",
-    "Room Type": "Triple",
-    "Bed": 1,
-    "Dimensions(ft squared)": 302,
-    "Reviews": "Adequate kitchen facilities.",
     "Rating (out of 5)": 3
   }
 ]

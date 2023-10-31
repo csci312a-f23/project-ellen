@@ -3,7 +3,7 @@ import Head from "next/head";
 import MainSearchBar from "@/components/MainSearchBar";
 import InteractiveMap from "@/components/InteractiveMap";
 import Image from "next/image";
-
+// import panther from "/images/panther.png";
 import styles from "../styles/main.module.css";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
           <Image
             height={100}
             width={300}
-            src="/images/panther.png"
+            // src={panther}
             alt="panther"
           />
           <h3>Middlebury Housing</h3>

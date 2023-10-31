@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import battelinfo from "../BattelRoomInfo.json";
-
+import battellinfo from "../BattellRoomInfo.json";
 import styles from "../styles/SearchBar.module.css";
 
 function DormSearchBar() {
@@ -11,12 +10,12 @@ function DormSearchBar() {
   // const [results, setResults] = useState();
   const [rooms, setRooms] = useState();
   const router = useRouter();
-  const dorm = battelinfo;
+  const dorm = battellinfo;
 
   function getRooms() {
     const roomList = [];
     dorm.forEach((room) => {
-      roomList.push(room.room);
+      roomList.push(room.Number);
     });
     setRooms(roomList);
   }
@@ -27,12 +26,11 @@ function DormSearchBar() {
 
   const handleAddReview = () => {
     router.push("/review");
-    console.log("Add review clicked");
   };
 
-  const handleRoomReview = () => {
-    // const room = e.target.innerText;
-    router.push(`dorms/${dorm}`);
+  const handleRoomView = (e) => {
+    const room = e.target.innerText;
+    router.push(`rooms/${room}`);
   };
 
   return (
@@ -48,7 +46,7 @@ function DormSearchBar() {
         <button type="button">Search</button>
       </div>
       <div className="SearchBar-results">
-        <ul onClick={handleRoomReview}>
+        <ul onClick={handleRoomView}>
           {rooms && rooms.map((room) => <li key={room}>{room}</li>)}
         </ul>
       </div>
