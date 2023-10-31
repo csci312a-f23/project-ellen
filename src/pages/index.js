@@ -3,8 +3,10 @@ import Head from "next/head";
 import MainSearchBar from "@/components/MainSearchBar";
 import InteractiveMap from "@/components/InteractiveMap";
 import Image from "next/image";
-// import panther from "/images/panther.png";
+import Link from "next/link"; // Import the Link component
 import styles from "../styles/main.module.css";
+import panther from "../../public/images/panther.png";
+import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Home() {
   return (
@@ -16,13 +18,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
+        <Link href="/profile">
+          <button type="button" className={styles.profileButton}>
+            <Image
+              src={UserIcon}
+              alt="User Profile"
+              width={20}
+              height={20}
+              className={styles.userIcon}
+            />
+            My Profile
+          </button>
+        </Link>
         <div className={styles.h1}>
-          <Image
-            height={100}
-            width={300}
-            // src={panther}
-            alt="panther"
-          />
+          <Image height={100} width={300} src={panther} alt="panther" />
           <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>
