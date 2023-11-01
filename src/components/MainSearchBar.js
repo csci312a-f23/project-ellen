@@ -10,7 +10,7 @@ function SearchBar() {
   const [results, setResults] = useState();
   const router = useRouter();
   const freshmanDorms = [
-    "Battel",
+    "Battell",
     "Allen",
     "Hepburn",
     "Stewart",
@@ -21,7 +21,6 @@ function SearchBar() {
     "Hadley",
     "Milliken",
     "Coffrin",
-
     "Pearsons",
   ];
   const upperclassDorms = [
@@ -90,7 +89,7 @@ function SearchBar() {
         setResults(freshmanDorms);
       } else if (selectedOption === "Sophomore Dorms") {
         setResults(sophomoreDorms);
-      } else if (selectedOption === "Upperclass Dorms") {
+      } else if (selectedOption === "Upperclassmen Dorms") {
         setResults(upperclassDorms);
       } else if (selectedOption === "Language Houses") {
         setResults(langHouses);
@@ -115,6 +114,7 @@ function SearchBar() {
 
   const handleDormView = (e) => {
     const dorm = e.target.innerText;
+    dorm.toLowerCase();
     router.push(`dorms/${dorm}`);
   };
 
@@ -135,7 +135,7 @@ function SearchBar() {
           <option value="All">All</option>
           <option value="Freshman Dorms">Freshman Dorms</option>
           <option value="Sophomore Dorms"> Sophomore Dorms</option>
-          <option value="Upperclass Dorms">Upperclassmen Dorms</option>
+          <option value="Upperclassmen Dorms">Upperclassmen Dorms</option>
           <option value="Language Houses">Language Houses</option>
         </select>
         <button type="button" onClick={handleOnClick}>

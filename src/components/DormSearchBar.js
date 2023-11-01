@@ -6,18 +6,13 @@ import battellinfo from "../../data/BattelRoomInfo.json";
 import styles from "../styles/SearchBar.module.css";
 
 function DormSearchBar() {
-  // const [selectedOption, setSelectedOption] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
-  // const [results, setResults] = useState();
   const [rooms, setRooms] = useState([]);
   const router = useRouter();
   const dorm = battellinfo;
 
   function getRooms() {
-    const roomList = [];
-    dorm.forEach((room) => {
-      roomList.push(room.number);
-    });
+    const roomList = dorm.map((room) => room.number);
     setRooms(roomList);
   }
 
@@ -29,9 +24,8 @@ function DormSearchBar() {
     router.push("/review");
   };
 
-  const handleRoomView = (e) => {
-    const room = e.target.innerText;
-    router.push(`rooms/${room}`);
+  const handleRoomView = (roomNumber) => {
+    router.push(`rooms/${roomNumber}`);
   };
 
   return (
@@ -43,13 +37,16 @@ function DormSearchBar() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-
         <button type="button">Search</button>
       </div>
       <div className="SearchBar-results">
-        <ul onClick={handleRoomView}>
+        <ul>
           {rooms &&
-            rooms.map((room) => <li key={room.number}>{room.number}</li>)}
+            rooms.map((room) => (
+              <li key={room} onClick={() => handleRoomView(room)}>
+                {room}
+              </li>
+            ))}
         </ul>
       </div>
       <button type="button" onClick={handleAddReview}>

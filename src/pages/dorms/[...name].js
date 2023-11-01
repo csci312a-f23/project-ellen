@@ -29,7 +29,6 @@ export default function DormView() {
           <div className={styles.leftHalf}>
             <DormSearchBar />
           </div>
-
           <div className={styles.rightHalf}>
             <DormMaps selectedDorm={name} />
           </div>
