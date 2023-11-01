@@ -16,7 +16,7 @@ function DormSearchBar() {
   function getRooms() {
     const roomList = [];
     dorm.forEach((room) => {
-      roomList.push(room.Number);
+      roomList.push(room.number);
     });
     setRooms(roomList);
   }
@@ -48,7 +48,8 @@ function DormSearchBar() {
       </div>
       <div className="SearchBar-results">
         <ul onClick={handleRoomView}>
-          {rooms && rooms.map((room) => <li key={room}>{room}</li>)}
+          {rooms &&
+            rooms.map((room) => <li key={room.number}>{room.number}</li>)}
         </ul>
       </div>
       <button type="button" onClick={handleAddReview}>
