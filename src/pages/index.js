@@ -3,8 +3,10 @@ import Head from "next/head";
 import SearchBar from "@/components/SearchBar";
 import InteractiveMap from "@/components/InteractiveMap";
 import Image from "next/image";
+import Link from "next/link"; // Import the Link component
 import styles from "../styles/main.module.css";
 import panther from "../images/panther.png";
+import UserIcon from "../images/UserIcon.jpeg";
 
 export default function Home() {
   const dorms = [
@@ -34,6 +36,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
+        <Link href="/profile">
+          <button type="button" className={styles.profileButton}>
+            <Image
+              src={UserIcon}
+              alt="User Profile"
+              width={20}
+              height={20}
+              className={styles.userIcon}
+            />
+            My Profile
+          </button>
+        </Link>
         <div className={styles.h1}>
           <Image height={100} width={300} src={panther} alt="panther" />
           Middlebury Housing

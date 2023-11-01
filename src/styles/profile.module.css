@@ -1,0 +1,54 @@
+/* profile.module.css */
+
+.body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.userIcon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.roomList {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.saveButton {
+  background-color: #0074b3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.saveButton:hover {
+  background-color: #005a99;
+}
