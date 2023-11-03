@@ -19,10 +19,13 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "knex": "^3.0.1",
     "next": "13.5.4",
+    "pg": "^8.11.3",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sqlite3": "^5.1.6"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",
