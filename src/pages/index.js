@@ -1,9 +1,9 @@
 /* eslint-disable spaced-comment */
+/* eslint-disable @next/next/no-sync-scripts */
+/* eslint-disable react/self-closing-comp */
 import Head from "next/head";
 import SearchBar from "@/components/SearchBar";
-import InteractiveMap from "@/components/InteractiveMap";
 import LeafletMap from "@/components/LeafletMap";
-
 import Image from "next/image";
 import styles from "../styles/main.module.css";
 import panther from "../images/panther.png";
