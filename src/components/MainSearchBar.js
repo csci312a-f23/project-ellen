@@ -107,6 +107,11 @@ function SearchBar() {
     }
   };
 
+  const handleAddReview = () => {
+    router.push("/review");
+    console.log("Add review clicked");
+  };
+
   const handleDormView = (e) => {
     const dorm = e.target.innerText;
     dorm.toLowerCase();
@@ -142,6 +147,10 @@ function SearchBar() {
           {results && results.map((dorm) => <li key={dorm}>{dorm}</li>)}
         </ul>
       </div>
+      <button type="button" onClick={handleAddReview}>
+        {" "}
+        Add Review
+      </button>
     </div>
   );
 }
