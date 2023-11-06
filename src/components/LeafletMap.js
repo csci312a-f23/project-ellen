@@ -8,13 +8,17 @@ const LeafletMap = () => {
   useEffect(() => {
     const L = require('leaflet');
 
-    const map = L.map(mapContainerRef.current).setView([51.505, -0.09], 13);
+    const map = L.map(mapContainerRef.current).setView([44.011309, -73.178091], 17);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="<https://www.openstreetmap.org/copyright>">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.marker([51.5, -0.09]).addTo(map);
+    L.marker([44.011309, -73.178091]).addTo(map)
+      .bindPopup('Battel')
+
+    L.marker([44.010514, -73.179014]).addTo(map)
+    .bindPopup('Forrest')
 
     return () => {
       map.remove();
