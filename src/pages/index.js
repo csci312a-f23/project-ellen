@@ -2,12 +2,12 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable react/self-closing-comp */
 import Head from "next/head";
-import MainSearchBar from "@/components/MainSearchBar";
-import InteractiveMap from "@/components/InteractiveMap";
-import SearchBar from "@/components/SearchBar";
+//import MainSearchBar from "@/components/MainSearchBar";
+//import InteractiveMap from "@/components/InteractiveMap";
 import LeafletMap from "@/components/LeafletMap";
 import Image from "next/image";
 import Link from "next/link"; // Import the Link component
+import SearchBar from "@/components/DormSearchBar";
 import styles from "../styles/main.module.css";
 import panther from "../../public/images/panther.png";
 import UserIcon from "../../public/images/UserIcon.jpeg";

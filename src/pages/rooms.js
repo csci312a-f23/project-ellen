@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
 import styles from "../styles/rooms.module.css";
-import battell from "../images/battell.png";
+import battell from "../../public/images/battell.png";
 
 export default function Rooms() {
   const [dormName, setDormName] = useState(null);
