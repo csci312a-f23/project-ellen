@@ -7,7 +7,7 @@ import Head from "next/head";
 import LeafletMap from "@/components/LeafletMap";
 import Image from "next/image";
 import Link from "next/link"; // Import the Link component
-import SearchBar from "@/components/DormSearchBar";
+import SearchBar from "@/components/MainSearchBar";
 import styles from "../styles/main.module.css";
 import panther from "../../public/images/panther.png";
 import UserIcon from "../../public/images/UserIcon.jpeg";
