@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
-// eslint-disable-next-line import/no-unresolved, no-unused-vars
-import { Model } from "objection";
-// eslint-disable-next-line import/no-unresolved, import/extensions
-import BaseModel from "./BaseModel";
+
+import BaseModel from "./BaseModels";
 
 export default class Article extends BaseModel {
   // Table name is the only required property.
