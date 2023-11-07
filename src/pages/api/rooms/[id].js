@@ -6,10 +6,7 @@ const router = createRouter();
 
 router
   .get(async (req, res) => {
-    const article = await Room.query()
-      .findById(req.query.id)
-      .withGraphFetched("related")
-      .throwIfNotFound();
+    const article = await Room.query().findById(req.query.id).throwIfNotFound();
     res.status(200).json(article);
   })
 

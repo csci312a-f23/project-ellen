@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createRouter } from "next-connect";
 import Room from "../../../../models/Room";
 
