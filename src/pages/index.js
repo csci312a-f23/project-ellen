@@ -9,10 +9,12 @@ import Image from "next/image";
 import Link from "next/link"; // Import the Link component
 import SearchBar from "@/components/MainSearchBar";
 import styles from "../styles/main.module.css";
-import panther from "../../public/images/panther.png";
+// import panther from "../../public/images/panther.png";
 import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Home() {
+  const panther2 = "/images/panther.png";
+
   const dorms = [
     "Battel",
     "Allen",
@@ -64,7 +66,7 @@ export default function Home() {
           </button>
         </Link>
         <div className={styles.h1}>
-          <Image height={100} width={300} src={panther} alt="panther" />
+          <Image height={100} width={300} src={panther2} alt="panther" />
           <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>
