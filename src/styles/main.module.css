@@ -96,3 +96,9 @@
   justify-content: center;
   text-align: center;
 }
+
+.pantherImage {
+  display: block;
+  margin: 0;
+  padding: 0rem;
+}

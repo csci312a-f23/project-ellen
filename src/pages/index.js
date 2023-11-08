@@ -67,7 +67,13 @@ export default function Home() {
           </button>
         </Link>
         <div className={styles.h1}>
-          <img height={100} width={300} src={panther2.panther} alt="panther" />
+          <img
+            className={styles.pantherImage}
+            height={100}
+            width={300}
+            src={panther2.panther}
+            alt="panther"
+          />
           <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>
