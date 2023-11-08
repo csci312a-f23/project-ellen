@@ -13,7 +13,8 @@ import styles from "../styles/main.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Home() {
-  const panther2 = "/images/panther.png";
+  // const panther2 = "/images/panther.png";
+  const panther2 = { panther: "/images/panther.png" };
 
   const dorms = [
     "Battel",
@@ -66,7 +67,7 @@ export default function Home() {
           </button>
         </Link>
         <div className={styles.h1}>
-          <img height={100} width={300} src={panther2} alt="panther" />
+          <img height={100} width={300} src={panther2.panther} alt="panther" />
           <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>
