@@ -1,6 +1,6 @@
 [
   {
-    "number": "100",
+    "number": 100,
     "type": "Triple",
     "beds": 1,
     "dimensions": 298,
@@ -9,7 +9,7 @@
     ]
   },
   {
-    "number": "101",
+    "number": 101,
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "number": "102",
+    "number": 102,
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
@@ -27,7 +27,7 @@
     ]
   },
   {
-    "number": "103",
+    "number": 103,
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
@@ -40,7 +40,7 @@
     ]
   },
   {
-    "number": "104",
+    "number": 104,
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
@@ -53,7 +53,7 @@
     ]
   },
   {
-    "number": "105",
+    "number": 105,
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "number": "106",
+    "number": 106,
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
@@ -75,7 +75,7 @@
     ]
   },
   {
-    "number": "107",
+    "number": 107,
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
@@ -84,7 +84,7 @@
     ]
   },
   {
-    "number": "108",
+    "number": 108,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
@@ -97,14 +97,14 @@
     ]
   },
   {
-    "number": "109",
+    "number": 109,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
     "reviews": [{ "review": "Limited parking options.", "rating": 1 }]
   },
   {
-    "number": "110",
+    "number": 110,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
@@ -113,7 +113,7 @@
     ]
   },
   {
-    "number": "111",
+    "number": 111,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
@@ -122,7 +122,7 @@
     ]
   },
   {
-    "number": "112",
+    "number": 112,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
@@ -135,28 +135,28 @@
     ]
   },
   {
-    "number": "114",
+    "number": 114,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
     "reviews": [{ "review": "Noisy ventilation system.", "rating": 2, "id": 1 }]
   },
   {
-    "number": "115",
+    "number": 115,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
     "reviews": [{ "review": "Good Wi-Fi connectivity.", "rating": 4 }]
   },
   {
-    "number": "116",
+    "number": 116,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
     "reviews": [{ "review": "Poor sound insulation.", "rating": 1 }]
   },
   {
-    "number": "117",
+    "number": 117,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
@@ -165,14 +165,14 @@
     ]
   },
   {
-    "number": "118",
+    "number": 118,
     "type": "Double",
     "beds": 1,
     "dimensions": 186,
     "reviews": [{ "review": "Cozy and homely atmosphere.", "rating": 4 }]
   },
   {
-    "number": "119",
+    "number": 119,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
@@ -181,14 +181,14 @@
     ]
   },
   {
-    "number": "120",
+    "number": 120,
     "type": "Single",
     "beds": 1,
     "dimensions": 107,
     "reviews": [{ "review": "Responsive maintenance team.", "rating": 5 }]
   },
   {
-    "number": "200",
+    "number": 200,
     "type": "Triple",
     "beds": 1,
     "dimensions": 302,

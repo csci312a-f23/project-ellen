@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-
+import PropTypes from "prop-types";
 import styles from "../styles/Review.module.css";
 
-function Review() {
+function Review({ roomName }) {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
   const router = useRouter();
@@ -18,12 +18,27 @@ function Review() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const data = {
-    //   rating,
-    //   comment,
-    //   posted: new Date().toISOString,
-    // };
-    // send data to server
+    const data = {
+      rating,
+      comment,
+      posted: new Date().toISOString,
+    };
+    (async () => {
+      try {
+        const response = await fetch(`/api/${roomName}/review`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }),
+        });
+        router.push(`/rooms/${roomName}`);
+        console.log("Response: ", response);
+      } catch (error) {
+        console.log("Something went wrong: ", error);
+      }
+    })();
   };
 
   const handleCancel = (event) => {
@@ -73,8 +88,13 @@ function Review() {
           Cancel
         </button>
       </form>
+      <footer>{roomName}</footer>
     </div>
   );
 }
 
 export default Review;
+
+Review.propTypes = {
+  roomName: PropTypes.string.isRequired,
+};

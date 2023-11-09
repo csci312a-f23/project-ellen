@@ -1,11 +1,11 @@
 // /* eslint-disable camelcase */
-// // import { Model } from "objection";
+
 // import BaseModel from "./BaseModels";
 
-// export default class Room extends BaseModel {
+// export default class Review extends BaseModel {
 //   // Table name is the only required property.
 //   static get tableName() {
-//     return "Room";
+//     return "Review";
 //   }
 
 //   // Objection.js assumes primary key is `id` by default
@@ -17,10 +17,9 @@
 
 //       properties: {
 //         id: { type: "integer" },
-//         dormDimensions: { type: "integer" },
-//         dormName: { type: "string" },
-//         dormReview: { type: "string" },
-//         dormRating: { type: "string" },
+//         rating: { type: "integer" },
+//         comment: { type: "string" },
+//         posted: { type: "integer" },
 //       },
 //     };
 //   }

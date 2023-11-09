@@ -1,50 +1,47 @@
 import Head from "next/head";
 import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styles from "../../../styles/rooms.module.css";
 import battell from "../../../../public/images/battell.png";
 
 export default function Rooms() {
-  const [dormName, setDormName] = useState(null);
-  const [dormDimensions, setDormDimensions] = useState(null);
-  const [dormReview, setDormReview] = useState(null);
-  const [dormRating, setDormRating] = useState(null);
-  const [dormNumber, setDormNumber] = useState(null);
+  const [number, setNum] = useState(null);
+  const [dimensions, setDimensions] = useState("");
+  const [dormReview, setReviews] = useState("");
+  const [dormRating, setRating] = useState("");
 
-  async function getRoom(Room) {
-    // how would this function with this being called elsewhere, like when do we tell it what room to call
-    if (!Room) {
-      setDormName("Stewart");
-      setDormDimensions(173);
-      setDormReview("Comfortable and clean room.");
-      setDormRating(4);
-      setDormNumber(123);
-    } else {
-      try {
-        const response = await fetch("/api/rooms", {
-          method: "GET",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setDormName(data.name);
-          setDormDimensions(data.dimensions);
-          setDormReview(data.review);
-          setDormRating(data.rating);
-        }
-      } catch (error) {
-        console.log("Something went wrong");
-      }
-    }
+  const router = useRouter();
+  const { id } = router.query;
+  console.log("Router Query:", router.query);
+  console.log("Room ID:", id);
+
+  const normID = +id;
+
+  function setRoom(room) {
+    setNum(room.id);
+    setDimensions(room.dormDimensions);
+    setReviews(room.dormReview);
+    setRating(room.dormRating);
   }
+
+  const getRoom = async () => {
+    try {
+      const response = await fetch(`/api/rooms/${normID}`);
+      if (response.ok) {
+        const data = await response.json();
+        setRoom(data);
+      }
+    } catch (error) {
+      console.error("Error fetching room data:", error);
+    }
+  };
 
   useEffect(() => {
     getRoom();
   }, []);
 
+  // add unfilled stars to reviews
   return (
     <>
       <Head>
@@ -66,16 +63,16 @@ export default function Rooms() {
             height={672}
           />
         </div>
-        <div className={styles.h1}>{dormName}</div>
-        <div className={styles.h2}> Room : {dormNumber} </div>
-        <div className={styles.h2}> Dimensions : {dormDimensions} sq ft </div>
+        <div className={styles.h1}>{number}</div>
+        <div className={styles.h2}> Room : {normID} </div>
+        <div className={styles.h2}> Dimensions : {dimensions} sq ft </div>
         <div className={styles.h2}> Rating : {dormRating} </div>
         <div className="rating-box">
           <div className={styles.starscontainer}>
             {Array.from({ length: dormRating }, (_, i) => (
               <i key={i} className="fas fa-star is-active" />
             ))}
-            {/* Add unfilled stars */}
+
             {Array.from({ length: 5 - dormRating }, (_, i) => (
               <i key={i} className="far fa-star unfilled-star" />
             ))}
