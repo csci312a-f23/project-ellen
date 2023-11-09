@@ -1,26 +1,36 @@
 // /* eslint-disable camelcase */
+import { Model } from "objection";
+import BaseModel from "./BaseModels";
 
-// import BaseModel from "./BaseModels";
+export default class Review extends BaseModel {
+  // Table name is the only required property.
+  static get tableName() {
+    return "Review";
+  }
 
-// export default class Review extends BaseModel {
-//   // Table name is the only required property.
-//   static get tableName() {
-//     return "Review";
-//   }
+  // Objection.js assumes primary key is `id` by default
 
-//   // Objection.js assumes primary key is `id` by default
+  static get jsonSchema() {
+    return {
+      type: "object",
 
-//   static get jsonSchema() {
-//     return {
-//       type: "object",
-//       required: ["id"],
+      properties: {
+        rating: { type: "integer" },
+        review: { type: "text" },
+      },
+    };
+  }
 
-//       properties: {
-//         id: { type: "integer" },
-//         rating: { type: "integer" },
-//         comment: { type: "string" },
-//         posted: { type: "integer" },
-//       },
-//     };
-//   }
-// }
+  static get relationMappings() {
+    return {
+      room: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: `models/Room`,
+        join: {
+          from: "Review.roomId",
+          to: "Room.id",
+        },
+      },
+    };
+  }
+}
