@@ -4,9 +4,7 @@
     "type": "Triple",
     "beds": 1,
     "dimensions": 298,
-    "reviews": [
-      { "review": "Comfortable and clean number.", "rating": 5, "id": 1 }
-    ]
+    "reviews": [{ "review": "Comfortable and clean number.", "rating": 5 }]
   },
   {
     "number": 101,
@@ -14,7 +12,7 @@
     "beds": 1,
     "dimensions": 184,
     "reviews": [
-      { "review": "Noisy neighbors, but great location.", "rating": 3, "id": 1 }
+      { "review": "Noisy neighbors, but great location.", "rating": 3 }
     ]
   },
   {
@@ -22,9 +20,7 @@
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
-    "reviews": [
-      { "review": "Spacious and well-furnished.", "rating": 4, "id": 1 }
-    ]
+    "reviews": [{ "review": "Spacious and well-furnished.", "rating": 4 }]
   },
   {
     "number": 103,
@@ -34,8 +30,7 @@
     "reviews": [
       {
         "review": "Cozy atmosphere, but limited storage space.",
-        "rating": 3,
-        "id": 1
+        "rating": 3
       }
     ]
   },
@@ -47,8 +42,7 @@
     "reviews": [
       {
         "review": "Excellent facilities and friendly staff.",
-        "rating": 5,
-        "id": 1
+        "rating": 5
       }
     ]
   },
@@ -57,9 +51,7 @@
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
-    "reviews": [
-      { "review": "Small number, but great price.", "rating": 3, "id": 1 }
-    ]
+    "reviews": [{ "review": "Small number, but great price.", "rating": 3 }]
   },
   {
     "number": 106,
@@ -69,8 +61,7 @@
     "reviews": [
       {
         "review": "Convenient location, but outdated furniture.",
-        "rating": 4,
-        "id": 1
+        "rating": 4
       }
     ]
   },
@@ -79,9 +70,7 @@
     "type": "Double",
     "beds": 1,
     "dimensions": 184,
-    "reviews": [
-      { "review": "Clean and tidy, but slow internet.", "rating": 3, "id": 1 }
-    ]
+    "reviews": [{ "review": "Clean and tidy, but slow internet.", "rating": 3 }]
   },
   {
     "number": 108,
@@ -91,8 +80,7 @@
     "reviews": [
       {
         "review": "Comfortable beds and quiet surroundings.",
-        "rating": 5,
-        "id": 1
+        "rating": 5
       }
     ]
   },
@@ -108,18 +96,14 @@
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
-    "reviews": [
-      { "review": "Friendly and helpful staff.", "rating": 5, "id": 1 }
-    ]
+    "reviews": [{ "review": "Friendly and helpful staff.", "rating": 5 }]
   },
   {
     "number": 111,
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
-    "reviews": [
-      { "review": "Well-maintained common areas.", "rating": 4, "id": 1 }
-    ]
+    "reviews": [{ "review": "Well-maintained common areas.", "rating": 4 }]
   },
   {
     "number": 112,
@@ -129,8 +113,7 @@
     "reviews": [
       {
         "review": "Decent size number, but outdated decor.",
-        "rating": 3,
-        "id": 1
+        "rating": 3
       }
     ]
   },
@@ -139,7 +122,7 @@
     "type": "Double",
     "beds": 1,
     "dimensions": 170,
-    "reviews": [{ "review": "Noisy ventilation system.", "rating": 2, "id": 1 }]
+    "reviews": [{ "review": "Noisy ventilation system.", "rating": 2 }]
   },
   {
     "number": 115,
