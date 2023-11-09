@@ -13,7 +13,7 @@ function DormSearchBar() {
   const [selectedOption, setSelectedOption] = useState("All"); // testing
 
   function getRooms() {
-    const roomList = dorm.map((room) => room.number);
+    const roomList = dorm.map((room) => room.id);
     setRooms(roomList);
   }
 
