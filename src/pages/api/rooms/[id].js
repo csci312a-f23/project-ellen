@@ -1,24 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-// import { createRouter } from "next-connect";
-// import Room from "../../../../models/Room";
-import { knex } from "../../../../knex/knex";
+import { createRouter } from "next-connect";
+import Room from "../../../../models/Room";
 
-// const router = createRouter();
+const router = createRouter();
 
-export default async function handler(req, res) {
-  const { id } = req.query;
-
-  if (!id) {
-    res.status(400).end("Invalid room ID");
-  }
-
-  const room = await knex("Room").where({ id }).first();
-  if (room) {
-    res.status(200).json(room);
-  } else {
-    res.status(400).end("Invalid room");
-  }
-}
+router.get(async (req, res) => {
+  const room = await Room.query().findById(req.query.id).throwIfNotFound();
+  res.status(200).json(room);
+});
 
 // router
 //   .get(async (req, res) => {

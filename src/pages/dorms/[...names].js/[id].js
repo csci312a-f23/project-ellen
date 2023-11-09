@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 import Head from "next/head";
 import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
@@ -8,21 +10,19 @@ import battell from "../../../../public/images/battell.png";
 export default function Rooms() {
   const [number, setNum] = useState(null);
   const [dimensions, setDimensions] = useState("");
-  const [dormReview, setReviews] = useState("");
-  const [dormRating, setRating] = useState("");
+  const [reviews, setReviews] = useState([]);
 
   const router = useRouter();
   const { id } = router.query;
-  console.log("Router Query:", router.query);
-  console.log("Room ID:", id);
+  console.log(router.query);
+  console.log(id);
 
   const normID = +id;
 
   function setRoom(room) {
     setNum(room.id);
-    setDimensions(room.dormDimensions);
-    setReviews(room.dormReview);
-    setRating(room.dormRating);
+    setDimensions(room.dimensions);
+    setReviews(room.reviews);
   }
 
   const getRoom = async () => {
@@ -66,19 +66,24 @@ export default function Rooms() {
         <div className={styles.h1}>{number}</div>
         <div className={styles.h2}> Room : {normID} </div>
         <div className={styles.h2}> Dimensions : {dimensions} sq ft </div>
-        <div className={styles.h2}> Rating : {dormRating} </div>
-        <div className="rating-box">
-          <div className={styles.starscontainer}>
-            {Array.from({ length: dormRating }, (_, i) => (
-              <i key={i} className="fas fa-star is-active" />
-            ))}
+        {reviews &&
+          reviews.map((review) => (
+            <>
+              <div className={styles.h2}> Rating : {review.rating} </div>
+              <div className="rating-box">
+                <div className={styles.starscontainer}>
+                  {Array.from({ length: review.rating }, (_, i) => (
+                    <i key={i} className="fas fa-star is-active" />
+                  ))}
 
-            {Array.from({ length: 5 - dormRating }, (_, i) => (
-              <i key={i} className="far fa-star unfilled-star" />
-            ))}
-          </div>
-        </div>
-        <div className={styles.h2}> Reviews : {dormReview} </div>
+                  {Array.from({ length: 5 - review.rating }, (_, i) => (
+                    <i key={i} className="far fa-star unfilled-star" />
+                  ))}
+                </div>
+              </div>
+              <div className={styles.h2}> Reviews : {review.review} </div>
+            </>
+          ))}
       </main>
     </>
   );
