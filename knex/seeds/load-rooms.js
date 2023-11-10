@@ -12,9 +12,7 @@ const data = JSON.parse(contents);
 exports.seed = async function (knex) {
   // Deletes ALL existing entries
   // Use batch insert because we have too many articles for simple insert
-  return knex("sqlite_sequence")
-    .where("name", "=", "Room")
-    .update({ seq: 0 })
-    .then(() => knex("Room").del())
+  return knex("Room")
+    .del()
     .then(() => knex.batchInsert("Room", data, 100));
 };

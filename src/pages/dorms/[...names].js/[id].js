@@ -23,14 +23,16 @@ export default function Rooms() {
     setNum(room.id);
     setDimensions(room.dimensions);
     setReviews(room.reviews);
+    console.log("This is the room", room.reviews);
   }
 
   const getRoom = async () => {
     try {
-      const response = await fetch(`/api/rooms/${normID}`);
+      const response = await fetch(`/api/rooms/${id}`);
       if (response.ok) {
         const data = await response.json();
         setRoom(data);
+        console.log("This is the", data);
       }
     } catch (error) {
       console.error("Error fetching room data:", error);

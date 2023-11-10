@@ -5,10 +5,14 @@ import Room from "../../../../models/Room";
 const router = createRouter();
 
 router.get(async (req, res) => {
-  const room = await Room.query().findById(req.query.id).throwIfNotFound();
+  const { id } = req.query;
+
+  const room = await Room.query().findById(id).throwIfNotFound();
+
   res.status(200).json(room);
 });
 
+export default router.handler();
 // router
 //   .get(async (req, res) => {
 //     const room = await Room.query().findById(req.query.id).throwIfNotFound();
@@ -29,5 +33,3 @@ router.get(async (req, res) => {
 //       .throwIfNotFound();
 //     res.status(200).json(room);
 //   });
-
-// export default router.handler();

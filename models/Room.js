@@ -18,10 +18,11 @@ export default class Room extends BaseModel {
 
       properties: {
         id: { type: "integer" },
-        dimensions: { type: "integer" },
         type: { type: "string" },
+        beds: { type: "integer" },
+        dimensions: { type: "integer" },
         reviews: {
-          type: "array",
+          type: "json",
           items: {
             type: "object",
             properties: {
