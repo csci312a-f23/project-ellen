@@ -15,8 +15,8 @@ export default class Review extends BaseModel {
       type: "object",
 
       properties: {
-        rating: { type: "integer" },
         review: { type: "text" },
+        rating: { type: "integer" },
       },
     };
   }
