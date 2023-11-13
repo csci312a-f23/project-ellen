@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { createRouter } from "next-connect";
 import Room from "../../../../models/Room";
 
@@ -6,10 +5,7 @@ const router = createRouter();
 
 router
   .get(async (req, res) => {
-    const article = await Room.query()
-      .findById(req.query.id)
-      .withGraphFetched("related")
-      .throwIfNotFound();
+    const article = await Room.query().findById(req.query.id).throwIfNotFound();
     res.status(200).json(article);
   })
 

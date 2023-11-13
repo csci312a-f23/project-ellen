@@ -21,7 +21,8 @@ export default function Rooms() {
       setDormNumber(123);
     } else {
       try {
-        const response = await fetch("/api/rooms", {
+        const fetchAddress = `/api/rooms/${Room}`;
+        const response = await fetch(fetchAddress, {
           method: "GET",
           headers: new Headers({
             Accept: "application/json",

@@ -2,13 +2,13 @@
 import { useRouter } from "next/router";
 // import { useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link"; // Import the Link component
 import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
 import DormSearchBar from "../../components/DormSearchBar";
-import panther from "../../../public/images/panther.png";
-import UserIcon from "../../../public/images/UserIcon.jpeg";
+// import panther from "../../../public/images/panther.png";
+// import UserIcon from "../../../public/images/UserIcon.jpeg";
 // import IMG from "../../images/Battell_F1.png";
 
 export default function DormView() {
@@ -30,8 +30,8 @@ export default function DormView() {
       <main className={styles.body}>
         <Link href="/profile">
           <button type="button" className={styles.profileButton}>
-            <Image
-              src={UserIcon}
+            <img
+              src="/images/UserIcon.jpeg"
               alt="User Profile"
               width={20}
               height={20}
@@ -41,7 +41,12 @@ export default function DormView() {
           </button>
         </Link>
         <div className={styles.h1}>
-          <Image height={100} width={300} src={panther} alt="panther" />
+          <img
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
+          />
           <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>

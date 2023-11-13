@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import styles from "../../../styles/rooms.module.css";
 import battell from "../../../../public/images/battell.png";
 
@@ -11,9 +12,13 @@ export default function Rooms() {
   const [dormRating, setDormRating] = useState(null);
   const [dormNumber, setDormNumber] = useState(null);
 
-  async function getRoom(Room) {
+  const router = useRouter();
+
+  const { roomNumber } = router.query;
+
+  async function getRoom(currentRoomNumber) {
     // how would this function with this being called elsewhere, like when do we tell it what room to call
-    if (!Room) {
+    if (!currentRoomNumber) {
       setDormName("Stewart");
       setDormDimensions(173);
       setDormReview("Comfortable and clean room.");
@@ -21,7 +26,7 @@ export default function Rooms() {
       setDormNumber(123);
     } else {
       try {
-        const response = await fetch("/api/rooms", {
+        const response = await fetch(`/api/rooms/${currentRoomNumber}`, {
           method: "GET",
           headers: new Headers({
             Accept: "application/json",
@@ -30,10 +35,10 @@ export default function Rooms() {
         });
         if (response.ok) {
           const data = await response.json();
-          setDormName(data.name);
-          setDormDimensions(data.dimensions);
-          setDormReview(data.review);
-          setDormRating(data.rating);
+          setDormName("Battell");
+          setDormDimensions(data.dormDimensions);
+          setDormReview(data.dormReview);
+          setDormRating(data.dormRating);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -42,8 +47,9 @@ export default function Rooms() {
   }
 
   useEffect(() => {
-    getRoom();
-  }, []);
+    console.log(roomNumber);
+    getRoom(roomNumber);
+  }, [roomNumber]);
 
   return (
     <>

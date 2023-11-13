@@ -1,7 +1,4 @@
-/* eslint-disable camelcase */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Model, AjvValidator } from "objection";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import addFormats from "ajv-formats";
 import { knex } from "../knex/knex";
 
