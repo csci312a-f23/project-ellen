@@ -17,11 +17,10 @@ const defaultSettings = {
 module.exports = {
   development: {
     ...defaultSettings,
-    client: "sqlite3",
+    client: "pg",
     connection: {
-      filename: "./room.db",
+      connectionString: DATABASE_URL,
     },
-    useNullAsDefault: true,
   },
 
   production: {

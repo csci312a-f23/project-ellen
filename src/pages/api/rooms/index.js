@@ -6,7 +6,7 @@ const router = createRouter();
 
 router
   .get(async (req, res) => {
-    let query = Room.query();
+    let query = await Room.query();
     if (req.query.section) {
       query = query.whereRaw("UPPER(SUBSTRING(title, 1, 1)) = ?", [
         req.query.section,
