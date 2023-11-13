@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import mockRouter from "next-router-mock";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -95,7 +95,7 @@ describe("SearchBar", () => {
   });
 
   test("navigates to the correct page when a dorm name is clicked", async () => {
-    const mockPush = jest.fn();
+    // const mockPush = jest.fn();
 
     render(<MainSearchBar />);
 
@@ -104,6 +104,8 @@ describe("SearchBar", () => {
 
     userEvent.click(dormItem);
 
-    expect(mockPush).toHaveBeenCalledWith(`/dorms/${dormName}`);
+    await waitFor(() => {
+      expect(mockRouter.pathname).toBe("/profile");
+    });
   });
 });

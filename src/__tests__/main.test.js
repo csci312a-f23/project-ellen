@@ -1,10 +1,11 @@
-import { render } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import Home from "@/pages/index";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import mockRouter from "next-router-mock";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
-
+// eslint-disable-next-line import/no-extraneous-dependencies
+import userEvent from "@testing-library/user-event";
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
 jest.mock("next/router", () => require("next-router-mock"));
@@ -24,12 +25,31 @@ mockRouter.useParser(
   ]),
 );
 
-describe("End-to-end testing", () => {
-  beforeEach(() => {
-    mockRouter.setCurrentUrl("/articles");
-  });
+beforeEach(() => {
+  mockRouter.setCurrentUrl("/");
+});
 
+afterEach(() => {
+  jest.resetAllMocks();
+});
+
+describe("End-to-end testing", () => {
   test("Render index.js component", () => {
     render(<Home />);
+  });
+});
+
+describe("Main page sub tests", () => {
+  test("navigates to /profile when profile button is clicked", async () => {
+    render(<Home />);
+
+    const profileButton = screen.getByRole("button", {
+      name: "User Profile My Profile",
+    });
+    userEvent.click(profileButton);
+
+    await waitFor(() => {
+      expect(mockRouter.pathname).toBe("/profile");
+    });
   });
 });
