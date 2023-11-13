@@ -1,11 +1,9 @@
-/* eslint-disable camelcase */
-
 import BaseModel from "./BaseModels";
 
-export default class Article extends BaseModel {
+export default class Room extends BaseModel {
   // Table name is the only required property.
   static get tableName() {
-    return "Article";
+    return "Room";
   }
 
   // Objection.js assumes primary key is `id` by default

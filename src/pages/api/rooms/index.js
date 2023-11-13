@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createRouter } from "next-connect";
 import Room from "../../../../models/Room";
 
@@ -6,7 +6,7 @@ const router = createRouter();
 
 router
   .get(async (req, res) => {
-    let query = Room.query();
+    let query = await Room.query();
     if (req.query.section) {
       query = query.whereRaw("UPPER(SUBSTRING(title, 1, 1)) = ?", [
         req.query.section,
