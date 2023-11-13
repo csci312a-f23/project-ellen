@@ -30,10 +30,10 @@
 }
 
 .h2 {
-  font-size: 2rem;
-  padding-bottom: 2rem;
+  font-size: 1.75rem;
+  padding-bottom: 1rem;
   padding-top: 1rem;
-  font-family: "Times New Roman", Times, serif;
+  font-family: Arial, Times, serif;
   text-align: center;
   color: white;
   text-shadow: 0 2px 2px #040409;
@@ -49,6 +49,7 @@
 .leftHalf {
   background: rgb(117, 163, 205);
   grid-column: 1;
+  color: white;
 }
 
 .rightHalf {
@@ -80,6 +81,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 10px;
+  display: block;
 }
 
 #map {
@@ -87,4 +89,17 @@
   top: 0;
   bottom: 0;
   width: 100%;
+}
+
+.stuff {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.pantherImage {
+  display: block;
+  margin: 0;
+  padding: 0rem;
 }

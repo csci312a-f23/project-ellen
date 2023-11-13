@@ -5,14 +5,18 @@ import Head from "next/head";
 //import MainSearchBar from "@/components/MainSearchBar";
 //import InteractiveMap from "@/components/InteractiveMap";
 import LeafletMap from "@/components/LeafletMap";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link"; // Import the Link component
 import SearchBar from "@/components/MainSearchBar";
 import styles from "../styles/main.module.css";
-import panther from "../../public/images/panther.png";
-import UserIcon from "../../public/images/UserIcon.jpeg";
+// import panther from "../../public/images/panther.png";
+// import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Home() {
+  // const panther2 = "/images/panther.png";
+  // const panther2 = { panther: "/images/panther.png" };
+  // const UserIcon2 = {UserIcon: "/images/UserIcon.jpeg"};
+
   const dorms = [
     "Battel",
     "Allen",
@@ -53,8 +57,8 @@ export default function Home() {
       <main className={styles.body}>
         <Link href="/profile">
           <button type="button" className={styles.profileButton}>
-            <Image
-              src={UserIcon}
+            <img
+              src="/images/UserIcon.jpeg"
               alt="User Profile"
               width={20}
               height={20}
@@ -64,14 +68,21 @@ export default function Home() {
           </button>
         </Link>
         <div className={styles.h1}>
-          <Image height={100} width={300} src={panther} alt="panther" />
+          <img
+            className={styles.pantherImage}
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
+          />
           <h3>Middlebury Housing</h3>
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article>
+            <article className={styles.h2}>
               <h2>Find A Dorm</h2>
-
+            </article>
+            <article className={styles.stuff}>
               <SearchBar dorms={dorms} />
             </article>
           </div>

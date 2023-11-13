@@ -2,9 +2,13 @@
 import { useRouter } from "next/router";
 // import { useState } from "react";
 import Head from "next/head";
+// import Image from "next/image";
+import Link from "next/link"; // Import the Link component
 import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
 import DormSearchBar from "../../components/DormSearchBar";
+// import panther from "../../../public/images/panther.png";
+// import UserIcon from "../../../public/images/UserIcon.jpeg";
 // import IMG from "../../images/Battell_F1.png";
 
 export default function DormView() {
@@ -24,10 +28,35 @@ export default function DormView() {
       </Head>
 
       <main className={styles.body}>
-        <div className={styles.h1}>Middlebury Housing</div>
+        <Link href="/profile">
+          <button type="button" className={styles.profileButton}>
+            <img
+              src="/images/UserIcon.jpeg"
+              alt="User Profile"
+              width={20}
+              height={20}
+              className={styles.userIcon}
+            />
+            My Profile
+          </button>
+        </Link>
+        <div className={styles.h1}>
+          <img
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
+          />
+          <h3>Middlebury Housing</h3>
+        </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <DormSearchBar />
+            <article className={styles.h2}>
+              <h2>Find A Room</h2>
+            </article>
+            <article className={styles.stuff}>
+              <DormSearchBar />
+            </article>
           </div>
           <div className={styles.rightHalf}>
             <DormMaps selectedDorm={name} />

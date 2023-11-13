@@ -119,9 +119,10 @@ function SearchBar() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.body}>
       <div>
         <input
+          className={styles.input}
           type="text"
           placeholder="Search..."
           value={searchTerm}
@@ -138,16 +139,24 @@ function SearchBar() {
           <option value="Upperclassmen Dorms">Upperclassmen Dorms</option>
           <option value="Language Houses">Language Houses</option>
         </select>
-        <button type="button" onClick={handleOnClick}>
+        <button
+          type="button"
+          className={styles.searchButton}
+          onClick={handleOnClick}
+        >
           Search
         </button>
       </div>
       <div className="SearchBar-results">
-        <ul onClick={handleDormView}>
+        <ul className={styles["SearchBar-results"]} onClick={handleDormView}>
           {results && results.map((dorm) => <li key={dorm}>{dorm}</li>)}
         </ul>
       </div>
-      <button type="button" onClick={handleAddReview}>
+      <button
+        type="button"
+        className={styles.reviewButton}
+        onClick={handleAddReview}
+      >
         {" "}
         Add Review
       </button>

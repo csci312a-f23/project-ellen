@@ -10,6 +10,7 @@ function DormSearchBar() {
   const [rooms, setRooms] = useState([]);
   const router = useRouter();
   const dorm = battellinfo;
+  const [selectedOption, setSelectedOption] = useState("All"); // testing
 
   function getRooms() {
     const roomList = dorm.map((room) => room.number);
@@ -29,18 +30,30 @@ function DormSearchBar() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.body}>
       <div>
         <input
+          className={styles.input}
           type="text"
           placeholder="Search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="button">Search</button>
+        <select
+          className={styles.select}
+          value={selectedOption}
+          onChange={(e) => setSelectedOption(e.target.value)}
+        >
+          <option value="All">All</option>
+          <option value="Single">Single</option>
+          <option value="Double"> Double</option>
+        </select>
+        <button type="button" className={styles.select}>
+          Search
+        </button>
       </div>
       <div className="SearchBar-results">
-        <ul>
+        <ul className={styles["SearchBar-results"]}>
           {rooms &&
             rooms.map((room) => (
               <li key={room} onClick={() => handleRoomView(room)}>
@@ -49,7 +62,11 @@ function DormSearchBar() {
             ))}
         </ul>
       </div>
-      <button type="button" onClick={handleAddReview}>
+      <button
+        type="button"
+        className={styles.reviewButton}
+        onClick={handleAddReview}
+      >
         {" "}
         Add Review
       </button>
