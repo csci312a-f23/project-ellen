@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable spaced-comment */
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable react/self-closing-comp */
@@ -5,7 +6,7 @@ import Head from "next/head";
 //import MainSearchBar from "@/components/MainSearchBar";
 //import InteractiveMap from "@/components/InteractiveMap";
 import LeafletMap from "@/components/LeafletMap";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link"; // Import the Link component
 import SearchBar from "@/components/MainSearchBar";
 import styles from "../styles/main.module.css";
@@ -14,7 +15,7 @@ import styles from "../styles/main.module.css";
 
 export default function Home() {
   // const panther2 = "/images/panther.png";
-  const panther2 = { panther: "/images/panther.png" };
+  // const panther2 = { panther: "/images/panther.png" };
   // const UserIcon2 = {UserIcon: "/images/UserIcon.jpeg"};
 
   const dorms = [
@@ -57,7 +58,7 @@ export default function Home() {
       <main className={styles.body}>
         <Link href="/profile">
           <button type="button" className={styles.profileButton}>
-            <Image
+            <img
               src="/images/UserIcon.jpeg"
               alt="User Profile"
               width={20}
@@ -72,7 +73,7 @@ export default function Home() {
             className={styles.pantherImage}
             height={100}
             width={300}
-            src={panther2.panther}
+            src="/images/panther.png"
             alt="panther"
           />
           <h3>Middlebury Housing</h3>

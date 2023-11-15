@@ -1,19 +1,31 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { createRouter } from "next-connect";
 import Room from "../../../../models/Room";
 
 const router = createRouter();
 
-router.get(async (req, res) => {
-  const { id } = req.query;
+router
+  .get(async (req, res) => {
+    const article = await Room.query().findById(req.query.id).throwIfNotFound();
+    res.status(200).json(article);
+  })
 
-  const room = await Room.query()
-    .findById(id)
-    .throwIfNotFound()
-    .withGraphFetched("reviews");
+  .put(async (req, res) => {
+    // eslint-disable-next-line no-unused-vars
+    const { id, ...updatedRoom } = req.body;
+    // req.query.id is a string, and so needs to be converted to an integer before comparison
+    if (id !== parseInt(req.query.id, 10)) {
+      // Verify id in the url, e.g, /api/rooms/10, matches the id the request body
+      res.status(400).end(`URL and object does not match`);
+      return;
+    }
 
-  res.status(200).json(room);
-});
+    const room = await Room.query()
+      .findById(id)
+      .throwIfNotFound()
+      .withGraphFetched("reviews");
+
+    res.status(200).json(room);
+  });
 
 export default router.handler();
 // router

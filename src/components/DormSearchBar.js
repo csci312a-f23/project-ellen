@@ -19,6 +19,7 @@ function DormSearchBar() {
 
   useEffect(() => {
     getRooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAddReview = () => {
@@ -26,7 +27,7 @@ function DormSearchBar() {
   };
 
   const handleRoomView = (roomNumber) => {
-    router.push(`rooms/${roomNumber}`);
+    router.push(`Battell/${roomNumber}`);
   };
 
   return (
