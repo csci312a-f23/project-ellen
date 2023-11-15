@@ -1,3 +1,4 @@
+import { Model } from "objection";
 import BaseModel from "./BaseModels";
 
 export default class Room extends BaseModel {
@@ -22,4 +23,20 @@ export default class Room extends BaseModel {
       },
     };
   }
+
+  static relationMappings = {
+    related: {
+      relation: Model.HasManyRelation,
+      modelClass: Room, // eslint-disable-line no-use-before-define
+      join: {
+        from: "Article.id",
+        through: {
+          // RelatedArticle is the join table. These names must match the schema
+          from: "RelatedReview.roomId",
+          to: "RelatedReview.reviewsId",
+        },
+        to: "Room.id",
+      },
+    },
+  };
 }
