@@ -13,6 +13,7 @@ export default class Review extends BaseModel {
   static get jsonSchema() {
     return {
       type: "object",
+      required: ["id"],
 
       properties: {
         review: { type: "text" },

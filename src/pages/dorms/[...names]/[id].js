@@ -28,7 +28,7 @@ export default function Rooms() {
 
   const getRoom = async () => {
     try {
-      const response = await fetch(`/api/rooms/${id}`);
+      const response = await fetch(`/api/rooms/${normID}`);
       if (response.ok) {
         const data = await response.json();
         setRoom(data);

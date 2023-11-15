@@ -9,7 +9,6 @@ exports.up = function (knex) {
     table.string("type");
     table.integer("beds");
     table.string("dimensions");
-    table.json("reviews");
   });
 };
 
