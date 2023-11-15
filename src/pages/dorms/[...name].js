@@ -40,6 +40,11 @@ export default function DormView() {
             My Profile
           </button>
         </Link>
+        <Link href="/">
+          <button type="button" className={styles.backButton}>
+            Back to Home
+          </button>
+        </Link>
         <div className={styles.h1}>
           <img
             height={100}

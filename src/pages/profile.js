@@ -162,6 +162,11 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
+        <Link href="/">
+          <button type="button" className={styles.saveButton}>
+            Back to Home
+          </button>
+        </Link>
         <div className={styles.profile}>
           <Image
             src={UserIcon}
@@ -222,13 +227,6 @@ export default function Profile() {
               <li key={index}>{room}</li>
             ))}
           </ul>
-        </div>
-        <div className={styles.section}>
-          <Link href="/">
-            <button type="button" className={styles.saveButton}>
-              Back to Home
-            </button>
-          </Link>
         </div>
       </main>
     </>
