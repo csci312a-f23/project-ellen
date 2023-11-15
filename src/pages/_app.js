@@ -4,7 +4,7 @@ import Head from "next/head";
 /* eslint-disable react/jsx-props-no-spreading,react/prop-types */
 import { SessionProvider } from "next-auth/react";
 
-export default function App({ Component, pageProps: { session, ...pageProps } }) {
+export default function App({ session, Component, pageProps }) {
   return (
     <SessionProvider session={session}>
       <div>

@@ -63,7 +63,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/profile.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
-import { useSession } from "next-auth/react"
 
 export default function Profile() {
   const [name, setName] = useState("John Smith");
@@ -153,12 +152,6 @@ export default function Profile() {
     console.log(`Rated room: ${roomName}`);
   };
 
-  const { data: session, status } = useSession({ required: true });
-
-  if (status === "loading") {
-    return <div>Loading...</div>
-  }
-
   return (
     <>
       <Head>
@@ -168,8 +161,6 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
-        {status === "authenticated" && (
-        <>
         <div className={styles.profile}>
           <Image
             src={UserIcon}
@@ -229,14 +220,6 @@ export default function Profile() {
             ))}
           </ul>
         </div>
-        </>
-        )}
-        {status === "unauthenticated" && (
-          <div>
-            <p>You are not authenticated. Redirecting to login...</p>
-            {typeof window !== 'undefined' && window.location.replace("/login")}
-            </div>
-        )}
       </main>
     </>
   );
