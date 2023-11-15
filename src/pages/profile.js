@@ -61,6 +61,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/profile.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
 
@@ -221,6 +222,13 @@ export default function Profile() {
               <li key={index}>{room}</li>
             ))}
           </ul>
+        </div>
+        <div className={styles.section}>
+          <Link href="/">
+            <button type="button" className={styles.saveButton}>
+              Back to Home
+            </button>
+          </Link>
         </div>
       </main>
     </>
