@@ -189,7 +189,7 @@ export default function Profile() {
         </div>
         <div className={styles.section}>
           <div className={styles.h2}>Room Preferences:</div>
-          <ul className={styles.preferenceList}>
+          <ul className={styles.roomList}>
             {Object.entries(preferences).map(([preference, checked]) => (
               <li key={preference}>
                 <label>
@@ -204,15 +204,17 @@ export default function Profile() {
             ))}
           </ul>
         </div>
-        <button
-          type="button"
-          className={styles.saveButton}
-          onClick={handleSavePreferences}
-        >
-          Save
-        </button>
+        <div className={styles.saveButtonContainer}>
+          <button
+            type="button"
+            className={styles.saveButton}
+            onClick={handleSavePreferences}
+          >
+            Save
+          </button>
+        </div>
         <div className={styles.section}>
-          <h2>Favorites</h2>
+          <div className={styles.h2}>Favorites</div>
           <ul className={styles.roomList}>
             {favorites.map((room, index) => (
               // eslint-disable-next-line react/no-array-index-key

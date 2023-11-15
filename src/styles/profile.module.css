@@ -10,6 +10,8 @@
 .profile {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .userIcon {
@@ -27,17 +29,27 @@
 
 .section {
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .h2 {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
-  margin-top: 5px;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 .roomList {
   list-style: disc;
   padding-left: 20px;
+}
+
+.saveButtonContainer {
+  text-align: center;
+  margin-top: 10px;
 }
 
 .saveButton {
