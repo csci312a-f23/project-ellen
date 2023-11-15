@@ -1,8 +1,6 @@
 import { render } from "@testing-library/react";
 import Home from "@/pages/index";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import mockRouter from "next-router-mock";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 
 // Replace the router with the mock
