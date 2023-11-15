@@ -11,6 +11,7 @@ import SearchBar from "@/components/MainSearchBar";
 import styles from "../styles/main.module.css";
 // import panther from "../../public/images/panther.png";
 // import UserIcon from "../../public/images/UserIcon.jpeg";
+import LoginWidget from "../components/LoginWidget";
 
 export default function Home() {
   // const panther2 = "/images/panther.png";
@@ -54,6 +55,7 @@ export default function Home() {
           crossorigin=""
         ></script>
       </Head>
+      <LoginWidget />
       <main className={styles.body}>
         <Link href="/profile">
           <button type="button" className={styles.profileButton}>
