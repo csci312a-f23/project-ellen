@@ -14,7 +14,7 @@ export default function Rooms() {
 
   const router = useRouter();
 
-  const { roomNumber } = router.query;
+  const { room } = router.query;
 
   async function getRoom(currentRoomNumber) {
     // how would this function with this being called elsewhere, like when do we tell it what room to call
@@ -39,6 +39,7 @@ export default function Rooms() {
           setDormDimensions(data.dormDimensions);
           setDormReview(data.dormReview);
           setDormRating(data.dormRating);
+          setDormNumber(currentRoomNumber);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -47,9 +48,8 @@ export default function Rooms() {
   }
 
   useEffect(() => {
-    console.log(roomNumber);
-    getRoom(roomNumber);
-  }, [roomNumber]);
+    getRoom(room);
+  }, [room]);
 
   return (
     <>
