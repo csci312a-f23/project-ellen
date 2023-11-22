@@ -1,8 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import Home from "@/pages/index";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import mockRouter from "next-router-mock";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import userEvent from "@testing-library/user-event";
