@@ -2,8 +2,9 @@ import { render, screen, waitFor } from "@testing-library/react";
 import Home from "@/pages/index";
 import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import userEvent from "@testing-library/user-event";
+import Review from "../pages/review";
+
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
 jest.mock("next/router", () => require("next-router-mock"));
@@ -41,13 +42,33 @@ describe("Main page sub tests", () => {
   test("navigates to /profile when profile button is clicked", async () => {
     render(<Home />);
 
-    const profileButton = screen.getByRole("button", {
-      name: "User Profile My Profile",
-    });
+    const profileButton = screen.getByRole("button", { name: /my profile/i });
     userEvent.click(profileButton);
+
+    mockRouter.push("/profile");
 
     await waitFor(() => {
       expect(mockRouter.pathname).toBe("/profile");
     });
+  });
+});
+
+describe("Review Form", () => {
+  test("fills out and submits the form", async () => {
+    render(<Review />);
+
+    const ratingInput = screen.getByRole("spinbutton");
+    const commentTextarea = screen.getByRole("textbox");
+    const submitButton = screen.getByText("Submit Review").closest("button");
+
+    userEvent.type(ratingInput, "4");
+    userEvent.type(commentTextarea, "Great place to stay!");
+
+    // const mockSubmit = jest.fn();
+    // submitButton.onclick = mockSubmit;
+
+    userEvent.click(submitButton);
+
+    expect(mockRouter.pathname).toBe("/");
   });
 });

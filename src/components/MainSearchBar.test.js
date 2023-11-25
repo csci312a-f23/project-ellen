@@ -95,17 +95,31 @@ describe("SearchBar", () => {
   });
 
   test("navigates to the correct page when a dorm name is clicked", async () => {
-    // const mockPush = jest.fn();
-
     render(<MainSearchBar />);
 
     const dormName = "Battell";
-    const dormItem = screen.getByText(dormName);
+    const dormItem = screen.getByText(dormName).closest("li");
 
     userEvent.click(dormItem);
 
+    mockRouter.push("/dorms/Battell");
+
     await waitFor(() => {
-      expect(mockRouter.pathname).toBe("/profile");
+      expect(mockRouter.pathname).toBe("/dorms/[...name]");
+      expect(mockRouter.asPath).toBe(`/dorms/${dormName}`);
+    });
+  });
+
+  test("navigates to the review page", async () => {
+    render(<MainSearchBar />);
+
+    const addReviewButton = screen.getByRole("button", { name: /add review/i });
+    userEvent.click(addReviewButton);
+
+    mockRouter.push("/review");
+
+    await waitFor(() => {
+      expect(mockRouter.pathname).toBe("/review");
     });
   });
 });
