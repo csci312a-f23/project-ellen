@@ -59,13 +59,18 @@
 // }
 
 import Head from "next/head";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/profile.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Profile() {
+  const router = useRouter();
+  const { data: session } = useSession();
+
   const [name, setName] = useState("John Smith");
   const [roomsLived, setRoomsLived] = useState([
     "Battell 101",
@@ -153,6 +158,14 @@ export default function Profile() {
     console.log(`Rated room: ${roomName}`);
   };
 
+  const handleSignOut = async () => {
+    const result = await signOut({ redirect: false, callbackUrl: "/login" })
+
+    if (result?.url) {
+      window.location.href = result.url;
+    }
+  }
+
   return (
     <>
       <Head>
@@ -167,6 +180,9 @@ export default function Profile() {
             Back to Home
           </button>
         </Link>
+        <button type="button" className={styles.saveButton} onClick={handleSignOut}>
+            Sign out
+        </button>{" "}
         <div className={styles.profile}>
           <Image
             src={UserIcon}
