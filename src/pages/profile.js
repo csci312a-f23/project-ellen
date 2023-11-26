@@ -92,7 +92,8 @@ export default function Profile() {
 
   const handleRateRoom = (roomName) => {
     // will be updated once we have the rating form
-    router.push(`/review`);
+
+    router.push(`/rooms/${roomName}/review`);
     console.log(`Rated room: ${roomName}`);
   };
 

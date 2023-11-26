@@ -3,22 +3,14 @@
 /* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable react/self-closing-comp */
 import Head from "next/head";
-//import MainSearchBar from "@/components/MainSearchBar";
-//import InteractiveMap from "@/components/InteractiveMap";
+
 import LeafletMap from "@/components/LeafletMap";
-// import Image from "next/image";
+
 import Link from "next/link"; // Import the Link component
 import SearchBar from "@/components/MainSearchBar";
 import styles from "../styles/main.module.css";
-// import panther from "../../public/images/panther.png";
-// import UserIcon from "../../public/images/UserIcon.jpeg";
-import LoginWidget from "../components/LoginWidget";
 
 export default function Home() {
-  // const panther2 = "/images/panther.png";
-  // const panther2 = { panther: "/images/panther.png" };
-  // const UserIcon2 = {UserIcon: "/images/UserIcon.jpeg"};
-
   const dorms = [
     "Battel",
     "Allen",
@@ -56,7 +48,7 @@ export default function Home() {
           crossorigin=""
         ></script>
       </Head>
-      <LoginWidget />
+
       <main className={styles.body}>
         <Link href="/profile">
           <button type="button" className={styles.profileButton}>
