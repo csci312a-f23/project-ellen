@@ -11,24 +11,6 @@ import SearchBar from "@/components/MainSearchBar";
 import styles from "../styles/main.module.css";
 
 export default function Home() {
-  const dorms = [
-    "Battel",
-    "Allen",
-    "Hepburn",
-    "Stewart",
-    "Gifford",
-    "Hadley",
-    "Milliken",
-    "Painter",
-    "Atwater",
-    "Coffrin",
-    "Lang",
-    "Kelly",
-    "Pearsons",
-    "Munford",
-    "Chrome",
-  ];
-
   return (
     <>
       <Head>
@@ -78,7 +60,7 @@ export default function Home() {
               <h2>Find A Dorm</h2>
             </article>
             <article className={styles.stuff}>
-              <SearchBar dorms={dorms} />
+              <SearchBar />
             </article>
           </div>
           <div className={styles.rightHalf}>

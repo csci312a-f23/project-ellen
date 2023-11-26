@@ -92,8 +92,8 @@ export default function Profile() {
 
   const handleRateRoom = (roomName) => {
     // will be updated once we have the rating form
-
-    router.push(`/rooms/${roomName}/review`);
+    router.push(`/review`);
+    // router.push(`/rooms/review`);
     console.log(`Rated room: ${roomName}`);
   };
 
@@ -166,12 +166,7 @@ export default function Profile() {
             ))}
           </ul>
         </div>
-        )
-        <div>
-          <p>You are not authenticated. Redirecting to login...</p>
-          {typeof window !== "undefined" && window.location.replace("/login")}
-        </div>
-        )
+        ) )
       </main>
     </>
   );
