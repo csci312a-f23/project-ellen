@@ -2,8 +2,10 @@ import Head from "next/head";
 import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import styles from "../../../styles/rooms.module.css";
+import Link from "next/link"; // Import the Link component
+import styles from "../../../styles/main.module.css";
 import battell from "../../../../public/images/battell.png";
+import DormSearchBar from "../../../components/DormSearchBar";
 
 export default function Rooms() {
   const [dormName, setDormName] = useState(null);
@@ -51,6 +53,12 @@ export default function Rooms() {
     getRoom(room);
   }, [room]);
 
+  const handleClick = (command) => {
+    if (command === "back") {
+      router.push(`/dorms/${encodeURIComponent(dormName)}`);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -64,30 +72,74 @@ export default function Rooms() {
         />
       </Head>
       <main className={styles.body}>
-        <div className={styles.imageContainer}>
-          <Image
-            src={battell} // imported up to
-            alt="Room Photo"
-            width={1008}
-            height={672}
+        <Link href="/profile">
+          <button type="button" className={styles.profileButton}>
+            <img
+              src="/images/UserIcon.jpeg"
+              alt="User Profile"
+              width={20}
+              height={20}
+              className={styles.userIcon}
+            />
+            My Profile
+          </button>
+        </Link>
+        <div className={styles.h1}>
+          <img
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
           />
+          <h3>Middlebury Housing</h3>
         </div>
-        <div className={styles.h1}>{dormName}</div>
-        <div className={styles.h2}> Room : {dormNumber} </div>
-        <div className={styles.h2}> Dimensions : {dormDimensions} sq ft </div>
-        <div className={styles.h2}> Rating : {dormRating} </div>
-        <div className="rating-box">
-          <div className={styles.starscontainer}>
-            {Array.from({ length: dormRating }, (_, i) => (
-              <i key={i} className="fas fa-star is-active" />
-            ))}
-            {/* Add unfilled stars */}
-            {Array.from({ length: 5 - dormRating }, (_, i) => (
-              <i key={i} className="far fa-star unfilled-star" />
-            ))}
+        <section className={styles.container}>
+          <div className={styles.leftHalf}>
+            <article className={styles.h2}>
+              <h2>Find A Room</h2>
+            </article>
+            <article className={styles.stuff}>
+              <DormSearchBar />
+            </article>
           </div>
-        </div>
-        <div className={styles.h2}> Reviews : {dormReview} </div>
+          <div className={styles.rightHalf}>
+            <button
+              type="button"
+              className={styles.backButton}
+              onClick={() => handleClick("back")}
+            >
+              Back to Map
+            </button>
+
+            <div className={styles.h3}>{dormName}</div>
+            <div className={styles.h2}> Room : {dormNumber} </div>
+            <div className={styles.h2}>
+              {" "}
+              Dimensions : {dormDimensions} sq ft{" "}
+            </div>
+            <div className={styles.h2}> Rating : {dormRating} </div>
+            <div className="rating-box">
+              <div className={styles.starscontainer}>
+                {Array.from({ length: dormRating }, (_, i) => (
+                  <i key={i} className="fas fa-star is-active" />
+                ))}
+                {/* Add unfilled stars */}
+                {Array.from({ length: 5 - dormRating }, (_, i) => (
+                  <i key={i} className="far fa-star unfilled-star" />
+                ))}
+              </div>
+            </div>
+            <div className={styles.h2}> Reviews : {dormReview} </div>
+            <div className={styles.imageContainer}>
+              <Image
+                src={battell} // imported up to
+                alt="Room Photo"
+                width={605}
+                height={403}
+              />
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );
