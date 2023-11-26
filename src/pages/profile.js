@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Image from "next/image";
