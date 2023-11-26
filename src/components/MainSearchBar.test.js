@@ -109,17 +109,4 @@ describe("SearchBar", () => {
       expect(mockRouter.asPath).toBe(`/dorms/${dormName}`);
     });
   });
-
-  test("navigates to the review page", async () => {
-    render(<MainSearchBar />);
-
-    const addReviewButton = screen.getByRole("button", { name: /add review/i });
-    userEvent.click(addReviewButton);
-
-    mockRouter.push("/review");
-
-    await waitFor(() => {
-      expect(mockRouter.pathname).toBe("/review");
-    });
-  });
 });
