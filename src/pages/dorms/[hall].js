@@ -12,7 +12,7 @@ import DormSearchBar from "../../components/DormSearchBar";
 export default function DormView() {
   const router = useRouter();
 
-  const { name } = router.query;
+  const { hall } = router.query;
 
   return (
     <>
@@ -56,7 +56,7 @@ export default function DormView() {
             </article>
           </div>
           <div className={styles.rightHalf}>
-            <DormMaps selectedDorm={name} />
+            <DormMaps selectedDorm={hall} />
           </div>
         </section>
       </main>

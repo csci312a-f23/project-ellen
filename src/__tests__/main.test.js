@@ -4,7 +4,7 @@ import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/review";
-import Rooms from "../pages/dorms/[...names].js/[...room]";
+import Rooms from "../pages/dorms/[...halls]/[...room]";
 
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
@@ -15,7 +15,8 @@ mockRouter.useParser(
   createDynamicRouteParser([
     // These paths should match those found in the `/pages` folder:
     // "/dorms/[...names]/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
-    "/dorms/[...name]",
+    "/dorms/[...halls]",
+    "/dorms/[hall]",
     "/app",
     "/document",
     "/index",
