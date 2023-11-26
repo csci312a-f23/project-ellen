@@ -4,12 +4,11 @@
  */
 // eslint-disable-next-line func-names
 exports.up = function (knex) {
-  return knex.schema.createTable("Review", (table) => {
+  return knex.schema.createTable("User", (table) => {
     table.increments("id").primary();
-    table.integer("roomId").unsigned();
-    table.foreign("roomId").references("Room.id").onDelete("CASCADE");
-    table.text("review");
-    table.integer("rating");
+    table.string("googleId");
+    table.string("name");
+    table.text("email");
   });
 };
 
@@ -19,5 +18,5 @@ exports.up = function (knex) {
  */
 // eslint-disable-next-line func-names
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("Review");
+  return knex.schema.dropTableIfExists("User");
 };

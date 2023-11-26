@@ -2,16 +2,15 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-
 const fs = require("fs");
 
-const contents = fs.readFileSync("./data/BattelRoomInfo.json");
-const data = JSON.parse(contents);
+exports.seed = function (knex) {
+  const contents = fs.readFileSync("./data/ReviewImport.json");
+  const data = JSON.parse(contents);
 
-// eslint-disable-next-line func-names
-exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  return knex("Review")
+  // Use batch insert because we have too many articles for simple insert
+  return knex("Reviews")
     .del()
-    .then(() => knex.batchInsert("Review", data, 100));
+    .then(() => knex.batchInsert("Reviews", data, 100));
 };
