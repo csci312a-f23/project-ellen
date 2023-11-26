@@ -1,4 +1,5 @@
 import { createRouter } from "next-connect";
+import { authenticated } from "../../../lib/middleware";
 import Room from "../../../../models/Room";
 
 const router = createRouter();
@@ -9,7 +10,7 @@ router
     res.status(200).json(article);
   })
 
-  .put(async (req, res) => {
+  .put(authenticated, async (req, res) => {
     const { id, ...updatedRoom } = req.body;
     // req.query.id is a string, and so needs to be converted to an integer before comparison
     if (id !== parseInt(req.query.id, 10)) {

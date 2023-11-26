@@ -1,5 +1,5 @@
 import { Model } from "objection";
-import BaseModel from "./BaseModels";
+import BaseModel from "./BaseModel";
 
 export default class Room extends BaseModel {
   // Table name is the only required property.
