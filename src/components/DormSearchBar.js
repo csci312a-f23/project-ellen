@@ -27,7 +27,7 @@ function DormSearchBar() {
   };
 
   const handleRoomView = (roomNumber) => {
-    router.push(`Battell/${roomNumber}`);
+    router.push(`/dorms/Battell/${roomNumber}`);
   };
 
   return (
