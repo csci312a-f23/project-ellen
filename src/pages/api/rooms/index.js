@@ -17,7 +17,7 @@ router
   })
 
   .post(async (req, res) => {
-    const { id, ...roomData } = req.body;
+    const { roomData } = req.body;
     const room = await Room.query().insertAndFetch(roomData).throwIfNotFound();
     res.status(200).json(room);
   });

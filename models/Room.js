@@ -29,11 +29,11 @@ export default class Room extends BaseModel {
       relation: Model.HasManyRelation,
       modelClass: Room, // eslint-disable-line no-use-before-define
       join: {
-        from: "Article.id",
+        from: "Room.id",
         through: {
           // RelatedArticle is the join table. These names must match the schema
           from: "RelatedReview.roomId",
-          to: "RelatedReview.reviewsId",
+          to: "RelatedReview.userId",
         },
         to: "Room.id",
       },
