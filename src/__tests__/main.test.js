@@ -4,6 +4,7 @@ import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/review";
+import Rooms from "../pages/dorms/[...names].js/[...room]";
 
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
@@ -23,6 +24,15 @@ mockRouter.useParser(
     "/rooms",
   ]),
 );
+
+jest.mock("next/router", () => ({
+  useRouter() {
+    return {
+      query: { room: "100" },
+      push: jest.fn(),
+    };
+  },
+}));
 
 beforeEach(() => {
   mockRouter.setCurrentUrl("/");
@@ -70,5 +80,36 @@ describe("Review Form", () => {
     userEvent.click(submitButton);
 
     expect(mockRouter.pathname).toBe("/");
+  });
+});
+
+describe("Rooms Component", () => {
+  beforeEach(() => {
+    render(<Rooms />);
+  });
+
+  test("displays the room image", () => {
+    const image = screen.getByAltText("Room Photo");
+    expect(image).toBeInTheDocument();
+  });
+
+  test("displays the room dimensions", () => {
+    const dimensions = screen.getByText(/Dimensions/i);
+    expect(dimensions).toBeInTheDocument();
+  });
+
+  test("displays the room number", () => {
+    const roomNumber = screen.getByText(/Room/i);
+    expect(roomNumber).toBeInTheDocument();
+  });
+
+  test("displays the room rating", () => {
+    const rating = screen.getByText(/Rating/i);
+    expect(rating).toBeInTheDocument();
+  });
+
+  test("displays the room reviews", () => {
+    const reviews = screen.getByText(/Reviews/i);
+    expect(reviews).toBeInTheDocument();
   });
 });
