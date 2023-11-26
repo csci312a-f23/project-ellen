@@ -59,7 +59,7 @@
 // }
 
 import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -159,12 +159,21 @@ export default function Profile() {
   };
 
   const handleSignOut = async () => {
-    const result = await signOut({ redirect: false, callbackUrl: "/login" })
-
-    if (result?.url) {
-      window.location.href = result.url;
+    if (!session) {
+      console.log("User is not authenticated");
+      return;
     }
-  }
+  
+    try {
+      const result = await signOut({ redirect: false, callbackUrl: "/login" });
+  
+      if (result?.url) {
+        router.push(result.url);
+      }
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <>
@@ -175,6 +184,7 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
+        <div className={styles.otherButtonsContainer}>
         <Link href="/">
           <button type="button" className={styles.saveButton}>
             Back to Home
@@ -183,6 +193,7 @@ export default function Profile() {
         <button type="button" className={styles.saveButton} onClick={handleSignOut}>
             Sign out
         </button>{" "}
+        </div>
         <div className={styles.profile}>
           <Image
             src={UserIcon}

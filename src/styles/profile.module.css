@@ -52,6 +52,11 @@
   margin-top: 10px;
 }
 
+.otherButtonsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .saveButton {
   background-color: #0074b3;
   color: white;
