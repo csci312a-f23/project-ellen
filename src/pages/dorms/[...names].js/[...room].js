@@ -60,6 +60,10 @@ export default function Rooms() {
     }
   };
 
+  const handleAddReview = () => {
+    router.push("/review");
+  };
+
   return (
     <>
       <Head>
@@ -131,6 +135,9 @@ export default function Rooms() {
               </div>
             </div>
             <div className={styles.h2}> Reviews : {dormReview} </div>
+            <button type="button" onClick={() => handleAddReview(room)}>
+              Add Review
+            </button>
             <div className={styles.imageContainer}>
               <Image
                 src={battell} // imported up to
