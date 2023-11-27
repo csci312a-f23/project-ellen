@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+
 import styles from "../styles/Review.module.css";
 
-function Review({ roomName }) {
+function Review() {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
   // const [roomNumber, setRoomNumber] = useState("");
@@ -104,13 +104,8 @@ function Review({ roomName }) {
           Cancel
         </button>
       </form>
-      <footer>{roomName}</footer>
     </div>
   );
 }
 
 export default Review;
-
-Review.propTypes = {
-  roomName: PropTypes.string.isRequired,
-};
