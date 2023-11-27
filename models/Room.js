@@ -1,5 +1,6 @@
 import { Model } from "objection";
 import BaseModel from "./BaseModels";
+import Review from "./Review";
 
 export default class Room extends BaseModel {
   // Table name is the only required property.
@@ -16,10 +17,22 @@ export default class Room extends BaseModel {
 
       properties: {
         id: { type: "integer" },
-        dormDimensions: { type: "integer" },
-        dormName: { type: "string" },
-        dormReview: { type: "string" },
-        dormRating: { type: "string" },
+        type: { type: "string" },
+        beds: { type: "integer" },
+        dimensions: { type: "integer" },
+      },
+    };
+  }
+
+  static get relationMappings() {
+    return {
+      reviews: {
+        relation: Model.HasManyRelation,
+        modelClass: Review,
+        join: {
+          from: "Room.id",
+          to: "Review.roomId",
+        },
       },
     };
   }
@@ -29,11 +42,11 @@ export default class Room extends BaseModel {
       relation: Model.HasManyRelation,
       modelClass: Room, // eslint-disable-line no-use-before-define
       join: {
-        from: "Article.id",
+        from: "Room.id",
         through: {
           // RelatedArticle is the join table. These names must match the schema
           from: "RelatedReview.roomId",
-          to: "RelatedReview.reviewsId",
+          to: "RelatedReview.userId",
         },
         to: "Room.id",
       },

@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import createKnex from "knex";
 import knexConfig from "../knexfile";
-
 /**
  * Global is used here to ensure the connection is cached across hot-reloads in development. The approach
  * is adapted from: https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading,react/prop-types */
 import "@/styles/globals.css";
 import Head from "next/head";
+/* eslint-disable react/jsx-props-no-spreading,react/prop-types */
 
 export default function App({ Component, pageProps }) {
   return (

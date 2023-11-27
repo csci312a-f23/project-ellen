@@ -44,6 +44,7 @@ export default function Rooms() {
           setDormNumber(currentRoomNumber);
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log("Something went wrong");
       }
     }
@@ -57,6 +58,10 @@ export default function Rooms() {
     if (command === "back") {
       router.push(`/dorms/${encodeURIComponent(dormName)}`);
     }
+  };
+
+  const handleAddReview = () => {
+    router.push("/review");
   };
 
   return (
@@ -130,6 +135,9 @@ export default function Rooms() {
               </div>
             </div>
             <div className={styles.h2}> Reviews : {dormReview} </div>
+            <button type="button" onClick={() => handleAddReview(room)}>
+              Add Review
+            </button>
             <div className={styles.imageContainer}>
               <Image
                 src={battell} // imported up to

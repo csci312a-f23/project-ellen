@@ -6,6 +6,7 @@ import styles from "../styles/Review.module.css";
 function Review() {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
+  // const [roomNumber, setRoomNumber] = useState("");
   const router = useRouter();
 
   const handleRatingChange = (event) => {
@@ -16,6 +17,12 @@ function Review() {
     setComment(event.target.value);
   };
 
+  /*
+  const handleRoomNumberChange = (event) => {
+    setRoomNumber(event.target.value);
+  };
+  */
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // const data = {
@@ -24,6 +31,24 @@ function Review() {
     //   posted: new Date().toISOString,
     // };
     // send data to server
+    /*
+    try {
+      const response = await fetch(`/api/rooms`, {
+        method: "POST",
+        body: JSON.stringify(event.target.value),
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.log("Something went wrong");
+    }
+    */
   };
 
   const handleCancel = (event) => {
@@ -57,6 +82,12 @@ function Review() {
             onChange={handleCommentChange}
           />
         </div>
+        {/* 
+        <div className={styles.comment}>
+          <label>Room Number:</label>
+          <textarea value={roomNumber} onChange={handleRoomNumberChange} />
+        </div>
+        */}
         <br />
         <button
           type="submit"

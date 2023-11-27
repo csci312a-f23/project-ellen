@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Joaquin Lopez",
+    "email": "joaquinl@example.com",
+    "profilePicture": "/images/profile1.jpg",
+    "previousRooms": ["Hepburn 118"],
+    "favoriteRooms": ["Battell 201", "Stewart 101"],
+    "roomPreferences": ["single", "loud"]
+  },
+  {
+    "id": 2,
+    "name": "Andres Mena",
+    "email": "amenacarroll@example.com",
+    "profilePicture": "/images/profile2.jpg",
+    "previousRooms": ["Coffrin 420"],
+    "favoriteRooms": ["Battell 101", "Gifford 319"],
+    "roomPreferences": ["double", "quiet"]
+  },
+  {
+    "id": 3,
+    "name": "Jon Doe",
+    "email": "jDubs@example.com",
+    "profilePicture": "/images/profile3.jpg",
+    "previousRooms": ["Allen 105"],
+    "favoriteRooms": ["Coffrin 412", "Lang 313"],
+    "roomPreferences": ["single", "quiet"]
+  }
+]

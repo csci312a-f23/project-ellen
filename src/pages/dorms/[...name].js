@@ -1,21 +1,18 @@
+/* eslint-disable @next/next/no-img-element */
 // import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 // import { useState } from "react";
 import Head from "next/head";
-// import Image from "next/image";
+
 import Link from "next/link"; // Import the Link component
 import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
 import DormSearchBar from "../../components/DormSearchBar";
-// import panther from "../../../public/images/panther.png";
-// import UserIcon from "../../../public/images/UserIcon.jpeg";
-// import IMG from "../../images/Battell_F1.png";
 
 export default function DormView() {
   const router = useRouter();
-  // const [currentDorm, setCurrentDorm] = useState("");
 
-  const { name } = router.query;
+  const { hall } = router.query;
 
   return (
     <>
@@ -59,7 +56,7 @@ export default function DormView() {
             </article>
           </div>
           <div className={styles.rightHalf}>
-            <DormMaps selectedDorm={name} />
+            <DormMaps selectedDorm={hall} />
           </div>
         </section>
       </main>

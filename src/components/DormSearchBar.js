@@ -13,17 +13,14 @@ function DormSearchBar() {
   const [selectedOption, setSelectedOption] = useState("All"); // testing
 
   function getRooms() {
-    const roomList = dorm.map((room) => room.number);
+    const roomList = dorm.map((room) => room.id);
     setRooms(roomList);
   }
 
   useEffect(() => {
     getRooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleAddReview = () => {
-    router.push("/review");
-  };
 
   const handleRoomView = (roomNumber) => {
     router.push(`/dorms/Battell/${roomNumber}`);
@@ -62,14 +59,6 @@ function DormSearchBar() {
             ))}
         </ul>
       </div>
-      <button
-        type="button"
-        className={styles.reviewButton}
-        onClick={handleAddReview}
-      >
-        {" "}
-        Add Review
-      </button>
     </div>
   );
 }
