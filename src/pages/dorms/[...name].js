@@ -1,23 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 // import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 // import { useState } from "react";
 import Head from "next/head";
-// import Image from "next/image";
+
 import Link from "next/link"; // Import the Link component
 import { authenticated } from "../../lib/middleware";
 import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
 import DormSearchBar from "../../components/DormSearchBar";
-// import panther from "../../../public/images/panther.png";
-// import UserIcon from "../../../public/images/UserIcon.jpeg";
-// import IMG from "../../images/Battell_F1.png";
 
 export default function DormView() {
   const router = useRouter();
   const { data: session } = useSession();
-  // const [currentDorm, setCurrentDorm] = useState("");
 
   const { name } = router.query;
 
