@@ -107,7 +107,6 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
-        (
         <div className={styles.profile}>
           <Image
             src={UserIcon}
@@ -167,7 +166,6 @@ export default function Profile() {
             ))}
           </ul>
         </div>
-        ) )
       </main>
     </>
   );
