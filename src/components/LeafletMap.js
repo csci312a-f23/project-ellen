@@ -20,9 +20,9 @@ const LeafletMap = () => {
         '&copy; <a href="<https://www.openstreetmap.org/copyright>">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.marker([44.011309, -73.178091]).addTo(map).bindPopup("Battel");
+    L.marker([44.011309, -73.178091]).addTo(map).bindPopup('<a href="/dorms/Battell">Battell</a>');
 
-    L.marker([44.010514, -73.179014]).addTo(map).bindPopup("Forrest");
+    L.marker([44.010514, -73.179014]).addTo(map).bindPopup('<a href="/dorms/Forrest">Forrest</a>');
 
     return () => {
       map.remove();
