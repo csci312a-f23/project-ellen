@@ -3,7 +3,6 @@ import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/rooms.module.css";
 import battell from "../../../../public/images/battell.png";
@@ -74,11 +73,6 @@ export default function Rooms() {
         />
       </Head>
       <main className={styles.body}>
-        <Link href="/">
-          <button type="button" className={styles.backButton}>
-            Back to Home
-          </button>
-        </Link>
         <div className={styles.imageContainer}>
           <Image
             src={battell} // imported up to
