@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link"; // Import the Link component
 import styles from "../../../styles/main.module.css";
-import battell from "../../../../public/images/battell.png";
+// import battell from "../../../../public/images/battell.png";
 import DormSearchBar from "../../../components/DormSearchBar";
 
 export default function Rooms() {
@@ -17,6 +17,8 @@ export default function Rooms() {
   const router = useRouter();
 
   const { room } = router.query;
+
+  console.log("room query", room);
 
   async function getRoom(currentRoomNumber) {
     // how would this function with this being called elsewhere, like when do we tell it what room to call
@@ -135,12 +137,16 @@ export default function Rooms() {
               </div>
             </div>
             <div className={styles.h2}> Reviews : {dormReview} </div>
-            <button type="button" onClick={() => handleAddReview(room)}>
+            <button
+              type="button"
+              onClick={() => handleAddReview(room)}
+              className={styles.backButton}
+            >
               Add Review
             </button>
             <div className={styles.imageContainer}>
               <Image
-                src={battell} // imported up to
+                src="/images/battell.png"
                 alt="Room Photo"
                 width={605}
                 height={403}
