@@ -5,8 +5,10 @@ const router = createRouter();
 
 router
   .get(async (req, res) => {
-    const article = await Room.query().findById(req.query.id).throwIfNotFound();
-    res.status(200).json(article);
+    const room = await Room.query().findById(req.query.id).throwIfNotFound();
+    // .withGraphFetched("reviews");
+
+    res.status(200).json(room);
   })
 
   .put(async (req, res) => {
@@ -21,6 +23,7 @@ router
     const room = await Room.query()
       .updateAndFetchById(req.query.id, updatedRoom)
       .throwIfNotFound();
+
     res.status(200).json(room);
   });
 
