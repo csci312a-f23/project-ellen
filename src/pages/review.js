@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+import { authenticated } from "../lib/middleware";
 
 import styles from "../styles/Review.module.css";
 
@@ -7,6 +9,7 @@ function Review() {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
   const router = useRouter();
+  const { data: session } = useSession();
 
   const handleRatingChange = (event) => {
     setRating(event.target.value);
@@ -30,6 +33,12 @@ function Review() {
     event.preventDefault();
     router.push("/");
   };
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session, router]);
 
   return (
     <div className={styles.review}>
@@ -76,5 +85,7 @@ function Review() {
     </div>
   );
 }
+
+Review.middleware = [authenticated];
 
 export default Review;

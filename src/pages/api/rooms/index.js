@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createRouter } from "next-connect";
-import { authenticated } from "../../../lib/middleware";
 import Room from "../../../../models/Room";
 
 const router = createRouter();
@@ -17,7 +16,7 @@ router
     res.status(200).json(articles);
   })
 
-  .post(authenticated, async (req, res) => {
+  .post(async (req, res) => {
     const { id, ...roomData } = req.body;
     const room = await Room.query().insertAndFetch(roomData).throwIfNotFound();
     res.status(200).json(room);

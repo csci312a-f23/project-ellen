@@ -1,11 +1,17 @@
+/* eslint-disable global-require */
 import { wrapError, DBError } from "db-errors";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "../pages/api/auth/[...nextauth]";
-import User from "../../models/User";
 
-// A very simple error handler. In a production setting you would
-// not want to send information about the inner workings of your
-// application or database to the client.
+let getServerSession;
+let authOptions;
+let User;
+
+if (typeof window === "undefined") {
+  // This code will only run on the server side
+  getServerSession = require("next-auth/next").getServerSession;
+  authOptions = require("../pages/api/auth/[...nextauth]").authOptions;
+  User = require("../../models/User").default;
+}
+
 export function onError(error, request, response, next) {
   if (response.headersSent) {
     next(error);
@@ -28,7 +34,6 @@ export async function authenticated(request, response, next) {
       .throwIfNotFound();
     await next(); // Authenticated, proceed to the next handler
   } else {
-    response.status(403).end("You must be signed in to access this endpoint.");
     response.redirect("/login");
   }
 }

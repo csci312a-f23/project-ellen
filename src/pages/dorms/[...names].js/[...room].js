@@ -2,7 +2,9 @@ import Head from "next/head";
 import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/rooms.module.css";
 import battell from "../../../../public/images/battell.png";
 
@@ -14,6 +16,7 @@ export default function Rooms() {
   const [dormNumber, setDormNumber] = useState(null);
 
   const router = useRouter();
+  const { data: session } = useSession();
 
   const { room } = router.query;
 
@@ -51,6 +54,12 @@ export default function Rooms() {
   useEffect(() => {
     getRoom(room);
   }, [room]);
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session, router]);
 
   return (
     <>
@@ -98,3 +107,5 @@ export default function Rooms() {
     </>
   );
 }
+
+Rooms.middleware = [authenticated];

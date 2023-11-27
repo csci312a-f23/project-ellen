@@ -64,6 +64,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
 
@@ -163,10 +164,10 @@ export default function Profile() {
       console.log("User is not authenticated");
       return;
     }
-  
+
     try {
       const result = await signOut({ redirect: false, callbackUrl: "/login" });
-  
+
       if (result?.url) {
         router.push(result.url);
       }
@@ -174,6 +175,12 @@ export default function Profile() {
       console.error("Error signing out:", error);
     }
   };
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session, router]);
 
   return (
     <>
@@ -185,14 +192,18 @@ export default function Profile() {
       </Head>
       <main className={styles.body}>
         <div className={styles.otherButtonsContainer}>
-        <Link href="/">
-          <button type="button" className={styles.saveButton}>
-            Back to Home
-          </button>
-        </Link>
-        <button type="button" className={styles.saveButton} onClick={handleSignOut}>
+          <Link href="/">
+            <button type="button" className={styles.saveButton}>
+              Back to Home
+            </button>
+          </Link>
+          <button
+            type="button"
+            className={styles.saveButton}
+            onClick={handleSignOut}
+          >
             Sign out
-        </button>{" "}
+          </button>{" "}
         </div>
         <div className={styles.profile}>
           <Image
@@ -259,3 +270,5 @@ export default function Profile() {
     </>
   );
 }
+
+Profile.middleware = [authenticated];
