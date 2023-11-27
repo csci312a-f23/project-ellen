@@ -4,7 +4,7 @@ import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/review";
-import Rooms from "../pages/dorms/[...names].js/[...room]";
+import Rooms from "../pages/dorms/[name]/[...room]";
 
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
