@@ -7,7 +7,7 @@ import styles from "../../../styles/main.module.css";
 import battell from "../../../../public/images/battell.png";
 import DormSearchBar from "../../../components/DormSearchBar";
 
-export default function Room() {
+export default function Rooms() {
   const [dormName, setDormName] = useState(null);
   const [dormDimensions, setDormDimensions] = useState(null);
   const [dormReview, setDormReview] = useState(null);

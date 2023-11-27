@@ -4,7 +4,7 @@ import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/review";
-import Room from "../pages/dorms/[...names].js/[...room]";
+import Rooms from "../pages/dorms/[...names].js/[...room]";
 
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
@@ -86,7 +86,7 @@ describe("Review Form", () => {
 describe("Rooms Component", () => {
   beforeEach(() => {
     act(() => {
-      render(<Room />);
+      render(<Rooms />);
     });
   });
 
@@ -101,7 +101,7 @@ describe("Rooms Component", () => {
   });
 
   test("displays the room number", () => {
-    const roomNumber = screen.getByText(/Room/i);
+    const roomNumber = screen.getByText(/Room :/i);
     expect(roomNumber).toBeInTheDocument();
   });
 
