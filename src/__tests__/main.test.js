@@ -4,7 +4,7 @@ import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/review";
-import Room from "../pages/dorms/[...halls]/room";
+import Room from "../pages/dorms/[...names].js/[...room]";
 
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
@@ -15,8 +15,7 @@ mockRouter.useParser(
   createDynamicRouteParser([
     // These paths should match those found in the `/pages` folder:
     // "/dorms/[...names]/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
-    "/dorms/[...halls]",
-    "/dorms/[hall]",
+    "/dorms/[...name]",
     "/app",
     "/document",
     "/index",
@@ -96,23 +95,23 @@ describe("Rooms Component", () => {
     expect(image).toBeInTheDocument();
   });
 
-  // test("displays the room dimensions", () => {
-  //   const dimensions = screen.getByText(/Dimensions/i);
-  //   expect(dimensions).toBeInTheDocument();
-  // });
+  test("displays the room dimensions", () => {
+    const dimensions = screen.getByText(/Dimensions/i);
+    expect(dimensions).toBeInTheDocument();
+  });
 
-  // test("displays the room number", () => {
-  //   const roomNumber = screen.getByText(/Room/i);
-  //   expect(roomNumber).toBeInTheDocument();
-  // });
+  test("displays the room number", () => {
+    const roomNumber = screen.getByText(/Room/i);
+    expect(roomNumber).toBeInTheDocument();
+  });
 
-  // test("displays the room rating", () => {
-  //   const rating = screen.getByText(/Rating/i);
-  //   expect(rating).toBeInTheDocument();
-  // });
+  test("displays the room rating", () => {
+    const rating = screen.getByText(/Rating/i);
+    expect(rating).toBeInTheDocument();
+  });
 
-  // test("displays the room reviews", () => {
-  //   const reviews = screen.getByText(/Reviews/i);
-  //   expect(reviews).toBeInTheDocument();
-  // });
+  test("displays the room reviews", () => {
+    const reviews = screen.getByText(/Reviews/i);
+    expect(reviews).toBeInTheDocument();
+  });
 });
