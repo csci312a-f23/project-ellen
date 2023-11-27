@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import Home from "@/pages/index";
 import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
@@ -44,7 +44,7 @@ afterEach(() => {
 });
 
 describe("End-to-end testing", () => {
-  test("Render index.js component", () => {
+  test("Render index.js component", async () => {
     render(<Home />);
   });
 });
@@ -86,7 +86,9 @@ describe("Review Form", () => {
 
 describe("Rooms Component", () => {
   beforeEach(() => {
-    render(<Room />);
+    act(() => {
+      render(<Room />);
+    });
   });
 
   test("displays the room image", () => {
