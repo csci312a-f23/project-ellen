@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image"; // Import the Image component
+// import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link"; // Import the Link component
@@ -17,8 +17,6 @@ export default function Rooms() {
   const router = useRouter();
 
   const { room } = router.query;
-
-  console.log("room query", room);
 
   async function getRoom(currentRoomNumber) {
     // how would this function with this being called elsewhere, like when do we tell it what room to call
@@ -145,7 +143,7 @@ export default function Rooms() {
               Add Review
             </button>
             <div className={styles.imageContainer}>
-              <Image
+              <img
                 src="/images/battell.png"
                 alt="Room Photo"
                 width={605}
