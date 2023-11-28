@@ -23,34 +23,40 @@ function Review() {
   };
   */
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const data = {
-    //   rating,
-    //   comment,
-    //   posted: new Date().toISOString,
-    // };
-    // send data to server
-    /*
-    try {
-      const response = await fetch(`/api/rooms`, {
-        method: "POST",
-        body: JSON.stringify(event.target.value),
-        headers: new Headers({
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-      }
-    } catch (error) {
-      console.log("Something went wrong");
-    }
-    */
-  };
+  function postReview() {
+    (async () => {
+      try {
+        const data = {
+          rating,
+          comment,
+          posted: new Date().toISOString(),
+        };
 
+        const response = await fetch(`/api/review`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+        } else {
+          console.log("Server error:", response.status);
+        }
+      } catch (error) {
+        console.error("Something went wrong:", error);
+      }
+    })();
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    postReview();
+  };
   const handleCancel = (event) => {
     event.preventDefault();
     router.push("/");
