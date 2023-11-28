@@ -107,6 +107,16 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
+        <div className={styles.title}>
+          <img
+            className={styles.pantherImage}
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
+          />
+          <h3>Middlebury Housing</h3>
+        </div>
         <div className={styles.profile}>
           <Image
             src={UserIcon}
