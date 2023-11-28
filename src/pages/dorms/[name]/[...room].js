@@ -110,7 +110,7 @@ export default function Rooms() {
           <div className={styles.rightHalf}>
             <button
               type="button"
-              className={styles.backButton}
+              className={styles.backButton1}
               onClick={() => handleClick("back")}
             >
               Back to Map
