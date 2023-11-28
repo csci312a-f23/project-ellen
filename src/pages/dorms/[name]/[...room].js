@@ -17,7 +17,7 @@ export default function Rooms() {
   const [dormNumber, setDormNumber] = useState(null);
 
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const { room } = router.query;
 
@@ -68,10 +68,10 @@ export default function Rooms() {
   };
 
   useEffect(() => {
-    if (!session) {
+    if (!session && status === "unauthenticated") {
       router.push("/login");
     }
-  }, [session, router]);
+  }, [session, status, router]);
 
   return (
     <>
