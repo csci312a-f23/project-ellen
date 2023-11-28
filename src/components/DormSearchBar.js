@@ -9,12 +9,15 @@ function DormSearchBar() {
   const [rooms, setRooms] = useState([]);
   const router = useRouter();
   const dorm = battellinfo;
-  const [results, setResults] = useState();
+  const [results, setResults] = useState([]);
+
+  const [selectedRating, setSelectedRating] = useState("All"); // added
 
   function getRooms() {
     const roomList = dorm.map((room) => room.id);
     roomList.sort();
     setRooms(roomList);
+    setResults(roomList); // Initialize results with all rooms
   }
 
   useEffect(() => {
@@ -26,8 +29,18 @@ function DormSearchBar() {
     router.push(`/dorms/Battell/${roomNumber}`);
   };
 
+  // const handleOnClick = () => {
+  //   const filteredRoomList = rooms.filter((room) => room.includes(searchTerm));
+  //   setResults(filteredRoomList);
+  // };
+
   const handleOnClick = () => {
-    const filteredRoomList = rooms.filter((room) => room.includes(searchTerm));
+    const filteredRoomList = rooms.filter(
+      (room) =>
+        room.includes(searchTerm) &&
+        (selectedRating === "All" ||
+          dorm.find((r) => r.id === room).dormRating === selectedRating),
+    );
     setResults(filteredRoomList);
   };
 
@@ -41,6 +54,18 @@ function DormSearchBar() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+        <select
+          className={styles.select}
+          value={selectedRating}
+          onChange={(e) => setSelectedRating(e.target.value)}
+        >
+          <option value="All">All Ratings</option>
+          <option value="1">1 Star</option>
+          <option value="2">2 Stars</option>
+          <option value="3">3 Stars</option>
+          <option value="4">4 Stars</option>
+          <option value="5">5 Stars</option>
+        </select>
         <button
           type="button"
           className={styles.searchButton}
