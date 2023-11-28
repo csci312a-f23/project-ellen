@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import battellinfo from "../../data/BattelRoomInfo.json";
-
+import battellinfo from "../../data/RoomImport.json";
 import styles from "../styles/SearchBar.module.css";
 
 function DormSearchBar() {
@@ -10,10 +9,11 @@ function DormSearchBar() {
   const [rooms, setRooms] = useState([]);
   const router = useRouter();
   const dorm = battellinfo;
-  const [selectedOption, setSelectedOption] = useState("All"); // testing
+  const [results, setResults] = useState();
 
   function getRooms() {
     const roomList = dorm.map((room) => room.id);
+    roomList.sort();
     setRooms(roomList);
   }
 
@@ -26,6 +26,11 @@ function DormSearchBar() {
     router.push(`/dorms/Battell/${roomNumber}`);
   };
 
+  const handleOnClick = () => {
+    const filteredRoomList = rooms.filter((room) => room.includes(searchTerm));
+    setResults(filteredRoomList);
+  };
+
   return (
     <div className={styles.body}>
       <div>
@@ -36,23 +41,18 @@ function DormSearchBar() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <select
-          className={styles.select}
-          value={selectedOption}
-          onChange={(e) => setSelectedOption(e.target.value)}
+        <button
+          type="button"
+          className={styles.searchButton}
+          onClick={() => handleOnClick(rooms)}
         >
-          <option value="All">All</option>
-          <option value="Single">Single</option>
-          <option value="Double"> Double</option>
-        </select>
-        <button type="button" className={styles.select}>
           Search
         </button>
       </div>
       <div className="SearchBar-results">
         <ul className={styles["SearchBar-results"]}>
-          {rooms &&
-            rooms.map((room) => (
+          {results &&
+            results.map((room) => (
               <li key={room} onClick={() => handleRoomView(room)}>
                 {room}
               </li>
