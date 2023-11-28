@@ -106,7 +106,7 @@ describe("Rooms Component", () => {
   });
 
   test("displays the room rating", () => {
-    const rating = screen.getByText(/Rating/i);
+    const rating = screen.getByText(/Rating :/i);
     expect(rating).toBeInTheDocument();
   });
 
