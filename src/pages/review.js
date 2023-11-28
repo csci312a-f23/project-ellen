@@ -58,6 +58,16 @@ function Review() {
 
   return (
     <div className={styles.review}>
+      <div className={styles.title}>
+        <img
+          className={styles.pantherImage}
+          height={100}
+          width={300}
+          src="/images/panther.png"
+          alt="panther"
+        />
+        <h3>Middlebury Housing</h3>
+      </div>
       <h1 className={styles.header}>Leave a Review!</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div>
