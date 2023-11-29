@@ -1,10 +1,15 @@
 import { render, screen, waitFor, act } from "@testing-library/react";
 import Home from "@/pages/index";
+import { useSession } from "next-auth/react";
 import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/review";
 import Rooms from "../pages/dorms/[name]/[...room]";
+
+jest.mock("next-auth/react", () => ({
+  useSession: jest.fn(),
+}));
 
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
@@ -36,6 +41,7 @@ jest.mock("next/router", () => ({
 
 beforeEach(() => {
   mockRouter.setCurrentUrl("/");
+  useSession.mockReturnValue({ data: null, status: "loading" });
 });
 
 afterEach(() => {

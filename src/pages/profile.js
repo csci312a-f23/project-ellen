@@ -1,14 +1,17 @@
 /* eslint-disable no-console */
 import Head from "next/head";
+import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Profile() {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [name, setName] = useState("John Smith");
   const [roomsLived, setRoomsLived] = useState([
@@ -98,6 +101,29 @@ export default function Profile() {
     console.log(`Rated room: ${roomName}`);
   };
 
+  const handleSignOut = async () => {
+    if (!session) {
+      console.log("User is not authenticated");
+      return;
+    }
+
+    try {
+      const result = await signOut({ redirect: false, callbackUrl: "/login" });
+
+      if (result?.url) {
+        router.push(result.url);
+      }
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session, router]);
+
   return (
     <>
       <Head>
@@ -107,6 +133,30 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
+        <div className={styles.title}>
+          <img
+            className={styles.pantherImage}
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
+          />
+          <h3>Middlebury Housing</h3>
+        </div>
+        <div className={styles.otherButtonsContainer}>
+          <Link href="/">
+            <button type="button" className={styles.saveButton}>
+              Back to Home
+            </button>
+          </Link>
+          <button
+            type="button"
+            className={styles.saveButton}
+            onClick={handleSignOut}
+          >
+            Sign out
+          </button>{" "}
+        </div>
         <div className={styles.profile}>
           <Image
             src={UserIcon}
@@ -135,7 +185,7 @@ export default function Profile() {
         </div>
         <div className={styles.section}>
           <div className={styles.h2}>Room Preferences:</div>
-          <ul className={styles.preferenceList}>
+          <ul className={styles.roomList}>
             {Object.entries(preferences).map(([preference, checked]) => (
               <li key={preference}>
                 <label>
@@ -150,15 +200,17 @@ export default function Profile() {
             ))}
           </ul>
         </div>
-        <button
-          type="button"
-          className={styles.saveButton}
-          onClick={handleSavePreferences}
-        >
-          Save
-        </button>
+        <div className={styles.saveButtonContainer}>
+          <button
+            type="button"
+            className={styles.saveButton}
+            onClick={handleSavePreferences}
+          >
+            Save
+          </button>
+        </div>
         <div className={styles.section}>
-          <h2>Favorites</h2>
+          <div className={styles.h2}>Favorites</div>
           <ul className={styles.roomList}>
             {favorites.map((room, index) => (
               // eslint-disable-next-line react/no-array-index-key
@@ -170,3 +222,5 @@ export default function Profile() {
     </>
   );
 }
+
+Profile.middleware = [authenticated];

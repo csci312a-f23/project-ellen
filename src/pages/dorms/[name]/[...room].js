@@ -2,7 +2,9 @@ import Head from "next/head";
 // import Image from "next/image"; // Import the Image component
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import Link from "next/link"; // Import the Link component
+import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
 // import battell from "../../../../public/images/battell.png";
 import DormSearchBar from "../../../components/DormSearchBar";
@@ -15,6 +17,7 @@ export default function Rooms() {
   const [dormNumber, setDormNumber] = useState(null);
 
   const router = useRouter();
+  const { data: session, status } = useSession();
 
   const { room } = router.query;
 
@@ -64,6 +67,12 @@ export default function Rooms() {
     router.push("/review");
   };
 
+  useEffect(() => {
+    if (!session && status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [session, status, router]);
+
   return (
     <>
       <Head>
@@ -110,7 +119,7 @@ export default function Rooms() {
           <div className={styles.rightHalf}>
             <button
               type="button"
-              className={styles.backButton}
+              className={styles.backButton1}
               onClick={() => handleClick("back")}
             >
               Back to Map
@@ -156,3 +165,5 @@ export default function Rooms() {
     </>
   );
 }
+
+Rooms.middleware = [authenticated];
