@@ -4,8 +4,7 @@
 
 .body {
   font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: rgb(152, 147, 140);
+  background-color: rgb(18, 57, 93);
   height: 54rem;
 }
 
@@ -41,7 +40,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding: 25px 30px;
-  margin-bottom: 50px;
   width: 100%;
   background-color: white;
 }
