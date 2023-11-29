@@ -35,6 +35,7 @@ function DormMaps({ selectedDorm }) {
     Battell: {
       firstFloor: [
         // Example coordinates for Room 101
+        { roomNumber: "100", coordinates: "379,319,415,382" },
         { roomNumber: "101", coordinates: "0,0,150,150" },
         // Add coordinates for other rooms on the first floor
       ],
