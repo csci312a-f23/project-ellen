@@ -7,6 +7,7 @@ function DormMaps({ selectedDorm }) {
     Battell: {
       firstFloor: "/images/Battell1F.png",
       secondFloor: "/images/Battell2F.png",
+      thirdFloor: "/images/Battell3F.png",
     },
     Stewart: {
       // firstFloor: "/images/StewartF1.png",
