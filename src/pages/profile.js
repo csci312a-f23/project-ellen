@@ -54,7 +54,7 @@ export default function Profile() {
       setFavorites(["Forest 314", "Painter 121"]);
     } else {
       try {
-        const response = await fetch("/api/userProfile", {
+        const response = await fetch("/api/user", {
           method: "GET",
           headers: new Headers({
             Accept: "application/json",

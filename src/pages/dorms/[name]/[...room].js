@@ -64,7 +64,7 @@ export default function Rooms() {
   };
 
   const handleAddReview = () => {
-    router.push("/review");
+    router.push(`/dorms/${encodeURIComponent(dormName)}/${room}/review`);
   };
 
   useEffect(() => {
