@@ -14,7 +14,8 @@ function Review() {
   const { room } = router.query;
 
   const handleRatingChange = (event) => {
-    setRating(event.target.value);
+    const newRating = parseInt(event.target.value, 10);
+    setRating(newRating);
   };
 
   const handleCommentChange = (event) => {
@@ -30,7 +31,7 @@ function Review() {
           dormReview: comment,
           dormRating: rating,
         };
-        console.log(data);
+        console.log("This the data sent:", data);
         const response = await fetch(`/api/review/${room}`, {
           method: "POST",
           body: JSON.stringify(data),
@@ -42,7 +43,7 @@ function Review() {
 
         if (response.ok) {
           const responseData = await response.json();
-          console.log("Post response data:", responseData);
+          console.log("This is the response data:", responseData);
         } else {
           console.log("Server error:", response.status);
         }
