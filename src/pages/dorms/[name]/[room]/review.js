@@ -11,6 +11,7 @@ function Review() {
 
   const router = useRouter();
   const { data: session } = useSession();
+  const { name } = router.query;
   const { room } = router.query;
 
   const handleRatingChange = (event) => {
@@ -56,10 +57,11 @@ function Review() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     postReview();
+    router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
   };
   const handleCancel = (event) => {
     event.preventDefault();
-    router.push("/");
+    router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
   };
 
   useEffect(() => {

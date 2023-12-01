@@ -87,6 +87,15 @@ describe("Review Form", () => {
 
     expect(mockRouter.pathname).toBe("/");
   });
+  test("cancels review", async () => {
+    render(<Review />);
+
+    const cancelButton = screen.getByText("Cancel").closest("button");
+
+    userEvent.click(cancelButton);
+
+    expect(mockRouter.pathname).toBe("/");
+  });
 });
 
 describe("Rooms Component", () => {

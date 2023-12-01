@@ -11,9 +11,11 @@ import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Profile() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  // const [userPhoto, setUserPhoto] = useState(null);
 
-  const [name, setName] = useState("John Smith");
   const [roomsLived, setRoomsLived] = useState([
     "Battell 101",
     "Gifford 221",
@@ -38,8 +40,11 @@ export default function Profile() {
   ]);
 
   async function getProfile(userProfile) {
+    setName(session.user.name);
+    setEmail(session.user.email);
+    // setUserPhoto(UserIcon);
+
     if (!userProfile) {
-      setName("John Smith");
       setRoomsLived(["Battell 101", "Gifford 221"]);
       setPreferences({
         single: false,
@@ -63,7 +68,6 @@ export default function Profile() {
         });
         if (response.ok) {
           const data = await response.json();
-          setName(data.name);
           setRoomsLived(data.roomsLived);
           setPreferences(data.preferences);
           setFavorites(data.favorites);
@@ -75,8 +79,14 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    getProfile();
-  }, []);
+    if (status === "authenticated" && session) {
+      getProfile();
+    } else if (status === "loading") {
+      // do nothing
+    } else {
+      router.push("/login");
+    }
+  }, [session, status, router]);
 
   const handlePreferenceChange = (preferenceName) => {
     // this is for the checked preferences list
@@ -95,9 +105,7 @@ export default function Profile() {
   };
 
   const handleRateRoom = (roomName) => {
-    // will be updated once we have the rating form
-    router.push(`/review`);
-    // router.push(`/rooms/review`);
+    router.push(`/dorms/Battell/${roomName}/review`);
     console.log(`Rated room: ${roomName}`);
   };
 
@@ -109,7 +117,6 @@ export default function Profile() {
 
     try {
       const result = await signOut({ redirect: false, callbackUrl: "/login" });
-
       if (result?.url) {
         router.push(result.url);
       }
@@ -117,12 +124,6 @@ export default function Profile() {
       console.error("Error signing out:", error);
     }
   };
-
-  useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    }
-  }, [session, router]);
 
   return (
     <>
@@ -167,6 +168,7 @@ export default function Profile() {
                 className={styles.userIcon}
               />
               <div className={styles.h1}>{name}</div>
+              <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
               <h2>Rooms I Have Lived In</h2>
@@ -199,7 +201,7 @@ export default function Profile() {
                         type="checkbox"
                         checked={checked}
                         onChange={() => handlePreferenceChange(preference)}
-                      />
+                      />{" "}
                       {preference}
                     </label>
                   </li>
