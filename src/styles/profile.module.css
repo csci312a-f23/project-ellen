@@ -4,16 +4,26 @@
 
 .body {
   font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: rgb(152, 147, 140);
-  height: 54rem;
+  background-color: rgb(18, 57, 93);
+  color: white;
+  min-height: 100vh;
 }
 
-.profile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.leftContainer,
+.rightContainer {
+  border: 2px solid #0074b3;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(245, 245, 220);
+  color: black;
 }
 
 .userIcon {
@@ -22,11 +32,14 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 20px;
+  padding-bottom: 15px;
+  border: 3px solid black;
 }
 
 .h1 {
   font-size: 24px;
   font-weight: bold;
+  margin-top: 15px;
 }
 
 .title {
@@ -41,7 +54,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding: 25px 30px;
-  margin-bottom: 50px;
   width: 100%;
   background-color: white;
 }
@@ -61,24 +73,28 @@
   padding: 0rem;
 }
 
-.section {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.profile,
+.section1,
+.section2,
+.favorites {
+  margin: 0;
+  padding: 10px;
+}
+
+.section1 {
+  padding-top: 100px;
 }
 
 .h2 {
   font-size: 24px;
   font-weight: bold;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   margin-bottom: 15px;
 }
 
 .roomList {
-  list-style: disc;
-  padding-left: 20px;
+  list-style: none;
+  padding-left: 0;
 }
 
 .saveButtonContainer {
@@ -100,6 +116,19 @@
   cursor: pointer;
   margin-top: 10px;
   font-size: 14px;
+  margin-left: 20px;
+}
+
+.saveButton2 {
+  background-color: #0074b3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-right: 20px;
 }
 
 .saveButton:hover {

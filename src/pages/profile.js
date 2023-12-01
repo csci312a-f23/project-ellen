@@ -151,72 +151,80 @@ export default function Profile() {
           </Link>
           <button
             type="button"
-            className={styles.saveButton}
+            className={styles.saveButton2}
             onClick={handleSignOut}
           >
             Sign out
           </button>{" "}
         </div>
-        <div className={styles.profile}>
-          <Image
-            src={UserIcon}
-            alt="User Profile"
-            className={styles.userIcon}
-          />
-          <div className={styles.h1}>{name}</div>
-        </div>
-        <div className={styles.section}>
-          <h2>Rooms I Have Lived In</h2>
-          <ul className={styles.roomList}>
-            {roomsLived.map((room, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index} className={styles.roomListItem}>
-                {room}
-                <button
-                  type="button"
-                  className={styles.saveButton}
-                  onClick={() => handleRateRoom(room)}
-                >
-                  Rate
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.section}>
-          <div className={styles.h2}>Room Preferences:</div>
-          <ul className={styles.roomList}>
-            {Object.entries(preferences).map(([preference, checked]) => (
-              <li key={preference}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => handlePreferenceChange(preference)}
-                  />
-                  {preference}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.saveButtonContainer}>
-          <button
-            type="button"
-            className={styles.saveButton}
-            onClick={handleSavePreferences}
-          >
-            Save
-          </button>
-        </div>
-        <div className={styles.section}>
-          <div className={styles.h2}>Favorites</div>
-          <ul className={styles.roomList}>
-            {favorites.map((room, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index}>{room}</li>
-            ))}
-          </ul>
+
+        <div className={styles.container}>
+          <div className={styles.leftContainer}>
+            <div className={styles.profile}>
+              <Image
+                src={UserIcon}
+                alt="User Profile"
+                className={styles.userIcon}
+              />
+              <div className={styles.h1}>{name}</div>
+            </div>
+            <div className={styles.section1}>
+              <h2>Rooms I Have Lived In</h2>
+              <ul className={styles.roomList}>
+                {roomsLived.map((room, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <li key={index} className={styles.roomListItem}>
+                    {room}
+                    <button
+                      type="button"
+                      className={styles.saveButton}
+                      onClick={() => handleRateRoom(room)}
+                    >
+                      Rate
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className={styles.rightContainer}>
+            <div className={styles.section2}>
+              <div className={styles.h2}>Room Preferences:</div>
+              <ul className={styles.roomList}>
+                {Object.entries(preferences).map(([preference, checked]) => (
+                  <li key={preference}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => handlePreferenceChange(preference)}
+                      />
+                      {preference}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.saveButtonContainer}>
+              <button
+                type="button"
+                className={styles.saveButton}
+                onClick={handleSavePreferences}
+              >
+                Save
+              </button>
+            </div>
+            <div className={styles.favorites}>
+              <div className={styles.h2}>Favorites</div>
+              <ul className={styles.roomList}>
+                {favorites.map((room, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <li key={index}>{room}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </main>
     </>

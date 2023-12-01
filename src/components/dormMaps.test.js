@@ -1,7 +1,29 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+
+import mockRouter from "next-router-mock";
 import "@testing-library/jest-dom";
+import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import DormMaps from "./dormMaps";
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+// Tell the mock router about the pages we will use (so we can use dynamic routes)
+mockRouter.useParser(
+  createDynamicRouteParser([
+    // These paths should match those found in the `/pages` folder:
+    // "/dorms/[...names]/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
+    "/dorms/[...name]",
+    "/app",
+    "/document",
+    "/index",
+    "/profile",
+    "/review",
+    "/rooms",
+  ]),
+);
 
 describe("Testing DormMaps Component", () => {
   const dormName = "Battell";
@@ -13,10 +35,12 @@ describe("Testing DormMaps Component", () => {
   };
 
   beforeEach(() => {
+    mockRouter.setCurrentUrl("/");
     render(<DormMaps selectedDorm={dormName} />);
   });
 
   afterEach(() => {
+    jest.resetAllMocks();
     jest.resetAllMocks();
   });
 
