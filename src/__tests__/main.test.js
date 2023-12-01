@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
-import Review from "../pages/review";
+import Review from "../pages/dorms/[name]/[room]/review";
 import Rooms from "../pages/dorms/[name]/[...room]";
 
 jest.mock("next-auth/react", () => ({

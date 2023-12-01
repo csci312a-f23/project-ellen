@@ -6,7 +6,7 @@ import { authenticated } from "../../../../lib/middleware";
 import styles from "../../../../styles/Review.module.css";
 
 function Review() {
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
 
   const router = useRouter();
@@ -85,7 +85,7 @@ function Review() {
         <div>
           <label>Rating:</label>
           <input
-            type="string"
+            type="number"
             min="1"
             max="5"
             value={rating}
@@ -104,12 +104,7 @@ function Review() {
             onChange={handleCommentChange}
           />
         </div>
-        {/* 
-        <div className={styles.comment}>
-          <label>Room Number:</label>
-          <textarea value={roomNumber} onChange={handleRoomNumberChange} />
-        </div>
-        */}
+
         <br />
         <button
           type="submit"

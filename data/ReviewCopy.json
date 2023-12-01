@@ -1,0 +1,151 @@
+[
+  {
+    "roomId": "100",
+    "userId": "298",
+    "dormReview": "Comfortable and clean room.",
+    "dormRating": 5
+  },
+  {
+    "roomId": "101",
+    "userId": "184",
+    "dormReview": "Noisy neighbors but great location.",
+    "dormRating": 3
+  },
+  {
+    "roomId": "102",
+    "userId": "184",
+    "dormReview": "Spacious and well-furnished.",
+    "dormRating": 4
+  },
+  {
+    "roomId": "103",
+    "userId": "184",
+    "dormReview": "Cozy atmosphere but limited storage space.",
+    "dormRating": 3
+  },
+  {
+    "roomId": "104",
+    "userId": "184",
+    "dormReview": "Excellent facilities and friendly staff.",
+    "dormRating": 5
+  },
+  {
+    "roomId": "105",
+    "userId": "184",
+    "dormReview": "Small room  but great price.",
+    "dormRating": 3
+  },
+  {
+    "roomId": "106",
+    "userId": "184",
+    "dormReview": "Convenient location but outdated furniture.",
+    "dormRating": 4
+  },
+  {
+    "roomId": "107",
+    "userId": "184",
+    "dormReview": "Clean and tidy room but slow internet.",
+    "dormRating": 3
+  },
+  {
+    "roomId": "108",
+    "userId": "170",
+    "dormReview": "Comfortable beds and quiet surroundings.",
+    "dormRating": 5
+  },
+  {
+    "roomId": "109",
+    "userId": "170",
+    "dormReview": "Limited parking options.",
+    "dormRating": 1
+  },
+  {
+    "roomId": "110",
+    "userId": "170",
+    "dormReview": "Friendly and helpful staff.",
+    "dormRating": 5
+  },
+  {
+    "roomId": "111",
+    "userId": "170",
+    "dormReview": "Well-maintained common areas.",
+    "dormRating": 4
+  },
+  {
+    "roomId": "112",
+    "userId": "170",
+    "dormReview": "Decent size room but outdated decor.",
+    "dormRating": 3
+  },
+  {
+    "roomId": "114",
+    "userId": "170",
+    "dormReview": "Noisy ventilation system.",
+    "dormRating": 2
+  },
+  {
+    "roomId": "115",
+    "userId": "170",
+    "dormReview": "Good Wi-Fi connectivity.",
+    "dormRating": 4
+  },
+  {
+    "roomId": "116",
+    "userId": "170",
+    "dormReview": "Poor sound insulation.",
+    "dormRating": 1
+  },
+  {
+    "roomId": "117",
+    "userId": "170",
+    "dormReview": "Close to campus and dining options.",
+    "dormRating": 5
+  },
+  {
+    "roomId": "118",
+    "userId": "186",
+    "dormReview": "Cozy and homely atmosphere.",
+    "dormRating": 4
+  },
+  {
+    "roomId": "119",
+    "userId": "170",
+    "dormReview": "Insufficient lighting in the room.",
+    "dormRating": 2
+  },
+  {
+    "roomId": "120",
+    "userId": "107",
+    "dormReview": "Responsive maintenance team.",
+    "dormRating": 5
+  },
+  {
+    "roomId": "200",
+    "userId": "302",
+    "dormReview": "Adequate kitchen facilities.",
+    "dormRating": 3
+  },
+  {
+    "roomId": "201",
+    "userId": "184",
+    "dormReview": "Spacious common areas for socializing.",
+    "dormRating": 4
+  },
+  {
+    "roomId": "202",
+    "userId": "184",
+    "dormReview": "Uncomfortable mattress.",
+    "dormRating": 1
+  },
+  {
+    "roomId": "203",
+    "userId": "184",
+    "dormReview": "Convenient laundry facilities.",
+    "dormRating": 4
+  },
+  {
+    "roomId": "204",
+    "userId": "200",
+    "dormReview": "Friendly and inclusive community."
+  }
+]

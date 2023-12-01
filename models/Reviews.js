@@ -17,7 +17,7 @@ export default class Reviews extends BaseModel {
         userId: { type: "string" },
         roomId: { type: "string" },
         dormReview: { type: "string" },
-        dormRating: { type: "string" },
+        dormRating: { type: "integer" },
       },
     };
   }
