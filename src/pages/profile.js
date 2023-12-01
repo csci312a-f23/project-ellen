@@ -14,7 +14,7 @@ export default function Profile() {
   const { data: session, status } = useSession();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  //  const [userPhoto, setUserPhoto] = useState(null);
+  // const [userPhoto, setUserPhoto] = useState(null);
 
   const [roomsLived, setRoomsLived] = useState([
     "Battell 101",
@@ -41,9 +41,9 @@ export default function Profile() {
 
   async function getProfile(userProfile) {
     setName(session.user.name);
-
     setEmail(session.user.email);
     // setUserPhoto(UserIcon);
+
     if (!userProfile) {
       setRoomsLived(["Battell 101", "Gifford 221"]);
       setPreferences({
@@ -201,7 +201,7 @@ export default function Profile() {
                         type="checkbox"
                         checked={checked}
                         onChange={() => handlePreferenceChange(preference)}
-                      />
+                      />{" "}
                       {preference}
                     </label>
                   </li>
