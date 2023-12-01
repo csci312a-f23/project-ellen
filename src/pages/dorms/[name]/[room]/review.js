@@ -42,7 +42,7 @@ function Review() {
 
         if (response.ok) {
           const responseData = await response.json();
-          console.log(responseData);
+          console.log("Post response data:", responseData);
         } else {
           console.log("Server error:", response.status);
         }
