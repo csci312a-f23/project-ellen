@@ -77,7 +77,7 @@ describe("Review Form", () => {
     const commentTextarea = screen.getByRole("textbox");
     const submitButton = screen.getByText("Submit Review").closest("button");
 
-    userEvent.type(ratingInput, "4");
+    userEvent.type(ratingInput, 4);
     userEvent.type(commentTextarea, "Great place to stay!");
 
     // const mockSubmit = jest.fn();
