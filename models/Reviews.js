@@ -11,14 +11,13 @@ export default class Reviews extends BaseModel {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["id"],
 
       properties: {
         id: { type: "integer" },
         userId: { type: "string" },
         roomId: { type: "string" },
         dormReview: { type: "string" },
-        dormRating: { type: "string" },
+        dormRating: { type: "integer" },
       },
     };
   }
