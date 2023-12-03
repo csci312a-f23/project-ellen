@@ -6,14 +6,13 @@ const router = createRouter();
 
 router
   .get(async (req, res) => {
-    const { googleId } = req.query;
-    console.log(googleId);
-    if (!googleId) {
+    const { id } = req.query;
+    // console.log(userEmail);
+    // const userEmail = "email";
+    if (!id) {
       res.status(401).json({ error: "Unauthorized" });
     }
-    const userProfile = await User.query()
-      .findBy("googleId", googleId)
-      .throwIfNotFound();
+    const userProfile = await User.query().findById(id).throwIfNotFound();
     res.status(200).json(userProfile);
   })
 

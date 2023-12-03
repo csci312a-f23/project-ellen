@@ -40,9 +40,10 @@ export default function Profile() {
   ]);
 
   async function getProfile(userProfile) {
-    setName(session.user.name);
+    // setName(session.user.name);
     setEmail(session.user.email);
     // setUserPhoto(UserIcon);
+    console.log(session.user.id);
 
     if (!userProfile) {
       setRoomsLived(["Battell 101", "Gifford 221"]);
@@ -59,9 +60,8 @@ export default function Profile() {
       setFavorites(["Forest 314", "Painter 121"]);
     } else {
       try {
-        console.log(session.googleId);
         const response = await fetch(
-          `/api/userProfile/?googleId=${session.googleId}`,
+          `/api/userProfile/?id=${session.user.id}`,
           {
             method: "GET",
             headers: new Headers({
@@ -94,7 +94,7 @@ export default function Profile() {
 
   useEffect(() => {
     if (status === "authenticated" && session) {
-      getProfile();
+      getProfile(session.user.email);
     } else if (status === "loading") {
       // do nothing
     } else {
