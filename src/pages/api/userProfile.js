@@ -7,8 +7,6 @@ const router = createRouter();
 router
   .get(async (req, res) => {
     const { id } = req.query;
-    // console.log(userEmail);
-    // const userEmail = "email";
     if (!id) {
       res.status(401).json({ error: "Unauthorized" });
     }

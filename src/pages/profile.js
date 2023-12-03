@@ -73,7 +73,7 @@ export default function Profile() {
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
-          setRoomsLived(data.room1);
+          setRoomsLived(["Battell 123", "Gifford 224"]);
           setPreferences({
             single: false,
             double: false,
@@ -84,6 +84,7 @@ export default function Profile() {
             junior: false,
             senior: false,
           });
+
           setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
