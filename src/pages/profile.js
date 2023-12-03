@@ -46,6 +46,8 @@ export default function Profile() {
     console.log(session.user.id);
 
     if (!userProfile) {
+      setName("John Smith");
+
       setRoomsLived(["Battell 101", "Gifford 221"]);
       setPreferences({
         single: false,
@@ -84,7 +86,6 @@ export default function Profile() {
             junior: false,
             senior: false,
           });
-
           setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
@@ -101,7 +102,7 @@ export default function Profile() {
     } else {
       router.push("/login");
     }
-  }, [session, status, router]);
+  }, [session, router]);
 
   const handlePreferenceChange = (preferenceName) => {
     // this is for the checked preferences list
@@ -120,7 +121,7 @@ export default function Profile() {
   };
 
   const handleRateRoom = (roomName) => {
-    router.push(`/dorms/Battell/${roomName}/review`);
+    router.push(`/review`);
     console.log(`Rated room: ${roomName}`);
   };
 
@@ -183,7 +184,6 @@ export default function Profile() {
                 className={styles.userIcon}
               />
               <div className={styles.h1}>{name}</div>
-              <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
               <h2>Rooms I Have Lived In</h2>
