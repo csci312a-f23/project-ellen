@@ -1,178 +1,912 @@
 [
   {
-    "id": 100,
-    "type": "Triple",
+    "id": "100",
+    "dormDimensions": "298",
+    "dormReview": "Comfortable and clean room.",
+    "dormRating": 5,
     "beds": 3,
-    "dimensions": 298,
-    "reviews": [{ "review": "Comfortable and clean room.", "rating": 5 }]
+    "dorm": "Battell"
   },
   {
-    "id": 101,
-    "type": "Double",
+    "id": "101",
+    "dormDimensions": "184",
+    "dormReview": "Noisy neighbors but great location.",
+    "dormRating": 3,
     "beds": 2,
-    "dimensions": 184,
-    "reviews": [
-      { "review": "Noisy neighbors, but great location.", "rating": 3 }
-    ]
+    "dorm": "Battell"
   },
   {
-    "id": 102,
-    "type": "Double",
+    "id": "102",
+    "dormDimensions": "184",
+    "dormReview": "Spacious and well-furnished.",
+    "dormRating": 4,
     "beds": 2,
-    "dimensions": 184,
-    "reviews": [{ "review": "Spacious and well-furnished.", "rating": 4 }]
+    "dorm": "Battell"
   },
   {
-    "id": 103,
-    "type": "Double",
+    "id": "103",
+    "dormDimensions": "184",
+    "dormReview": "Cozy atmosphere but limited storage space.",
+    "dormRating": 3,
     "beds": 2,
-    "dimensions": 184,
-    "reviews": [
-      {
-        "review": "Cozy atmosphere, but limited storage space.",
-        "rating": 3
-      }
-    ]
+    "dorm": "Battell"
   },
   {
-    "id": 104,
-    "type": "Double",
+    "id": "104",
+    "dormDimensions": "184",
+    "dormReview": "Excellent facilities and friendly staff.",
+    "dormRating": 5,
     "beds": 2,
-    "dimensions": 184,
-    "reviews": [
-      {
-        "review": "Excellent facilities and friendly staff.",
-        "rating": 5
-      }
-    ]
+    "dorm": "Battell"
   },
   {
-    "id": 105,
-    "type": "Double",
+    "id": "105",
+    "dormDimensions": "184",
+    "dormReview": "Small room  but great price.",
+    "dormRating": 3,
     "beds": 2,
-    "dimensions": 184,
-    "reviews": [{ "review": "Small id, but great price.", "rating": 3 }]
+    "dorm": "Battell"
   },
   {
-    "id": 106,
-    "type": "Double",
+    "id": "106",
+    "dormDimensions": "184",
+    "dormReview": "Convenient location but outdated furniture.",
+    "dormRating": 4,
     "beds": 2,
-    "dimensions": 184,
-    "reviews": [
-      {
-        "review": "Convenient location, but outdated furniture.",
-        "rating": 4
-      }
-    ]
+    "dorm": "Battell"
   },
   {
-    "id": 107,
-    "type": "Double",
+    "id": "107",
+    "dormDimensions": "184",
+    "dormReview": "Clean and tidy but slow internet.",
+    "dormRating": 3,
     "beds": 2,
-    "dimensions": 184,
-    "reviews": [{ "review": "Clean and tidy, but slow internet.", "rating": 3 }]
+    "dorm": "Battell"
   },
   {
-    "id": 108,
-    "type": "Double",
+    "id": "108",
+    "dormDimensions": "170",
+    "dormReview": "Comfortable beds and quiet surroundings.",
+    "dormRating": 5,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [
-      {
-        "review": "Comfortable beds and quiet surroundings.",
-        "rating": 5
-      }
-    ]
+    "dorm": "Battell"
   },
   {
-    "id": 109,
-    "type": "Double",
+    "id": "109",
+    "dormDimensions": "170",
+    "dormReview": "Limited parking options.",
+    "dormRating": 1,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [{ "review": "Limited parking options.", "rating": 1 }]
+    "dorm": "Battell"
   },
   {
-    "id": 110,
-    "type": "Double",
+    "id": "110",
+    "dormDimensions": "170",
+    "dormReview": "Friendly and helpful staff.",
+    "dormRating": 5,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [{ "review": "Friendly and helpful staff.", "rating": 5 }]
+    "dorm": "Battell"
   },
   {
-    "id": 111,
-    "type": "Double",
+    "id": "111",
+    "dormDimensions": "170",
+    "dormReview": "Well-maintained common areas.",
+    "dormRating": 4,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [{ "review": "Well-maintained common areas.", "rating": 4 }]
+    "dorm": "Battell"
   },
   {
-    "id": 112,
-    "type": "Double",
+    "id": "112",
+    "dormDimensions": "170",
+    "dormReview": "Decent size room but outdated decor.",
+    "dormRating": 3,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [
-      {
-        "review": "Decent size id, but outdated decor.",
-        "rating": 3
-      }
-    ]
+    "dorm": "Battell"
   },
   {
-    "id": 114,
-    "type": "Double",
+    "id": "114",
+    "dormDimensions": "170",
+    "dormReview": "Noisy ventilation system.",
+    "dormRating": 2,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [{ "review": "Noisy ventilation system.", "rating": 2 }]
+    "dorm": "Battell"
   },
   {
-    "id": 115,
-    "type": "Double",
+    "id": "115",
+    "dormDimensions": "170",
+    "dormReview": "Good Wi-Fi connectivity.",
+    "dormRating": 4,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [{ "review": "Good Wi-Fi connectivity.", "rating": 4 }]
+    "dorm": "Battell"
   },
   {
-    "id": 116,
-    "type": "Double",
+    "id": "116",
+    "dormDimensions": "170",
+    "dormReview": "Poor sound insulation.",
+    "dormRating": 1,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [{ "review": "Poor sound insulation.", "rating": 1 }]
+    "dorm": "Battell"
   },
   {
-    "id": 117,
-    "type": "Double",
+    "id": "117",
+    "dormDimensions": "170",
+    "dormReview": "Close to campus and dining options.",
+    "dormRating": 5,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [
-      { "review": "Close to campus and dining options.", "rating": 5 }
-    ]
+    "dorm": "Battell"
   },
   {
-    "id": 118,
-    "type": "Double",
+    "id": "118",
+    "dormDimensions": "186",
+    "dormReview": "Cozy and homely atmosphere.",
+    "dormRating": 4,
     "beds": 2,
-    "dimensions": 186,
-    "reviews": [{ "review": "Cozy and homely atmosphere.", "rating": 4 }]
+    "dorm": "Battell"
   },
   {
-    "id": 119,
-    "type": "Double",
+    "id": "119",
+    "dormDimensions": "170",
+    "dormReview": "Insufficient lighting in the room.",
+    "dormRating": 2,
     "beds": 2,
-    "dimensions": 170,
-    "reviews": [{ "review": "Insufficient lighting in the id.", "rating": 2 }]
+    "dorm": "Battell"
   },
   {
-    "id": 120,
-    "type": "Single",
+    "id": "120",
+    "dormDimensions": "107",
+    "dormReview": "Responsive maintenance team.",
+    "dormRating": 5,
     "beds": 1,
-    "dimensions": 107,
-    "reviews": [{ "review": "Responsive maintenance team.", "rating": 5 }]
+    "dorm": "Battell"
   },
   {
-    "id": 200,
-    "type": "Triple",
+    "id": "200",
+    "dormDimensions": "302",
+    "dormReview": "Adequate kitchen facilities.",
+    "dormRating": 3,
     "beds": 3,
-    "dimensions": 302,
-    "reviews": [{ "review": "Adequate kitchen facilities.", "rating": 3 }]
+    "dorm": "Battell"
+  },
+  {
+    "id": "201",
+    "dormDimensions": "184",
+    "dormReview": "Spacious common areas for socializing.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "202",
+    "dormDimensions": "184",
+    "dormReview": "Uncomfortable mattress.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "203",
+    "dormDimensions": "184",
+    "dormReview": "Convenient laundry facilities.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "204",
+    "dormDimensions": "200",
+    "dormReview": "Friendly and inclusive community.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "205",
+    "dormDimensions": "184",
+    "dormReview": "Limited privacy in shared rooms.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "206",
+    "dormDimensions": "184",
+    "dormReview": "Well-equipped study areas.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "207",
+    "dormDimensions": "184",
+    "dormReview": "Noisy heating system.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "208",
+    "dormDimensions": "184",
+    "dormReview": "Clean and well-maintained bathrooms.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "209",
+    "dormDimensions": "184",
+    "dormReview": "Inconsistent water temperature in showers.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "210",
+    "dormDimensions": "170",
+    "dormReview": "Close to public transportation.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "211",
+    "dormDimensions": "170",
+    "dormReview": "Limited natural light in the room.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "212",
+    "dormDimensions": "170",
+    "dormReview": "Peaceful and quiet environment.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "214",
+    "dormDimensions": "170",
+    "dormReview": "Good security measures in place.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "215",
+    "dormDimensions": "170",
+    "dormReview": "Unreliable elevator.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "216",
+    "dormDimensions": "170",
+    "dormReview": "Proximity to campus amenities.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "217",
+    "dormDimensions": "170",
+    "dormReview": "Limited social events organized.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "218",
+    "dormDimensions": "170",
+    "dormReview": "Comfortable seating options in common areas.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "219",
+    "dormDimensions": "170",
+    "dormReview": "Noisy street outside.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "220",
+    "dormDimensions": "186",
+    "dormReview": "Helpful resident advisors.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "221",
+    "dormDimensions": "170",
+    "dormReview": "Well-maintained outdoor spaces.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "222",
+    "dormDimensions": "108",
+    "dormReview": "Inadequate ventilation in the room.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "301",
+    "dormDimensions": "191",
+    "dormReview": "Close to grocery stores and shops.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "302",
+    "dormDimensions": "184",
+    "dormReview": "Limited kitchen utensils provided.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "303",
+    "dormDimensions": "184",
+    "dormReview": "Welcoming and inclusive atmosphere.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "304",
+    "dormDimensions": "200",
+    "dormReview": "Noisy hallways.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "305",
+    "dormDimensions": "184",
+    "dormReview": "Prompt response to maintenance requests.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "306",
+    "dormDimensions": "184",
+    "dormReview": "Clean and functional laundry facilities.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "307",
+    "dormDimensions": "191",
+    "dormReview": "Inconsistent Wi-Fi connection.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "308",
+    "dormDimensions": "191",
+    "dormReview": "Convenient location for off-campus activities.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "309",
+    "dormDimensions": "184",
+    "dormReview": "Uncomfortable desk chair.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "310",
+    "dormDimensions": "184",
+    "dormReview": "Friendly and supportive community.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "311",
+    "dormDimensions": "191",
+    "dormReview": "Well-maintained outdoor seating areas.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "149",
+    "dormDimensions": "176",
+    "dormReview": "Insufficient natural ventilation in the room.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "152",
+    "dormDimensions": "173",
+    "dormReview": "Good heating system.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "153",
+    "dormDimensions": "173",
+    "dormReview": "Noisy neighbors.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "154",
+    "dormDimensions": "173",
+    "dormReview": "Responsive and approachable staff.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "157",
+    "dormDimensions": "173",
+    "dormReview": "Convenient study spaces available.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "158",
+    "dormDimensions": "173",
+    "dormReview": "Uncomfortable pillows.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "159",
+    "dormDimensions": "173",
+    "dormReview": "Accessible laundry facilities.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "160",
+    "dormDimensions": "173",
+    "dormReview": "Limited social activities organized.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "162",
+    "dormDimensions": "173",
+    "dormReview": "Inadequate soundproofing.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "163",
+    "dormDimensions": "173",
+    "dormReview": "Close to public parks and nature trails.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "164",
+    "dormDimensions": "173",
+    "dormReview": "Limited shelf space in the room.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "165",
+    "dormDimensions": "173",
+    "dormReview": "Reliable hot water supply.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "166",
+    "dormDimensions": "173",
+    "dormReview": "Noisy air conditioning.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "167",
+    "dormDimensions": "173",
+    "dormReview": "Friendly and welcoming front desk staff.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "168",
+    "dormDimensions": "173",
+    "dormReview": "Clean and well-maintained common bathrooms.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "169",
+    "dormDimensions": "140",
+    "dormReview": "Inconsistent elevator operation.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "171",
+    "dormDimensions": "174",
+    "dormReview": "Insufficient natural light in common areas.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "175",
+    "dormDimensions": "176",
+    "dormReview": "Peaceful and serene surroundings.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "252",
+    "dormDimensions": "187",
+    "dormReview": "Limited electrical outlets in the room.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "253",
+    "dormDimensions": "187",
+    "dormReview": "Good water pressure in showers.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "254",
+    "dormDimensions": "187",
+    "dormReview": "Noisy construction nearby.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "257",
+    "dormDimensions": "165",
+    "dormReview": "Helpful and accommodating management.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "258",
+    "dormDimensions": "165",
+    "dormReview": "Clean and organized laundry room.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "259",
+    "dormDimensions": "165",
+    "dormReview": "Slow internet speeds.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "260",
+    "dormDimensions": "165",
+    "dormReview": "Convenient transportation options nearby.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "262",
+    "dormDimensions": "165",
+    "dormReview": "Uncomfortable mattress.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "263",
+    "dormDimensions": "165",
+    "dormReview": "Friendly and inclusive community.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "264",
+    "dormDimensions": "165",
+    "dormReview": "Well-maintained outdoor spaces.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "265",
+    "dormDimensions": "165",
+    "dormReview": "Inadequate ventilation in the room.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "266",
+    "dormDimensions": "165",
+    "dormReview": "Close to grocery stores and shops.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "267",
+    "dormDimensions": "165",
+    "dormReview": "Limited kitchen utensils provided.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "268",
+    "dormDimensions": "165",
+    "dormReview": "Welcoming and inclusive atmosphere.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "269",
+    "dormDimensions": "135",
+    "dormReview": "Noisy hallways.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "270",
+    "dormDimensions": "345",
+    "dormReview": "Prompt response to maintenance requests.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "271",
+    "dormDimensions": "191",
+    "dormReview": "Clean and functional laundry facilities.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "272",
+    "dormDimensions": "194",
+    "dormReview": "Inconsistent Wi-Fi connection.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "273",
+    "dormDimensions": "175",
+    "dormReview": "Convenient location for off-campus activities.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "274",
+    "dormDimensions": "175",
+    "dormReview": "Uncomfortable desk chair.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "275",
+    "dormDimensions": "175",
+    "dormReview": "Friendly and supportive community.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "276",
+    "dormDimensions": "175",
+    "dormReview": "Well-maintained outdoor seating areas.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "121",
+    "dormDimensions": "173",
+    "dormReview": "Insufficient natural ventilation in the room.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "122",
+    "dormDimensions": "176",
+    "dormReview": "Close to parks and recreational facilities.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "125",
+    "dormDimensions": "174",
+    "dormReview": "Limited closet space.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "127",
+    "dormDimensions": "173",
+    "dormReview": "Good heating system.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "129",
+    "dormDimensions": "173",
+    "dormReview": "Noisy neighbors.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "131",
+    "dormDimensions": "175",
+    "dormReview": "Responsive and approachable staff.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "133",
+    "dormDimensions": "175",
+    "dormReview": "Clean and functional common kitchen.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "135",
+    "dormDimensions": "175",
+    "dormReview": "Slow maintenance response time.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "136",
+    "dormDimensions": "175",
+    "dormReview": "Convenient study spaces available.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "137",
+    "dormDimensions": "173",
+    "dormReview": "Uncomfortable pillows.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "138",
+    "dormDimensions": "173",
+    "dormReview": "Accessible laundry facilities.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "141",
+    "dormDimensions": "173",
+    "dormReview": "Limited social activities organized.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "142",
+    "dormDimensions": "173",
+    "dormReview": "Spacious and comfortable lounge areas.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "143",
+    "dormDimensions": "173",
+    "dormReview": "Inadequate soundproofing.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "226",
+    "dormDimensions": "345",
+    "dormReview": "Close to public parks and nature trails.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "227",
+    "dormDimensions": "141",
+    "dormReview": "Limited shelf space in the room.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "228",
+    "dormDimensions": "173",
+    "dormReview": "Reliable hot water supply.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "229",
+    "dormDimensions": "173",
+    "dormReview": "Noisy air conditioning.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "230",
+    "dormDimensions": "173",
+    "dormReview": "Friendly and welcoming front desk staff.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "231",
+    "dormDimensions": "173",
+    "dormReview": "Clean and well-maintained common bathrooms.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "232",
+    "dormDimensions": "173",
+    "dormReview": "Inconsistent elevator operation.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "233",
+    "dormDimensions": "173",
+    "dormReview": "Proximity to local attractions.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "234",
+    "dormDimensions": "173",
+    "dormReview": "Insufficient natural light in common areas.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "236",
+    "dormDimensions": "173",
+    "dormReview": "Peaceful and serene surroundings.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "237",
+    "dormDimensions": "173",
+    "dormReview": "Limited electrical outlets in the room.",
+    "dormRating": 1,
+    "dorm": "Battell"
+  },
+  {
+    "id": "238",
+    "dormDimensions": "173",
+    "dormReview": "Good water pressure in showers.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "239",
+    "dormDimensions": "173",
+    "dormReview": "Noisy construction nearby.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "242",
+    "dormDimensions": "173",
+    "dormReview": "Helpful and accommodating management.",
+    "dormRating": 5,
+    "dorm": "Battell"
+  },
+  {
+    "id": "245",
+    "dormDimensions": "173",
+    "dormReview": "Clean and organized laundry room.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "246",
+    "dormDimensions": "173",
+    "dormReview": "Slow internet speeds.",
+    "dormRating": 3,
+    "dorm": "Battell"
+  },
+  {
+    "id": "247",
+    "dormDimensions": "173",
+    "dormReview": "Convenient transportation options nearby.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "248",
+    "dormDimensions": "173",
+    "dormReview": "Uncomfortable mattress.",
+    "dormRating": 2,
+    "dorm": "Battell"
+  },
+  {
+    "id": "249",
+    "dormDimensions": "191",
+    "dormReview": "I liked it.",
+    "dormRating": 4,
+    "dorm": "Battell"
+  },
+  {
+    "id": "250",
+    "dormDimensions": "195",
+    "dormReview": "Love the bathtubs",
+    "dormRating": 5,
+    "dorm": "Battell"
   }
 ]
