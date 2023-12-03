@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import battellinfo from "../../data/RoomImport.json";
-import styles from "../styles/SearchBar.module.css";
+import styles from "../styles/DormSearchBar.module.css";
 
 function DormSearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
