@@ -13,7 +13,7 @@ export default function Profile() {
   const router = useRouter();
   const { data: session } = useSession();
 
-  const [name, setName] = useState("John Smith");
+  const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
     "Battell 101",
     "Gifford 221",
@@ -54,19 +54,32 @@ export default function Profile() {
       setFavorites(["Forest 314", "Painter 121"]);
     } else {
       try {
-        const response = await fetch("/api/userProfile", {
-          method: "GET",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
+        console.log(session.googleId);
+        const response = await fetch(
+          `/api/userProfile/?googleId=${session.googleId}`,
+          {
+            method: "GET",
+            headers: new Headers({
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            }),
+          },
+        );
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
-          setRoomsLived(data.roomsLived);
-          setPreferences(data.preferences);
-          setFavorites(data.favorites);
+          setRoomsLived(data.room1);
+          setPreferences({
+            single: false,
+            double: false,
+            suite: false,
+            quiet: false,
+            freshmen: false,
+            sophomore: false,
+            junior: false,
+            senior: false,
+          });
+          setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -75,8 +88,8 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    getProfile();
-  }, []);
+    getProfile(session.user.name);
+  });
 
   const handlePreferenceChange = (preferenceName) => {
     // this is for the checked preferences list
