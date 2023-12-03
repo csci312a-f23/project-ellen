@@ -1,6 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
-
+import { render, screen, fireEvent } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 import "@testing-library/jest-dom";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
@@ -14,7 +13,7 @@ jest.mock("next/router", () => ({
 mockRouter.useParser(
   createDynamicRouteParser([
     // These paths should match those found in the `/pages` folder:
-    // "/dorms/[...names]/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
+    "/dorms/Battell/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
     "/dorms/[...name]",
     "/app",
     "/document",
@@ -56,5 +55,23 @@ describe("Testing DormMaps Component", () => {
       expect(imageElement).toBeInTheDocument();
       expect(imageElement).toHaveAttribute("src", imagePath);
     });
+  });
+
+  test("popup appears on hover over a room", () => {
+    const roomNumber = "100";
+    const mapArea = screen.getBy(`259,219,283,261`);
+    fireEvent.mouseOver(mapArea);
+
+    expect(screen.getByText(`Room: ${roomNumber}`)).toBeInTheDocument();
+  });
+
+  test("navigates to correct room page on click", () => {
+    const roomNumber = "100";
+    const mapArea = screen.getByAltText(`Room ${roomNumber}`);
+    fireEvent.click(mapArea);
+
+    mockRouter.push("/dorms/Battell/100");
+
+    expect(mockRouter.asPath).toBe(`/dorms/Battell/${roomNumber}`);
   });
 });
