@@ -187,6 +187,7 @@ export default function Profile() {
                 className={styles.userIcon}
               />
               <div className={styles.h1}>{name}</div>
+              <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
               <h2>Rooms I Have Lived In</h2>
