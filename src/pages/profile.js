@@ -40,7 +40,7 @@ export default function Profile() {
   ]);
 
   async function getProfile(userProfile) {
-    // setName(session.user.name);
+    setName(session.user.name);
     setEmail(session.user.email);
     // setUserPhoto(UserIcon);
     console.log(session.user.id);
@@ -184,6 +184,7 @@ export default function Profile() {
                 className={styles.userIcon}
               />
               <div className={styles.h1}>{name}</div>
+              <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
               <h2>Rooms I Have Lived In</h2>
