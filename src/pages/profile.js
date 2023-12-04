@@ -120,9 +120,12 @@ export default function Profile() {
     console.log("Selected Preferences:", selectedPreferences);
   };
 
-  const handleRateRoom = (roomName) => {
-    router.push(`/review`);
-    console.log(`Rated room: ${roomName}`);
+  const handleRateRoom = (room) => {
+    const splitRoom = room.split(" ");
+    const dorm = splitRoom[0];
+    const roomNumber = splitRoom[1];
+    router.push(`/dorms/${dorm}/${roomNumber}/review`);
+    console.log(`Rated room: ${room}`);
   };
 
   const handleSignOut = async () => {
@@ -184,6 +187,7 @@ export default function Profile() {
                 className={styles.userIcon}
               />
               <div className={styles.h1}>{name}</div>
+              <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
               <h2>Rooms I Have Lived In</h2>

@@ -79,7 +79,7 @@ function DormSearchBar() {
           {results &&
             results.map((room) => (
               <li key={room} onClick={() => handleRoomView(room)}>
-                {room}
+                Room: {room}
               </li>
             ))}
         </ul>

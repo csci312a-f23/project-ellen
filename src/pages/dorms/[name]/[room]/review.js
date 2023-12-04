@@ -83,7 +83,10 @@ function Review() {
         <h3>Middlebury Housing</h3>
       </div>
       <h1 className={styles.header}>Leave a Review!</h1>
-      <h3> Room: {room} </h3>
+      <h3>
+        {" "}
+        {name} {room}{" "}
+      </h3>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div>
           <label>Rating:</label>
