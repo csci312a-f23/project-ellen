@@ -11,10 +11,11 @@ import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Profile() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const [email, setEmail] = useState("");
+  // const [userPhoto, setUserPhoto] = useState(null);
 
-  const [name, setName] = useState("John Smith");
-
+  const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
     "Battell 101",
     "Gifford 221",
@@ -39,6 +40,11 @@ export default function Profile() {
   ]);
 
   async function getProfile(userProfile) {
+    // setName(session.user.name);
+    setEmail(session.user.email);
+    // setUserPhoto(UserIcon);
+    console.log(session.user.id);
+
     if (!userProfile) {
       setName("John Smith");
 
@@ -56,19 +62,31 @@ export default function Profile() {
       setFavorites(["Forest 314", "Painter 121"]);
     } else {
       try {
-        const response = await fetch("/api/user", {
-          method: "GET",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
+        const response = await fetch(
+          `/api/userProfile/?id=${session.user.id}`,
+          {
+            method: "GET",
+            headers: new Headers({
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            }),
+          },
+        );
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
-          setRoomsLived(data.roomsLived);
-          setPreferences(data.preferences);
-          setFavorites(data.favorites);
+          setRoomsLived(["Battell 123", "Gifford 224"]);
+          setPreferences({
+            single: false,
+            double: false,
+            suite: false,
+            quiet: false,
+            freshmen: false,
+            sophomore: false,
+            junior: false,
+            senior: false,
+          });
+          setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -77,11 +95,11 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    getProfile();
-  }, []);
-
-  useEffect(() => {
-    if (!session) {
+    if (status === "authenticated" && session) {
+      getProfile(session.user.email);
+    } else if (status === "loading") {
+      // do nothing
+    } else {
       router.push("/login");
     }
   }, [session, router]);

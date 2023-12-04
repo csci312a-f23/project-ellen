@@ -28,7 +28,7 @@ function Review() {
       try {
         const data = {
           userId: session.user.id.toString(),
-          roomId: room.at(0),
+          roomId: room.split(" ")[0],
           dormReview: comment,
           dormRating: rating,
         };
