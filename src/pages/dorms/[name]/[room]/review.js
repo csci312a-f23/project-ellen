@@ -25,6 +25,7 @@ function Review() {
 
   function postReview() {
     (async () => {
+      // console.log(room.split(" ")[0]);
       try {
         const data = {
           userId: session.user.id.toString(),

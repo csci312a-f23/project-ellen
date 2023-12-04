@@ -40,7 +40,7 @@ export default function Profile() {
   ]);
 
   async function getProfile(userProfile) {
-    // setName(session.user.name);
+    setName(session.user.name);
     setEmail(session.user.email);
     // setUserPhoto(UserIcon);
     console.log(session.user.id);
