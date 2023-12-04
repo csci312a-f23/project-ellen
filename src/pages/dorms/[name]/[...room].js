@@ -44,6 +44,7 @@ export default function Rooms() {
           setDormReview(data.dormReview);
           setDormRating(data.dormRating);
           setDormNumber(currentRoomNumber);
+          console.log(data);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
