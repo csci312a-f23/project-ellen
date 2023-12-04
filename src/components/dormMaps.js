@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
@@ -192,19 +193,14 @@ function DormMaps({ selectedDorm }) {
   const [hoveredRoom, setHoveredRoom] = useState(null);
 
   const handleRoomClick = (roomNumber) => {
-    // Add navigation logic based on the clicked room number
-    // For example: router.push(`/dorms/${selectedDorm}/${roomNumber}`);
-    console.log(`Navigating to Room ${roomNumber}`);
     router.push(`/dorms/Battell/${roomNumber}`);
   };
 
   const handleMouseOver = (roomNumber) => {
-    console.log(`hovering on ${roomNumber}`);
     setHoveredRoom(roomNumber);
   };
 
-  const handleMouseOut = (roomNumber) => {
-    console.log(`exited ${roomNumber}`);
+  const handleMouseOut = () => {
     setHoveredRoom(null);
   };
 

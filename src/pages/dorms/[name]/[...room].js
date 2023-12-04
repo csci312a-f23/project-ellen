@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 
 import { useEffect, useState } from "react";
@@ -44,7 +45,6 @@ export default function Rooms() {
           setDormReview(data.dormReview);
           setDormRating(data.dormRating);
           setDormNumber(currentRoomNumber);
-          console.log(data);
         }
       } catch (error) {
         // eslint-disable-next-line no-console

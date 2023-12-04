@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
