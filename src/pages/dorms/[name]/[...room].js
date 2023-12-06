@@ -117,48 +117,57 @@ export default function Rooms() {
             </article>
           </div>
           <div className={styles.rightHalf}>
-            <button
-              type="button"
-              className={styles.backButton1}
-              onClick={() => handleClick("back")}
-            >
-              Back to Map
-            </button>
-
-            <div className={styles.h3}>{dormName}</div>
-            <div className={styles.h2}> Room : {dormNumber} </div>
-            <div className={styles.h2}>
-              {" "}
-              Dimensions : {dormDimensions} sq ft{" "}
-            </div>
-            <div className={styles.h2}> Rating : {dormRating} </div>
-            <div className="rating-box">
-              <div className={styles.starscontainer}>
-                {Array.from({ length: dormRating }, (_, i) => (
-                  <i key={i} className="fas fa-star is-active" />
-                ))}
-                {/* Add unfilled stars */}
-                {Array.from({ length: 5 - dormRating }, (_, i) => (
-                  <i key={i} className="far fa-star unfilled-star" />
-                ))}
+            <section className={styles.reviewsContainer}>
+              <div className={styles.topLeft}>
+                <button
+                  type="button"
+                  className={styles.backButton1}
+                  onClick={() => handleClick("back")}
+                >
+                  Back to Map
+                </button>
+                <div className={styles.h3}>{dormName}</div>
+                <div className={styles.h2}> Room : {dormNumber} </div>
+                <div className={styles.h2}>
+                  {" "}
+                  Dimensions : {dormDimensions} sq ft{" "}
+                </div>
+                <div className={styles.h2}> Rating : {dormRating} </div>
+                <div className="rating-box">
+                  <div className={styles.starscontainer}>
+                    {Array.from({ length: dormRating }, (_, i) => (
+                      <i key={i} className="fas fa-star is-active" />
+                    ))}
+                    {/* Add unfilled stars */}
+                    {Array.from({ length: 5 - dormRating }, (_, i) => (
+                      <i key={i} className="far fa-star unfilled-star" />
+                    ))}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleAddReview(room)}
+                  className={styles.backButton1}
+                >
+                  Add Review
+                </button>
               </div>
-            </div>
-            <div className={styles.h2}> Reviews : {dormReview} </div>
-            <button
-              type="button"
-              onClick={() => handleAddReview(room)}
-              className={styles.backButton}
-            >
-              Add Review
-            </button>
-            <div className={styles.imageContainer}>
-              <img
-                src="/images/battell.png"
-                alt="Room Photo"
-                width={605}
-                height={403}
-              />
-            </div>
+              <div className={styles.topRight}>
+                <div className={styles.imageContainer}>
+                  <img
+                    src="/images/battell.png"
+                    alt="Room Photo"
+                    width={605}
+                    height={403}
+                  />
+                </div>
+              </div>
+              <div className={styles.bottomRow}>
+                <div className={styles.h4}> Reviews </div>
+                <p> {dormReview} </p>
+                <p>testing</p>
+              </div>
+            </section>
           </div>
         </section>
       </main>
