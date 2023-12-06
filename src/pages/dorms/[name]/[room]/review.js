@@ -1,62 +1,69 @@
+/* eslint-disable no-console */
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { authenticated } from "../lib/middleware";
-
-import styles from "../styles/Review.module.css";
+import { authenticated } from "../../../../lib/middleware";
+import styles from "../../../../styles/Review.module.css";
 
 function Review() {
   const [rating, setRating] = useState(1);
   const [comment, setComment] = useState("");
-  // const [roomNumber, setRoomNumber] = useState("");
+
   const router = useRouter();
   const { data: session } = useSession();
+  const { name } = router.query;
+  const { room } = router.query;
 
   const handleRatingChange = (event) => {
-    setRating(event.target.value);
+    const newRating = parseInt(event.target.value, 10);
+    setRating(newRating);
   };
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
   };
 
-  /*
-  const handleRoomNumberChange = (event) => {
-    setRoomNumber(event.target.value);
-  };
-  */
+  function postReview() {
+    (async () => {
+      // console.log(room.split(" ")[0]);
+      try {
+        const data = {
+          userId: session.user.id.toString(),
+          roomId: room.split(" ")[0],
+          dormReview: comment,
+          dormRating: rating,
+        };
+        console.log("This the data sent:", data);
+        const response = await fetch(`/api/review/${room}`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const data = {
-    //   rating,
-    //   comment,
-    //   posted: new Date().toISOString,
-    // };
-    // send data to server
-    /*
-    try {
-      const response = await fetch(`/api/rooms`, {
-        method: "POST",
-        body: JSON.stringify(event.target.value),
-        headers: new Headers({
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log("This is the response data:", responseData);
+        } else {
+          console.log("Server error:", response.status);
+        }
+      } catch (error) {
+        console.error("Something went wrong:", error);
       }
-    } catch (error) {
-      console.log("Something went wrong");
-    }
-    */
-  };
+    })();
+  }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    postReview();
+    router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
+  };
   const handleCancel = (event) => {
     event.preventDefault();
-    router.push("/");
+    router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
   };
 
   useEffect(() => {
@@ -78,6 +85,10 @@ function Review() {
         <h3>Middlebury Housing</h3>
       </div>
       <h1 className={styles.header}>Leave a Review!</h1>
+      <h3>
+        {" "}
+        {name} {room}{" "}
+      </h3>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div>
           <label>Rating:</label>
@@ -101,12 +112,7 @@ function Review() {
             onChange={handleCommentChange}
           />
         </div>
-        {/* 
-        <div className={styles.comment}>
-          <label>Room Number:</label>
-          <textarea value={roomNumber} onChange={handleRoomNumberChange} />
-        </div>
-        */}
+
         <br />
         <button
           type="submit"

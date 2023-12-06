@@ -5,7 +5,6 @@ import Room from "../../../../models/Room";
 const router = createRouter();
 
 router.post(async (req, res) => {
-  // const { roomData } = req.body;
   const { roomData } = req.body;
   const room = await Room.query().insertAndFetch(roomData).throwIfNotFound();
   res.status(200).json(room);

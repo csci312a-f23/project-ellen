@@ -95,6 +95,7 @@ function SearchBar() {
         setResults(langHouses);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption, searchTerm]);
 
   const handleOnClick = () => {

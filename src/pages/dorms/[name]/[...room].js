@@ -1,12 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-// import Image from "next/image"; // Import the Image component
+
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Link from "next/link"; // Import the Link component
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
-// import battell from "../../../../public/images/battell.png";
+
 import DormSearchBar from "../../../components/DormSearchBar";
 
 export default function Rooms() {
@@ -22,9 +23,8 @@ export default function Rooms() {
   const { room } = router.query;
 
   async function getRoom(currentRoomNumber) {
-    // how would this function with this being called elsewhere, like when do we tell it what room to call
     if (!currentRoomNumber) {
-      setDormName("Stewart");
+      setDormName("Battell");
       setDormDimensions(173);
       setDormReview("Comfortable and clean room.");
       setDormRating(4);
@@ -64,7 +64,7 @@ export default function Rooms() {
   };
 
   const handleAddReview = () => {
-    router.push("/review");
+    router.push(`/dorms/${encodeURIComponent(dormName)}/${room}/review`);
   };
 
   useEffect(() => {

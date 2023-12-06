@@ -1,6 +1,7 @@
 import { Model } from "objection";
 import BaseModel from "./BaseModels";
-import Review from "./Review";
+
+import Reviews from "./Reviews";
 
 export default class Room extends BaseModel {
   // Table name is the only required property.
@@ -27,22 +28,10 @@ export default class Room extends BaseModel {
     return {
       reviews: {
         relation: Model.HasManyRelation,
-        modelClass: Review,
+        modelClass: Reviews,
         join: {
           from: "Room.id",
-          to: "Review.roomId",
-        },
-      },
-      related: {
-        relation: Model.HasManyRelation,
-        modelClass: Room,
-        join: {
-          from: "Room.id",
-          through: {
-            from: "RelatedReview.roomId",
-            to: "RelatedReview.userId",
-          },
-          to: "Room.id",
+          to: "Reviews.roomId",
         },
       },
     };

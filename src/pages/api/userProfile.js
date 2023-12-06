@@ -1,17 +1,19 @@
+// woooow
 import { createRouter } from "next-connect";
-import Room from "../../../../models/Room";
+import User from "../../../models/User";
 
 const router = createRouter();
 
 router
   .get(async (req, res) => {
-    const room = await Room.query()
-      .findById(req.query.id)
-      .throwIfNotFound()
-      .withGraphFetched("reviews");
-
-    res.status(200).json(room);
+    const { id } = req.query;
+    if (!id) {
+      res.status(401).json({ error: "Unauthorized" });
+    }
+    const userProfile = await User.query().findById(id).throwIfNotFound();
+    res.status(200).json(userProfile);
   })
+
   .put(async (req, res) => {
     const { id, ...updatedRoom } = req.body;
     // req.query.id is a string, and so needs to be converted to an integer before comparison
@@ -21,10 +23,9 @@ router
       return;
     }
 
-    const room = await Room.query()
+    const room = await User.query()
       .updateAndFetchById(req.query.id, updatedRoom)
       .throwIfNotFound();
-
     res.status(200).json(room);
   });
 

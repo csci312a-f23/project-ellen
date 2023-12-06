@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-console */
 import Head from "next/head";
 import { signOut, useSession } from "next-auth/react";
@@ -11,9 +12,11 @@ import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Profile() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const [email, setEmail] = useState("");
+  // const [userPhoto, setUserPhoto] = useState(null);
 
-  const [name, setName] = useState("John Smith");
+  const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
     "Battell 101",
     "Gifford 221",
@@ -38,8 +41,14 @@ export default function Profile() {
   ]);
 
   async function getProfile(userProfile) {
+    setName(session.user.name);
+    setEmail(session.user.email);
+    // setUserPhoto(UserIcon);
+    console.log(session.user.id);
+
     if (!userProfile) {
       setName("John Smith");
+
       setRoomsLived(["Battell 101", "Gifford 221"]);
       setPreferences({
         single: false,
@@ -54,19 +63,31 @@ export default function Profile() {
       setFavorites(["Forest 314", "Painter 121"]);
     } else {
       try {
-        const response = await fetch("/api/userProfile", {
-          method: "GET",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
+        const response = await fetch(
+          `/api/userProfile/?id=${session.user.id}`,
+          {
+            method: "GET",
+            headers: new Headers({
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            }),
+          },
+        );
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
-          setRoomsLived(data.roomsLived);
-          setPreferences(data.preferences);
-          setFavorites(data.favorites);
+          setRoomsLived(["Battell 123", "Gifford 224"]);
+          setPreferences({
+            single: false,
+            double: false,
+            suite: false,
+            quiet: false,
+            freshmen: false,
+            sophomore: false,
+            junior: false,
+            senior: false,
+          });
+          setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -75,8 +96,15 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    getProfile();
-  }, []);
+    if (status === "authenticated" && session) {
+      getProfile(session.user.email);
+    } else if (status === "loading") {
+      // do nothing
+    } else {
+      router.push("/login");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session, router]);
 
   const handlePreferenceChange = (preferenceName) => {
     // this is for the checked preferences list
@@ -94,11 +122,12 @@ export default function Profile() {
     console.log("Selected Preferences:", selectedPreferences);
   };
 
-  const handleRateRoom = (roomName) => {
-    // will be updated once we have the rating form
-    router.push(`/review`);
-    // router.push(`/rooms/review`);
-    console.log(`Rated room: ${roomName}`);
+  const handleRateRoom = (room) => {
+    const splitRoom = room.split(" ");
+    const dorm = splitRoom[0];
+    const roomNumber = splitRoom[1];
+    router.push(`/dorms/${dorm}/${roomNumber}/review`);
+    console.log(`Rated room: ${room}`);
   };
 
   const handleSignOut = async () => {
@@ -109,7 +138,6 @@ export default function Profile() {
 
     try {
       const result = await signOut({ redirect: false, callbackUrl: "/login" });
-
       if (result?.url) {
         router.push(result.url);
       }
@@ -117,12 +145,6 @@ export default function Profile() {
       console.error("Error signing out:", error);
     }
   };
-
-  useEffect(() => {
-    if (!session) {
-      router.push("/login");
-    }
-  }, [session, router]);
 
   return (
     <>
@@ -151,72 +173,81 @@ export default function Profile() {
           </Link>
           <button
             type="button"
-            className={styles.saveButton}
+            className={styles.saveButton2}
             onClick={handleSignOut}
           >
             Sign out
           </button>{" "}
         </div>
-        <div className={styles.profile}>
-          <Image
-            src={UserIcon}
-            alt="User Profile"
-            className={styles.userIcon}
-          />
-          <div className={styles.h1}>{name}</div>
-        </div>
-        <div className={styles.section}>
-          <h2>Rooms I Have Lived In</h2>
-          <ul className={styles.roomList}>
-            {roomsLived.map((room, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index} className={styles.roomListItem}>
-                {room}
-                <button
-                  type="button"
-                  className={styles.saveButton}
-                  onClick={() => handleRateRoom(room)}
-                >
-                  Rate
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.section}>
-          <div className={styles.h2}>Room Preferences:</div>
-          <ul className={styles.roomList}>
-            {Object.entries(preferences).map(([preference, checked]) => (
-              <li key={preference}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => handlePreferenceChange(preference)}
-                  />
-                  {preference}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.saveButtonContainer}>
-          <button
-            type="button"
-            className={styles.saveButton}
-            onClick={handleSavePreferences}
-          >
-            Save
-          </button>
-        </div>
-        <div className={styles.section}>
-          <div className={styles.h2}>Favorites</div>
-          <ul className={styles.roomList}>
-            {favorites.map((room, index) => (
-              // eslint-disable-next-line react/no-array-index-key
-              <li key={index}>{room}</li>
-            ))}
-          </ul>
+
+        <div className={styles.container}>
+          <div className={styles.leftContainer}>
+            <div className={styles.profile}>
+              <Image
+                src={UserIcon}
+                alt="User Profile"
+                className={styles.userIcon}
+              />
+              <div className={styles.h1}>{name}</div>
+              <div className={styles.h1}>{email}</div>
+            </div>
+            <div className={styles.section1}>
+              <h2>Rooms I Have Lived In</h2>
+              <ul className={styles.roomList}>
+                {roomsLived.map((room, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <li key={index} className={styles.roomListItem}>
+                    {room}
+                    <button
+                      type="button"
+                      className={styles.saveButton}
+                      onClick={() => handleRateRoom(room)}
+                    >
+                      Rate
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className={styles.rightContainer}>
+            <div className={styles.section2}>
+              <div className={styles.h2}>Room Preferences:</div>
+              <ul className={styles.roomList}>
+                {Object.entries(preferences).map(([preference, checked]) => (
+                  <li key={preference}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => handlePreferenceChange(preference)}
+                      />{" "}
+                      {preference}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={styles.saveButtonContainer}>
+              <button
+                type="button"
+                className={styles.saveButton}
+                onClick={handleSavePreferences}
+              >
+                Save
+              </button>
+            </div>
+            <div className={styles.favorites}>
+              <div className={styles.h2}>Favorites</div>
+              <ul className={styles.roomList}>
+                {favorites.map((room, index) => (
+                  // eslint-disable-next-line react/no-array-index-key
+                  <li key={index}>{room}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </main>
     </>
