@@ -7,30 +7,31 @@ import Link from "next/link"; // Import the Link component
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
 
-import DormSearchBar from "../../../components/DormSearchBar";
+import TestDormSearch from "../../../components/TestDormSearch";
 
 export default function Rooms() {
   const [dormName, setDormName] = useState(null);
   const [dormDimensions, setDormDimensions] = useState(null);
   const [dormReview, setDormReview] = useState(null);
-  const [dormRating, setDormRating] = useState(null);
+  const [beds, setBeds] = useState(null);
+  // const [dormRating, setDormRating] = useState(null);
   const [dormNumber, setDormNumber] = useState(null);
 
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  const { room } = router.query;
+  const { name, room } = router.query;
 
   async function getRoom(currentRoomNumber) {
     if (!currentRoomNumber) {
-      setDormName("Battell");
+      setDormName(name);
       setDormDimensions(173);
-      setDormReview("Comfortable and clean room.");
-      setDormRating(4);
-      setDormNumber(123);
+      // setDormReview("Comfortable and clean room.");
+      // setDormRating(4);
+      // setDormNumber(123);
     } else {
       try {
-        const response = await fetch(`/api/rooms/${currentRoomNumber}`, {
+        const response = await fetch(`/api/testrooms/${currentRoomNumber}`, {
           method: "GET",
           headers: new Headers({
             Accept: "application/json",
@@ -39,11 +40,12 @@ export default function Rooms() {
         });
         if (response.ok) {
           const data = await response.json();
-          setDormName("Battell");
-          setDormDimensions(data.dormDimensions);
+          setDormName(data.dorm);
+          setDormDimensions(data.dimensions);
           setDormReview(data.dormReview);
-          setDormRating(data.dormRating);
+          setBeds(data.beds);
           setDormNumber(currentRoomNumber);
+          // eslint-disable-next-line no-console
           console.log(data);
         }
       } catch (error) {
@@ -113,7 +115,7 @@ export default function Rooms() {
               <h2>Find A Room</h2>
             </article>
             <article className={styles.stuff}>
-              <DormSearchBar />
+              <TestDormSearch name={name} />
             </article>
           </div>
           <div className={styles.rightHalf}>
@@ -127,22 +129,13 @@ export default function Rooms() {
 
             <div className={styles.h3}>{dormName}</div>
             <div className={styles.h2}> Room : {dormNumber} </div>
+            <div className={styles.h2}> Beds : {beds} </div>
             <div className={styles.h2}>
               {" "}
-              Dimensions : {dormDimensions} sq ft{" "}
+              Dimensions : {dormDimensions} sq ft
             </div>
-            <div className={styles.h2}> Rating : {dormRating} </div>
-            <div className="rating-box">
-              <div className={styles.starscontainer}>
-                {Array.from({ length: dormRating }, (_, i) => (
-                  <i key={i} className="fas fa-star is-active" />
-                ))}
-                {/* Add unfilled stars */}
-                {Array.from({ length: 5 - dormRating }, (_, i) => (
-                  <i key={i} className="far fa-star unfilled-star" />
-                ))}
-              </div>
-            </div>
+            {/* <div className={styles.h2}> Rating : {dormRating} </div> */}
+
             <div className={styles.h2}> Reviews : {dormReview} </div>
             <button
               type="button"

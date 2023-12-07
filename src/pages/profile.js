@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import AddRoomButton from "@/components/AddRoomButton";
 import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
@@ -13,7 +14,6 @@ export default function Profile() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
-  // const [userPhoto, setUserPhoto] = useState(null);
 
   const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
@@ -42,12 +42,11 @@ export default function Profile() {
   async function getProfile(userProfile) {
     setName(session.user.name);
     setEmail(session.user.email);
-    // setUserPhoto(UserIcon);
+
     console.log(session.user.id);
 
     if (!userProfile) {
       setName("John Smith");
-
       setRoomsLived(["Battell 101", "Gifford 221"]);
       setPreferences({
         single: false,
@@ -206,6 +205,7 @@ export default function Profile() {
                   </li>
                 ))}
               </ul>
+              <AddRoomButton />
             </div>
           </div>
 
