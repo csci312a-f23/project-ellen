@@ -74,7 +74,11 @@ function DormSearchBar() {
           Search
         </button>
       </div>
-      <div className="SearchBar-results">
+      <div
+        className="SearchBar-results"
+        role="list"
+        aria-label="SearchBar-results"
+      >
         <ul className={styles["SearchBar-results"]}>
           {results &&
             results.map((room) => (
