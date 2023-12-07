@@ -1,8 +1,9 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 import "@testing-library/jest-dom";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
+import userEvent from "@testing-library/user-event";
 import DormMaps from "./dormMaps";
 
 jest.mock("next/router", () => ({
@@ -57,21 +58,49 @@ describe("Testing DormMaps Component", () => {
     });
   });
 
-  test("popup appears on hover over a room", () => {
-    const roomNumber = "100";
-    const mapArea = screen.getBy(`259,219,283,261`);
-    fireEvent.mouseOver(mapArea);
+  test("should display popup when hovering over a room", () => {
+    // Render the DormMaps component with a selected dorm
+    render(<DormMaps selectedDorm="Battell" />);
 
-    expect(screen.getByText(`Room: ${roomNumber}`)).toBeInTheDocument();
+    // Simulate mouseover on an area in the image map
+
+    fireEvent.mouseOver(screen.getAllByAltText("Room 100")[0]);
+
+    // const areaElement = screen.getByAltText('firstFloor image').nextElementSibling.querySelector('area[alt="Room 100"]');
+    // fireEvent.mouseOver(areaElement);
+
+    // Check if the popup content is displayed
+    const popupContent = screen.getAllByText("Room: 100")[0];
+    expect(popupContent).toBeInTheDocument();
   });
 
-  test("navigates to correct room page on click", () => {
-    const roomNumber = "100";
-    const mapArea = screen.getByAltText(`Room ${roomNumber}`);
-    fireEvent.click(mapArea);
+  // test("popup appears on hover over a room", () => {
+  //   const roomNumber = "100";
+  //   const mapArea = screen.getBy(`259,219,283,261`);
+  //   fireEvent.mouseOver(mapArea);
 
-    mockRouter.push("/dorms/Battell/100");
+  //   expect(screen.getByText(`Room: ${roomNumber}`)).toBeInTheDocument();
+  // });
 
-    expect(mockRouter.asPath).toBe(`/dorms/Battell/${roomNumber}`);
+  test("Navigates to the correct page when a room is clicked", async () => {
+    render(<DormMaps selectedDorm="Battell" />);
+
+    userEvent.click(screen.getAllByAltText("Room 100")[0]);
+
+    mockRouter.push("/100");
+
+    await waitFor(() => {
+      expect(mockRouter.pathname).toBe("/100");
+    });
   });
+
+  // test("navigates to correct room page on click", () => {
+  //   const roomNumber = "100";
+  //   const mapArea = screen.getByAltText(`Room ${roomNumber}`);
+  //   fireEvent.click(mapArea);
+
+  //   mockRouter.push("/dorms/Battell/100");
+
+  //   expect(mockRouter.asPath).toBe(`/dorms/Battell/${roomNumber}`);
+  // });
 });

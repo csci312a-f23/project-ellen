@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import LoginWidget from "../components/LoginWidget";
 import styles from "../styles/login.module.css";

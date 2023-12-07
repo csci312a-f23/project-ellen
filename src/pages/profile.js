@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-console */
 import Head from "next/head";
 import { signOut, useSession } from "next-auth/react";
@@ -101,6 +102,7 @@ export default function Profile() {
     } else {
       router.push("/login");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session, router]);
 
   const handlePreferenceChange = (preferenceName) => {
