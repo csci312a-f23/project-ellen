@@ -250,3 +250,24 @@
   overflow: auto;
   padding: 10px;
 }
+
+/* main.module.css */
+
+.reviewList {
+  list-style: none;
+  padding: 0;
+}
+
+.reviewItem {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.reviewRating {
+  color: #ffc107; /* Set the color for the stars */
+}
+
+.reviewText {
+  margin-top: 10px;
+}

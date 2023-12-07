@@ -13,7 +13,7 @@ import DormSearchBar from "../../../components/DormSearchBar";
 export default function Rooms() {
   const [dormName, setDormName] = useState(null);
   const [dormDimensions, setDormDimensions] = useState(null);
-  const [dormReview, setDormReview] = useState(null);
+  const [dormReview, setDormReview] = useState([]);
   const [dormRating, setDormRating] = useState(null);
   const [dormNumber, setDormNumber] = useState(null);
 
@@ -26,7 +26,7 @@ export default function Rooms() {
     if (!currentRoomNumber) {
       setDormName("Battell");
       setDormDimensions(173);
-      setDormReview("Comfortable and clean room.");
+      setDormReview([]);
       setDormRating(4);
       setDormNumber(123);
     } else {
@@ -42,7 +42,7 @@ export default function Rooms() {
           const data = await response.json();
           setDormName("Battell");
           setDormDimensions(data.dormDimensions);
-          setDormReview(data.dormReview);
+          setDormReview(data.reviews);
           setDormRating(data.dormRating);
           setDormNumber(currentRoomNumber);
         }
@@ -164,8 +164,21 @@ export default function Rooms() {
               </div>
               <div className={styles.bottomRow}>
                 <div className={styles.h4}> Reviews </div>
-                <p> {dormReview} </p>
-                <p>testing</p>
+                <ul className={styles.reviewList}>
+                  {dormReview.map((review) => (
+                    <li key={review.id} className={styles.reviewItem}>
+                      <div className={styles.reviewRating}>
+                        {Array.from(
+                          { length: parseInt(review.dormRating, 10) },
+                          (_, i) => (
+                            <i key={i} className="fas fa-star is-active" />
+                          ),
+                        )}
+                      </div>
+                      <p className={styles.reviewText}>{review.dormReview}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </section>
           </div>
