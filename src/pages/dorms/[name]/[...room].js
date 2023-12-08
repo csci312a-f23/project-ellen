@@ -5,6 +5,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Link from "next/link"; // Import the Link component
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MapIcon from "@mui/icons-material/Map";
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
 
@@ -86,26 +91,34 @@ export default function Rooms() {
         />
       </Head>
       <main className={styles.body}>
-        <Link href="/profile">
-          <button type="button" className={styles.profileButton}>
+        <div className={styles.otherButtonsContainer}>
+          <Link href="/">
+            <IconButton
+              aria-label="Back to Home"
+              className={styles.backButton2}
+            >
+              <HomeIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+            </IconButton>
+          </Link>
+          <div className={styles.title}>
             <img
-              src="/images/UserIcon.jpeg"
-              alt="User Profile"
-              width={20}
-              height={20}
-              className={styles.userIcon}
+              className={styles.pantherImage}
+              height={100}
+              width={300}
+              src="/images/panther.png"
+              alt="panther"
             />
-            My Profile
-          </button>
-        </Link>
-        <div className={styles.h1}>
-          <img
-            height={100}
-            width={300}
-            src="/images/panther.png"
-            alt="panther"
-          />
-          <h3>Middlebury Housing</h3>
+            <h3>Middlebury Housing</h3>
+          </div>
+          <Link href="/profile">
+            <Button
+              variant="contained"
+              startIcon={<AccountCircleIcon style={{ fontSize: "2rem" }} />}
+              className={styles.profileButton}
+            >
+              My Profile
+            </Button>
+          </Link>
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
@@ -119,13 +132,13 @@ export default function Rooms() {
           <div className={styles.rightHalf}>
             <section className={styles.reviewsContainer}>
               <div className={styles.topLeft}>
-                <button
-                  type="button"
-                  className={styles.backButton1}
+                <IconButton
+                  aria-label="Back to Map"
+                  className={styles.mapButton}
                   onClick={() => handleClick("back")}
                 >
-                  Back to Map
-                </button>
+                  <MapIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+                </IconButton>
                 <div className={styles.h3}>{dormName}</div>
                 <div className={styles.h2}> Room : {dormNumber} </div>
                 <div className={styles.h2}>
@@ -144,13 +157,13 @@ export default function Rooms() {
                     ))}
                   </div>
                 </div>
-                <button
-                  type="button"
+                <Button
+                  variant="contained"
                   onClick={() => handleAddReview(room)}
                   className={styles.backButton1}
                 >
                   Add Review
-                </button>
+                </Button>
               </div>
               <div className={styles.topRight}>
                 <div className={styles.imageContainer}>

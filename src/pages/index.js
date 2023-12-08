@@ -8,6 +8,9 @@ import LeafletMap from "@/components/LeafletMap";
 
 import Link from "next/link"; // Import the Link component
 import SearchBar from "@/components/MainSearchBar";
+import Button from "@mui/material/Button";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 import styles from "../styles/main.module.css";
 
 export default function Home() {
@@ -33,16 +36,13 @@ export default function Home() {
 
       <main className={styles.body}>
         <Link href="/profile">
-          <button type="button" className={styles.profileButton}>
-            <img
-              src="/images/UserIcon.jpeg"
-              alt="User Profile"
-              width={20}
-              height={20}
-              className={styles.userIcon}
-            />
+          <Button
+            variant="contained"
+            startIcon={<AccountCircleIcon style={{ fontSize: "2rem" }} />}
+            className={styles.profileButton}
+          >
             My Profile
-          </button>
+          </Button>
         </Link>
         <div className={styles.h1}>
           <img
