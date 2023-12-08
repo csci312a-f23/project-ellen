@@ -269,7 +269,7 @@
 
 .otherButtonsContainer {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 9fr 1fr;
   gap: 8px;
   justify-content: space-between;
   background-color: white;
