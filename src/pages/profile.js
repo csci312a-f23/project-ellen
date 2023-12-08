@@ -90,8 +90,9 @@ export default function Profile() {
 
   function addRoom() {
     (async () => {
+      const newRoomInt = parseInt(newRoom, 10);
       const data = {
-        id: newRoom,
+        id: newRoomInt,
         dorm,
       };
       const response = await fetch("/api/testrooms", {

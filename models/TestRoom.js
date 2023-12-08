@@ -32,7 +32,7 @@ export default class Room extends BaseModel {
         relation: Model.HasManyRelation,
         modelClass: Reviews,
         join: {
-          from: "TestRoom.id",
+          from: "TestRooms.id",
           to: "Reviews.roomId",
         },
       },
