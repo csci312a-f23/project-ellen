@@ -56,9 +56,6 @@ export default function Home() {
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.h2}>
-              <h2>Find A Dorm</h2>
-            </article>
             <article className={styles.stuff}>
               <SearchBar />
             </article>

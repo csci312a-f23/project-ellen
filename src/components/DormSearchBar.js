@@ -50,7 +50,7 @@ function DormSearchBar() {
         <input
           className={styles.input}
           type="text"
-          placeholder="Search..."
+          placeholder="Room..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

@@ -122,9 +122,6 @@ export default function Rooms() {
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.h2}>
-              <h2>Find A Room</h2>
-            </article>
             <article className={styles.stuff}>
               <DormSearchBar />
             </article>
