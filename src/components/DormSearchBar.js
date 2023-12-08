@@ -15,26 +15,23 @@ function DormSearchBar({ name }) {
 
   const norm = Array.isArray(name) ? name : [name];
 
-  function getRooms() {
-    (async () => {
-      try {
-        const response = await fetch("/api/rooms", {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
+  async function getRooms() {
+    try {
+      const response = await fetch("/api/rooms", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
 
-        if (response.ok) {
-          const data = await response.json();
-
-          setDorms(data);
-        }
-      } catch (error) {
-        console.error("Something went wrong:", error);
+      if (response.ok) {
+        const data = await response.json();
+        setDorms(data);
       }
-    })();
+    } catch (error) {
+      console.error("Something went wrong:", error);
+    }
   }
 
   useEffect(() => {
@@ -44,16 +41,21 @@ function DormSearchBar({ name }) {
 
   function getDormRooms() {
     const roomList = [];
+    const roomIdList = [];
+
     for (let i = 0; i < dorms.length; i += 1) {
       if (dorms[i].dorm === norm[0]) {
         const room = dorms[i];
-        roomList.push(room.id);
-
-        roomList.sort();
-        setRooms(roomList);
+        roomIdList.push(room.id);
+        roomList.push(room);
       }
-      setResults(roomList);
     }
+
+    roomList.sort();
+    roomIdList.sort();
+
+    setRooms(roomList);
+    setResults(roomIdList);
   }
 
   useEffect(() => {
@@ -62,16 +64,23 @@ function DormSearchBar({ name }) {
   }, [dorms]);
 
   const handleRoomView = (roomNumber) => {
-    router.push(`/dorms/${name}/${roomNumber}`);
+    try {
+      router.push(`/dorms/${name}/${roomNumber}`);
+    } catch (error) {
+      console.error("Failed to navigate:", error);
+    }
   };
 
   const handleOnClick = () => {
-    const int = parseInt(roomType, 10);
-    const filteredRoomList = rooms.filter(
-      (room) =>
-        room.includes(searchTerm) &&
-        (roomType === "All" || rooms.find((r) => r.id === room).beds === int),
-    );
+    const type = parseInt(roomType, 10);
+
+    const filteredRoomList = rooms
+      .filter(
+        (room) =>
+          room.id.toString().includes(searchTerm) &&
+          (roomType === "All" || room.beds === type),
+      )
+      .map((room) => room.id);
     setResults(filteredRoomList);
   };
 
@@ -91,15 +100,15 @@ function DormSearchBar({ name }) {
           onChange={(e) => setRoomType(e.target.value)}
         >
           <option value="All">All </option>
-          <option value="1">Single </option>
-          <option value="2">Double </option>
+          <option value="1">Single</option>
+          <option value="2">Double</option>
           <option value="3">Triple</option>
         </select>
 
         <button
           type="button"
           className={styles.searchButton}
-          onClick={() => handleOnClick(rooms)}
+          onClick={() => handleOnClick()}
         >
           Search
         </button>

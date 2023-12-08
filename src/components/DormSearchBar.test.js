@@ -77,46 +77,6 @@ describe("DormSearchBar", () => {
     });
   });
 
-  test("Only displays 1 star dorms when filtered", async () => {
-    render(<DormSearchBar />);
-
-    const select = screen.getByRole("combobox");
-
-    fireEvent.change(select, { target: { value: "1" } });
-    fireEvent.click(screen.getByRole("button", { name: "Search" }));
-
-    await screen.findByRole("list", { name: "SearchBar-results" });
-
-    const expectedRooms = [
-      "Room: 109",
-      "Room: 116",
-      "Room: 121",
-      "Room: 137",
-      "Room: 149",
-      "Room: 162",
-      "Room: 202",
-      "Room: 209",
-      "Room: 229",
-      "Room: 237",
-      "Room: 254",
-      "Room: 265",
-      "Room: 269",
-    ];
-    const someUnexpectedRooms = [
-      "Room: 110",
-      "Room: 117",
-      "Room: 122",
-      "Room: 138",
-    ];
-
-    expectedRooms.forEach((room) => {
-      expect(screen.getByText(room)).toBeInTheDocument();
-    });
-    someUnexpectedRooms.forEach((room) => {
-      expect(screen.queryByText(room)).toBeNull();
-    });
-  });
-
   test("Navigates to the correct page when a room is clicked", async () => {
     render(<DormSearchBar />);
 

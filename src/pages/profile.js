@@ -87,34 +87,40 @@ export default function Profile() {
     }
   }
 
-  function addRoom() {
-    (async () => {
-      const newRoomInt = parseInt(newRoom, 10);
-      const data = {
-        id: newRoomInt,
-        dorm,
-      };
+  async function addRoom() {
+    const newRoomInt = parseInt(newRoom, 10);
+    const data = {
+      id: newRoomInt,
+      dorm,
+    };
+
+    try {
       const response = await fetch("/api/rooms", {
         method: "POST",
-        headers: new Headers({
+        headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-        }),
+        },
         body: JSON.stringify(data),
       });
+
       if (response.ok) {
         const responseData = await response.json();
-        // eslint-disable-next-line no-console
         console.log(responseData);
+        // After successfully adding the room, navigate to the review page
+        router.push(`/dorms/${dorm}/${newRoom}/review`);
+      } else {
+        console.error("Failed to add room:", response.status);
       }
-    })();
+    } catch (error) {
+      console.error("Error adding room:", error);
+    }
   }
 
   const handleAddRoom = () => {
     addRoom();
-    router.push(`/dorms/${dorm}/${newRoom}/review`);
-    // eslint-disable-next-line no-console
-    console.log(`New room: ${dorm} ${newRoom}`);
+    // Remove the router.push from here since it's now inside addRoom
+    // console.log(`New room: ${dorm} ${newRoom}`);
   };
 
   useEffect(() => {
