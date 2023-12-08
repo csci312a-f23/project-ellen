@@ -18,7 +18,7 @@ function DormSearchBar({ name }) {
   function getRooms() {
     (async () => {
       try {
-        const response = await fetch("/api/testrooms", {
+        const response = await fetch("/api/rooms", {
           method: "GET",
           headers: {
             Accept: "application/json",

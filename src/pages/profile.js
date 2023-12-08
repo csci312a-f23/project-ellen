@@ -95,7 +95,7 @@ export default function Profile() {
         id: newRoomInt,
         dorm,
       };
-      const response = await fetch("/api/testrooms", {
+      const response = await fetch("/api/rooms", {
         method: "POST",
         headers: new Headers({
           Accept: "application/json",

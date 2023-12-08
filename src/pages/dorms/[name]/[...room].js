@@ -42,7 +42,7 @@ export default function Rooms() {
       setDormNumber(123);
     } else {
       try {
-        const response = await fetch(`/api/testrooms/${currentRoomNumber}`, {
+        const response = await fetch(`/api/rooms/${currentRoomNumber}`, {
           method: "GET",
           headers: new Headers({
             Accept: "application/json",
@@ -70,6 +70,7 @@ export default function Rooms() {
   useEffect(() => {
     getRoom(normRoom);
     getType();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [normRoom]);
 
   const handleClick = (command) => {
