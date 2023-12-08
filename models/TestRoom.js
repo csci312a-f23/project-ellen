@@ -18,9 +18,10 @@ export default class Room extends BaseModel {
       properties: {
         id: { type: "integer" },
         dorm: { type: "string" },
-        type: { type: "string" },
+        dormReview: { type: "string" },
+        dormRating: { type: "integer" },
         beds: { type: "integer" },
-        dimensions: { type: "integer" },
+        dormDimensions: { type: "string" },
       },
     };
   }
@@ -31,7 +32,7 @@ export default class Room extends BaseModel {
         relation: Model.HasManyRelation,
         modelClass: Reviews,
         join: {
-          from: "Room.id",
+          from: "TestRoom.id",
           to: "Reviews.roomId",
         },
       },

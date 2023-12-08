@@ -5,34 +5,44 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Link from "next/link"; // Import the Link component
+import DormSearchBar from "@/components/DormSearchBar";
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
-
-import TestDormSearch from "../../../components/TestDormSearch";
 
 export default function Rooms() {
   const [dormName, setDormName] = useState(null);
   const [dormDimensions, setDormDimensions] = useState(null);
   const [dormReview, setDormReview] = useState([]);
-  //  const [beds, setBeds] = useState(null);
   const [dormRating, setDormRating] = useState(null);
+  const [beds, setBeds] = useState(null);
   const [dormNumber, setDormNumber] = useState(null);
+  const [type, setType] = useState(null); // only because I'm don't feel like adding to add type (single, double, etc,) to the database
 
   const router = useRouter();
   const { data: session, status } = useSession();
 
   const { name, room } = router.query;
 
+  const normRoom = room;
+
+  function getType() {
+    if (beds === 1) {
+      setType("Single");
+    } else if (beds === 2) {
+      setType("Double");
+    } else if (beds === 3) {
+      setType("Triple");
+    }
+  }
+
   async function getRoom(currentRoomNumber) {
     if (!currentRoomNumber) {
       setDormName(name);
       setDormDimensions(173);
-      setDormReview([]);
-      setDormRating(4);
       setDormNumber(123);
     } else {
       try {
-        const response = await fetch(`/api/rooms/${currentRoomNumber}`, {
+        const response = await fetch(`/api/testrooms/${currentRoomNumber}`, {
           method: "GET",
           headers: new Headers({
             Accept: "application/json",
@@ -43,12 +53,12 @@ export default function Rooms() {
           const data = await response.json();
           setDormName(data.dorm);
           setDormDimensions(data.dormDimensions);
-          setDormReview(data.dormReview);
-          // setBeds(data.beds);
+          setBeds(data.beds);
+          setDormReview(data.reviews);
           setDormRating(data.dormRating);
           setDormNumber(currentRoomNumber);
+
           // eslint-disable-next-line no-console
-          console.log(data);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -58,17 +68,18 @@ export default function Rooms() {
   }
 
   useEffect(() => {
-    getRoom(room);
-  }, [room]);
+    getRoom(normRoom);
+    getType();
+  }, [normRoom]);
 
   const handleClick = (command) => {
     if (command === "back") {
-      router.push(`/dorms/${encodeURIComponent(dormName)}`);
+      router.push(`/dorms/${encodeURIComponent(name)}`);
     }
   };
 
   const handleAddReview = () => {
-    router.push(`/dorms/${encodeURIComponent(dormName)}/${room}/review`);
+    router.push(`/dorms/${encodeURIComponent(name)}/${room}/review`);
   };
 
   useEffect(() => {
@@ -117,7 +128,7 @@ export default function Rooms() {
               <h2>Find A Room</h2>
             </article>
             <article className={styles.stuff}>
-              <TestDormSearch name={name} />
+              <DormSearchBar name={name} />
             </article>
           </div>
           <div className={styles.rightHalf}>
@@ -132,6 +143,7 @@ export default function Rooms() {
                 </button>
                 <div className={styles.h3}>{dormName}</div>
                 <div className={styles.h2}> Room : {dormNumber} </div>
+                <div className={styles.h2}> Type : {type} </div>
                 <div className={styles.h2}>
                   {" "}
                   Dimensions : {dormDimensions} sq ft{" "}
@@ -142,7 +154,7 @@ export default function Rooms() {
                     {Array.from({ length: dormRating }, (_, i) => (
                       <i key={i} className="fas fa-star is-active" />
                     ))}
-                    {/* Add unfilled stars */}
+
                     {Array.from({ length: 5 - dormRating }, (_, i) => (
                       <i key={i} className="far fa-star unfilled-star" />
                     ))}

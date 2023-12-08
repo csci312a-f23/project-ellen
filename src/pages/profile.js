@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import AddRoomButton from "@/components/AddRoomButton";
+
 import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
 import UserIcon from "../../public/images/UserIcon.jpeg";
@@ -15,6 +15,14 @@ export default function Profile() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
+  const [dorm, setDorm] = useState("");
+  const [newRoom, setNewRoom] = useState(null);
+
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
 
   const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
@@ -43,8 +51,6 @@ export default function Profile() {
   async function getProfile(userProfile) {
     setName(session.user.name);
     setEmail(session.user.email);
-
-    console.log(session.user.id);
 
     if (!userProfile) {
       setName("John Smith");
@@ -75,24 +81,41 @@ export default function Profile() {
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
-          setRoomsLived(["Battell 123", "Gifford 224"]);
-          setPreferences({
-            single: false,
-            double: false,
-            suite: false,
-            quiet: false,
-            freshmen: false,
-            sophomore: false,
-            junior: false,
-            senior: false,
-          });
-          setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
         console.log("Something went wrong");
       }
     }
   }
+
+  function addRoom() {
+    (async () => {
+      const data = {
+        id: newRoom,
+        dorm,
+      };
+      const response = await fetch("/api/testrooms", {
+        method: "POST",
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        // eslint-disable-next-line no-console
+        console.log(responseData);
+      }
+    })();
+  }
+
+  const handleAddRoom = () => {
+    addRoom();
+    router.push(`/dorms/${dorm}/${newRoom}/review`);
+    // eslint-disable-next-line no-console
+    console.log(`New room: ${dorm} ${newRoom}`);
+  };
 
   useEffect(() => {
     if (status === "authenticated" && session) {
@@ -123,7 +146,7 @@ export default function Profile() {
 
   const handleRateRoom = (room) => {
     const splitRoom = room.split(" ");
-    const dorm = splitRoom[0];
+    setDorm(splitRoom[0]);
     const roomNumber = splitRoom[1];
     router.push(`/dorms/${dorm}/${roomNumber}/review`);
     console.log(`Rated room: ${room}`);
@@ -207,7 +230,41 @@ export default function Profile() {
                   </li>
                 ))}
               </ul>
-              <AddRoomButton />
+              <div>
+                <button
+                  type="button"
+                  className="dropdown-btn"
+                  onClick={toggleDropdown}
+                >
+                  Add Room
+                </button>
+
+                {isDropdownVisible && (
+                  <>
+                    <div className="dropdown-content">
+                      <label>
+                        Dorm:
+                        <input
+                          type="text"
+                          value={dorm}
+                          onChange={(e) => setDorm(e.target.value)}
+                        />
+                      </label>
+                      <label>
+                        Room:{" "}
+                        <input
+                          type="number"
+                          value={newRoom}
+                          onChange={(e) => setNewRoom(e.target.value)}
+                        />
+                      </label>
+                    </div>
+                    <button type="button" onClick={handleAddRoom}>
+                      Submit
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
 

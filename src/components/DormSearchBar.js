@@ -1,23 +1,40 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import battellinfo from "../../data/RoomImport.json";
+import PropTypes from "prop-types";
+
 import styles from "../styles/DormSearchBar.module.css";
 
-function DormSearchBar() {
+function DormSearchBar({ name }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [rooms, setRooms] = useState([]);
-  const router = useRouter();
-  const dorm = battellinfo;
+  const [dorms, setDorms] = useState([]);
+  const [roomType, setRoomType] = useState("All");
   const [results, setResults] = useState([]);
+  const router = useRouter();
 
-  const [selectedRating, setSelectedRating] = useState("All"); // added
+  const norm = Array.isArray(name) ? name : [name];
 
   function getRooms() {
-    const roomList = dorm.map((room) => room.id);
-    roomList.sort();
-    setRooms(roomList);
-    setResults(roomList); // Initialize results with all rooms
+    (async () => {
+      try {
+        const response = await fetch("/api/testrooms", {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+
+          setDorms(data);
+        }
+      } catch (error) {
+        console.error("Something went wrong:", error);
+      }
+    })();
   }
 
   useEffect(() => {
@@ -25,21 +42,35 @@ function DormSearchBar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function getDormRooms() {
+    const roomList = [];
+    for (let i = 0; i < dorms.length; i += 1) {
+      if (dorms[i].dorm === norm[0]) {
+        const room = dorms[i];
+        roomList.push(room.id);
+
+        roomList.sort();
+        setRooms(roomList);
+      }
+      setResults(roomList);
+    }
+  }
+
+  useEffect(() => {
+    getDormRooms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dorms]);
+
   const handleRoomView = (roomNumber) => {
-    router.push(`/dorms/Battell/${roomNumber}`);
+    router.push(`/dorms/${name}/${roomNumber}`);
   };
 
-  // const handleOnClick = () => {
-  //   const filteredRoomList = rooms.filter((room) => room.includes(searchTerm));
-  //   setResults(filteredRoomList);
-  // };
-
   const handleOnClick = () => {
+    const int = parseInt(roomType, 10);
     const filteredRoomList = rooms.filter(
       (room) =>
         room.includes(searchTerm) &&
-        (selectedRating === "All" ||
-          dorm.find((r) => r.id === room).dormRating === selectedRating),
+        (roomType === "All" || rooms.find((r) => r.id === room).beds === int),
     );
     setResults(filteredRoomList);
   };
@@ -56,16 +87,15 @@ function DormSearchBar() {
         />
         <select
           className={styles.select}
-          value={selectedRating}
-          onChange={(e) => setSelectedRating(e.target.value)}
+          value={roomType}
+          onChange={(e) => setRoomType(e.target.value)}
         >
-          <option value="All">All Ratings</option>
-          <option value="1">1 Star</option>
-          <option value="2">2 Stars</option>
-          <option value="3">3 Stars</option>
-          <option value="4">4 Stars</option>
-          <option value="5">5 Stars</option>
+          <option value="All">All </option>
+          <option value="1">Single </option>
+          <option value="2">Double </option>
+          <option value="3">Triple</option>
         </select>
+
         <button
           type="button"
           className={styles.searchButton}
@@ -74,11 +104,7 @@ function DormSearchBar() {
           Search
         </button>
       </div>
-      <div
-        className="SearchBar-results"
-        role="list"
-        aria-label="SearchBar-results"
-      >
+      <div className="SearchBar-results">
         <ul className={styles["SearchBar-results"]}>
           {results &&
             results.map((room) => (
@@ -93,3 +119,7 @@ function DormSearchBar() {
 }
 
 export default DormSearchBar;
+
+DormSearchBar.propTypes = {
+  name: PropTypes.string.isRequired,
+};

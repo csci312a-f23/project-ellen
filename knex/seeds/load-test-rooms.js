@@ -4,7 +4,7 @@
  */
 const fs = require("fs");
 
-const contents = fs.readFileSync("./data/test/RoomInfo.json");
+const contents = fs.readFileSync("./data/data.json");
 const data = JSON.parse(contents);
 
 // eslint-disable-next-line func-names

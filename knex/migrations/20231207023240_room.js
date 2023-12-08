@@ -6,11 +6,13 @@
 exports.up = function (knex) {
   return knex.schema.createTable("TestRooms", (table) => {
     table.increments("id").primary();
+
     table.string("dorm");
     table.string("type");
     table.integer("beds");
-    table.integer("dimensions");
-    table.text("reviews");
+    table.integer("dormDimensions");
+    table.text("dormReview");
+    table.integer("dormRating");
   });
 };
 

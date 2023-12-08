@@ -5,12 +5,11 @@ import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 // import { useState } from "react";
 import Head from "next/head";
-
 import Link from "next/link"; // Import the Link component
+import DormSearchBar from "@/components/DormSearchBar";
 import { authenticated } from "../../lib/middleware";
 import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
-import TestDormSearch from "../../components/TestDormSearch";
 
 export default function DormView() {
   const router = useRouter();
@@ -67,7 +66,7 @@ export default function DormView() {
               <h2>Find A Room</h2>
             </article>
             <article className={styles.stuff}>
-              <TestDormSearch name={name} />
+              <DormSearchBar name={name} />
             </article>
           </div>
           <div className={styles.rightHalf}>
