@@ -114,7 +114,10 @@ function DormSearchBar({ name }) {
         </button>
       </div>
       <div className="SearchBar-results">
-        <ul className={styles["SearchBar-results"]}>
+        <ul
+          className={styles["SearchBar-results"]}
+          aria-label="SearchBar-results"
+        >
           {results &&
             results.map((room) => (
               <li key={room} onClick={() => handleRoomView(room)}>
