@@ -10,10 +10,10 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DormSearchBar from "@/components/DormSearchBar";
 import { authenticated } from "../../lib/middleware";
 import DormMaps from "../../components/dormMaps";
 import styles from "../../styles/main.module.css";
-import DormSearchBar from "../../components/DormSearchBar";
 
 export default function DormView() {
   const router = useRouter();
@@ -71,7 +71,7 @@ export default function DormView() {
         <section className={styles.container}>
           <div className={styles.leftHalf}>
             <article className={styles.stuff}>
-              <DormSearchBar />
+              <DormSearchBar name={name} />
             </article>
           </div>
           <div className={styles.rightHalf}>

@@ -1,4 +1,3 @@
-// woooow
 import { createRouter } from "next-connect";
 import User from "../../../models/User";
 

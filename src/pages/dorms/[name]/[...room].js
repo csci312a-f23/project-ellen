@@ -10,26 +10,39 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MapIcon from "@mui/icons-material/Map";
+import DormSearchBar from "@/components/DormSearchBar";
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
-
-import DormSearchBar from "../../../components/DormSearchBar";
 
 export default function Rooms() {
   const [dormName, setDormName] = useState(null);
   const [dormDimensions, setDormDimensions] = useState(null);
   const [dormReview, setDormReview] = useState([]);
   const [dormRating, setDormRating] = useState([]);
+  const [beds, setBeds] = useState(null);
   const [dormNumber, setDormNumber] = useState(null);
+  const [type, setType] = useState(null); // only because I'm don't feel like adding to add type (single, double, etc,) to the database
 
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  const { room } = router.query;
+  const { name, room } = router.query;
+
+  const normRoom = room;
+
+  function getType() {
+    if (beds === 1) {
+      setType("Single");
+    } else if (beds === 2) {
+      setType("Double");
+    } else if (beds === 3) {
+      setType("Triple");
+    }
+  }
 
   async function getRoom(currentRoomNumber) {
     if (!currentRoomNumber) {
-      setDormName("Battell");
+      setDormName(name);
       setDormDimensions(173);
       setDormReview([]);
       setDormRating([]);
@@ -45,9 +58,9 @@ export default function Rooms() {
         });
         if (response.ok) {
           const data = await response.json();
-
-          setDormName("Battell");
+          setDormName(data.dorm);
           setDormDimensions(data.dormDimensions);
+          setBeds(data.beds);
           setDormReview(data.reviews);
           setDormNumber(currentRoomNumber);
 
@@ -63,17 +76,19 @@ export default function Rooms() {
   }
 
   useEffect(() => {
-    getRoom(room);
-  }, [room]);
+    getRoom(normRoom);
+    getType();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [normRoom]);
 
   const handleClick = (command) => {
     if (command === "back") {
-      router.push(`/dorms/${encodeURIComponent(dormName)}`);
+      router.push(`/dorms/${encodeURIComponent(name)}`);
     }
   };
 
   const handleAddReview = () => {
-    router.push(`/dorms/${encodeURIComponent(dormName)}/${room}/review`);
+    router.push(`/dorms/${encodeURIComponent(name)}/${room}/review`);
   };
 
   useEffect(() => {
@@ -141,7 +156,7 @@ export default function Rooms() {
         <section className={styles.container}>
           <div className={styles.leftHalf}>
             <article className={styles.stuff}>
-              <DormSearchBar />
+              <DormSearchBar name={name} />
             </article>
           </div>
           <div className={styles.rightHalf}>
@@ -156,6 +171,7 @@ export default function Rooms() {
                 </IconButton>
                 <div className={styles.h3}>{dormName}</div>
                 <div className={styles.h2}> Room : {dormNumber} </div>
+                <div className={styles.h2}> Type : {type} </div>
                 <div className={styles.h2}>
                   {" "}
                   Dimensions : {dormDimensions} sq ft{" "}

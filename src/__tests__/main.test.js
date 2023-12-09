@@ -83,9 +83,6 @@ describe("Review Form", () => {
     userEvent.type(ratingInput, "4");
     userEvent.type(commentTextarea, "Great place to stay!");
 
-    // const mockSubmit = jest.fn();
-    // submitButton.onclick = mockSubmit;
-
     userEvent.click(submitButton);
 
     expect(mockRouter.pathname).toBe("/");

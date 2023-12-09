@@ -1,6 +1,5 @@
 import { Model } from "objection";
 import BaseModel from "./BaseModels";
-
 import Reviews from "./Reviews";
 
 export default class Room extends BaseModel {
@@ -17,9 +16,11 @@ export default class Room extends BaseModel {
       required: ["id"],
       properties: {
         id: { type: "integer" },
-        type: { type: "string" },
+        dorm: { type: "string" },
+        dormReview: { type: "string" },
+        dormRating: { type: "integer" },
         beds: { type: "integer" },
-        dimensions: { type: "integer" },
+        dormDimensions: { type: "string" },
       },
     };
   }
