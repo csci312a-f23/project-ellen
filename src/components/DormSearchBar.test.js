@@ -26,7 +26,7 @@ mockRouter.useParser(
 describe("DormSearchBar", () => {
   test("Renders the search bar correctly", () => {
     render(<DormSearchBar name="Battell" />);
-    const searchBar = screen.getByPlaceholderText("Search...");
+    const searchBar = screen.getByPlaceholderText("Room...");
     expect(searchBar).toBeInTheDocument();
   });
 });
