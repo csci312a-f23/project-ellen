@@ -19,7 +19,7 @@ export default function Rooms() {
   const [dormName, setDormName] = useState(null);
   const [dormDimensions, setDormDimensions] = useState(null);
   const [dormReview, setDormReview] = useState([]);
-  const [dormRating, setDormRating] = useState(null);
+  const [dormRating, setDormRating] = useState([]);
   const [dormNumber, setDormNumber] = useState(null);
 
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function Rooms() {
       setDormName("Battell");
       setDormDimensions(173);
       setDormReview([]);
-      setDormRating(4);
+      setDormRating([]);
       setDormNumber(123);
     } else {
       try {
@@ -45,11 +45,15 @@ export default function Rooms() {
         });
         if (response.ok) {
           const data = await response.json();
+
           setDormName("Battell");
           setDormDimensions(data.dormDimensions);
           setDormReview(data.reviews);
-          setDormRating(data.dormRating);
           setDormNumber(currentRoomNumber);
+
+          const ratings = data.reviews.map((review) => review.dormRating);
+
+          setDormRating(ratings);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -78,6 +82,21 @@ export default function Rooms() {
     }
   }, [session, status, router]);
 
+  const calculateAvg = () => {
+    //  const ratings = dormReview.map(review => review.dormRating);
+    console.log("this is dormRating", dormRating);
+    const sum = dormRating.reduce((acc, rating) => acc + Number(rating), 0);
+    const average = dormRating.length > 0 ? sum / dormRating.length : 0;
+    const averageFixed = average.toFixed(2);
+
+    return averageFixed;
+  };
+
+  const ratingAvg = calculateAvg(dormReview);
+
+  const wholeStars = Math.floor(ratingAvg);
+  const fractionStars = ratingAvg - wholeStars;
+
   return (
     <>
       <Head>
@@ -97,7 +116,7 @@ export default function Rooms() {
               aria-label="Back to Home"
               className={styles.backButton2}
             >
-              <HomeIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+              <HomeIcon style={{ fontSize: "2rem", color: "#0074b3" }} />
             </IconButton>
           </Link>
           <div className={styles.title}>
@@ -142,18 +161,26 @@ export default function Rooms() {
                   {" "}
                   Dimensions : {dormDimensions} sq ft{" "}
                 </div>
-                <div className={styles.h2}> Rating : {dormRating} </div>
+
+                <div className={styles.h2}> Average Rating : {ratingAvg} </div>
                 <div className="rating-box">
                   <div className={styles.starscontainer}>
-                    {Array.from({ length: dormRating }, (_, i) => (
+                    {Array.from({ length: wholeStars }, (_, i) => (
                       <i key={i} className="fas fa-star is-active" />
                     ))}
+                    {fractionStars > 0 && (
+                      <i className="fas fa-star-half-alt is-active" />
+                    )}
                     {/* Add unfilled stars */}
-                    {Array.from({ length: 5 - dormRating }, (_, i) => (
-                      <i key={i} className="far fa-star unfilled-star" />
-                    ))}
+                    {Array.from(
+                      { length: 5 - wholeStars - (fractionStars > 0 ? 1 : 0) },
+                      (_, i) => (
+                        <i key={i} className="far fa-star unfilled-star" />
+                      ),
+                    )}
                   </div>
                 </div>
+
                 <Button
                   variant="contained"
                   onClick={() => handleAddReview(room)}

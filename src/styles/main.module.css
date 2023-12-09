@@ -126,7 +126,7 @@
 }
 /*create the star*/
 .my-star::before {
-  content: "\002605";
+  content: "\2605";
 }
 /*remove the default style (italic) of the star*/
 .my-star {
@@ -139,6 +139,7 @@
 /*set color on hover*/
 .my-star:not(.is-active):hover {
   color: #fb8900;
+  transition: color 0.2s ease;
 }
 
 .rating-box {
