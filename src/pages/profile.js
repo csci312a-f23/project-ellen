@@ -211,7 +211,6 @@ export default function Profile() {
               </ul>
             </div>
           </div>
-
           <div className={styles.rightContainer}>
             <div className={styles.section2}>
               <div className={styles.h2}>Room Preferences:</div>

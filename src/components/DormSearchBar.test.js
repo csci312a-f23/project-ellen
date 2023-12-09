@@ -59,7 +59,7 @@ describe("DormSearchBar", () => {
   test("Should filter rooms based on search term", async () => {
     render(<DormSearchBar />);
 
-    const searchInput = screen.getByPlaceholderText("Search...");
+    const searchInput = screen.getByPlaceholderText("Room...");
 
     fireEvent.change(searchInput, { target: { value: "101" } });
     fireEvent.click(screen.getByRole("button", { name: "Search" }));

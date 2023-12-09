@@ -44,7 +44,7 @@ export default function DormView() {
               aria-label="Back to Home"
               className={styles.backButton2}
             >
-              <HomeIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+              <HomeIcon style={{ fontSize: "2rem", color: "#0074b3" }} />
             </IconButton>
           </Link>
           <div className={styles.title}>
@@ -60,8 +60,9 @@ export default function DormView() {
           <Link href="/profile">
             <Button
               variant="contained"
-              startIcon={<AccountCircleIcon style={{ fontSize: "2rem" }} />}
+              startIcon={<AccountCircleIcon style={{ fontSize: "1.5rem" }} />}
               className={styles.profileButton}
+              style={{ textTransform: "none" }}
             >
               My Profile
             </Button>

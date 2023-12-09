@@ -83,8 +83,6 @@ export default function Rooms() {
   }, [session, status, router]);
 
   const calculateAvg = () => {
-    //  const ratings = dormReview.map(review => review.dormRating);
-    console.log("this is dormRating", dormRating);
     const sum = dormRating.reduce((acc, rating) => acc + Number(rating), 0);
     const average = dormRating.length > 0 ? sum / dormRating.length : 0;
     const averageFixed = average.toFixed(2);
@@ -132,8 +130,9 @@ export default function Rooms() {
           <Link href="/profile">
             <Button
               variant="contained"
-              startIcon={<AccountCircleIcon style={{ fontSize: "2rem" }} />}
+              startIcon={<AccountCircleIcon style={{ fontSize: "1.5rem" }} />}
               className={styles.profileButton}
+              style={{ textTransform: "none" }}
             >
               My Profile
             </Button>
@@ -161,7 +160,6 @@ export default function Rooms() {
                   {" "}
                   Dimensions : {dormDimensions} sq ft{" "}
                 </div>
-
                 <div className={styles.h2}> Average Rating : {ratingAvg} </div>
                 <div className="rating-box">
                   <div className={styles.starscontainer}>
@@ -180,7 +178,6 @@ export default function Rooms() {
                     )}
                   </div>
                 </div>
-
                 <Button
                   variant="contained"
                   onClick={() => handleAddReview(room)}

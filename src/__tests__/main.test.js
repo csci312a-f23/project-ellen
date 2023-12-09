@@ -154,6 +154,7 @@ describe("Profile page", () => {
     });
 
     render(<Profile />);
+    // eslint-disable-next-line
     console.log(mockRouter.pathname);
 
     await waitFor(() => {
