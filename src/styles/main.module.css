@@ -43,7 +43,7 @@
   padding-bottom: 1.25rem;
   padding-top: 1.75rem;
   padding-left: 1.75rem;
-  font-family: "Arial Narrow", serif;
+  font-family: Arial, Times, serif;
   text-align: left;
   color: white;
 }
@@ -266,6 +266,7 @@
 
 .reviewText {
   margin-top: 10px;
+  color: white;
 }
 
 .otherButtonsContainer {

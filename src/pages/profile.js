@@ -3,7 +3,7 @@
 import Head from "next/head";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import IconButton from "@mui/material/IconButton";
@@ -11,7 +11,6 @@ import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
-import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Profile() {
   const router = useRouter();
@@ -185,8 +184,8 @@ export default function Profile() {
         <div className={styles.container}>
           <div className={styles.leftContainer}>
             <div className={styles.profile}>
-              <Image
-                src={UserIcon}
+              <img
+                src="images/UserIcon.jpeg"
                 alt="User Profile"
                 className={styles.userIcon}
               />
