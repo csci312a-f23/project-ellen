@@ -16,8 +16,7 @@ function Review() {
   const { room } = router.query;
 
   const handleRatingChange = (event) => {
-    const newRating = parseInt(event.target.value, 10);
-    setRating(newRating);
+    setRating(Number(event.target.value));
   };
 
   const handleCommentChange = (event) => {
@@ -26,7 +25,6 @@ function Review() {
 
   function postReview() {
     (async () => {
-      // console.log(room.split(" ")[0]);
       try {
         const data = {
           userId: session.user.id.toString(),
@@ -34,7 +32,7 @@ function Review() {
           dormReview: comment,
           dormRating: rating,
         };
-        console.log("This the data sent:", data);
+
         const response = await fetch(`/api/review/${room}`, {
           method: "POST",
           body: JSON.stringify(data),
@@ -47,8 +45,7 @@ function Review() {
         if (response.ok) {
           const responseData = await response.json();
           console.log("This is the response data:", responseData);
-        } else {
-          console.log("Server error:", response.status);
+          router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
         }
       } catch (error) {
         console.error("Something went wrong:", error);
@@ -59,7 +56,6 @@ function Review() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     postReview();
-    router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
   };
   const handleCancel = (event) => {
     event.preventDefault();
