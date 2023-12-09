@@ -119,7 +119,7 @@ export default function Profile() {
 
   const handleAddRoom = () => {
     addRoom();
-    // Remove the router.push from here since it's now inside addRoom
+
     // console.log(`New room: ${dorm} ${newRoom}`);
   };
 
@@ -152,10 +152,10 @@ export default function Profile() {
 
   const handleRateRoom = (room) => {
     const splitRoom = room.split(" ");
-    setDorm(splitRoom[0]);
+    const rateDorm = splitRoom[0];
     const roomNumber = splitRoom[1];
-    router.push(`/dorms/${dorm}/${roomNumber}/review`);
-    console.log(`Rated room: ${room}`);
+    router.push(`/dorms/${rateDorm}/${roomNumber}/review`);
+    // console.log(`Rated room: ${room}`);
   };
 
   const handleSignOut = async () => {

@@ -56,6 +56,7 @@ export default function Rooms() {
           setBeds(data.beds);
           setDormReview(data.reviews);
           setDormRating(data.dormRating);
+          console.log(data.dormRating);
           setDormNumber(currentRoomNumber);
 
           // eslint-disable-next-line no-console

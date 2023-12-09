@@ -16,7 +16,7 @@ function Review() {
   const { room } = router.query;
 
   const handleRatingChange = (event) => {
-    setRating(event.target.value);
+    setRating(Number(event.target.value));
   };
 
   const handleCommentChange = (event) => {
@@ -45,6 +45,7 @@ function Review() {
         if (response.ok) {
           const responseData = await response.json();
           console.log("This is the response data:", responseData);
+          router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
         }
       } catch (error) {
         console.error("Something went wrong:", error);
@@ -55,7 +56,6 @@ function Review() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     postReview();
-    router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
   };
   const handleCancel = (event) => {
     event.preventDefault();
