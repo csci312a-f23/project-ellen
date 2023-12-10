@@ -15,18 +15,26 @@ router
   })
 
   .put(async (req, res) => {
-    const { id, ...updatedRoom } = req.body;
-    // req.query.id is a string, and so needs to be converted to an integer before comparison
-    if (id !== parseInt(req.query.id, 10)) {
-      // Verify id in the url, e.g, /api/rooms/10, matches the id the request body
-      res.status(400).end(`URL and object does not match`);
-      return;
+    const { id } = req.query;
+    if (!id) {
+      res.status(401).json({ error: "Unauthorized" });
     }
+    const { roomData } = req.body;
 
-    const room = await User.query()
-      .updateAndFetchById(req.query.id, updatedRoom)
-      .throwIfNotFound();
-    res.status(200).json(room);
+    const existingData = await User.query().findById(id);
+    res.status(200).json(existingData);
+
+    if (!existingData.room1) {
+      await User.query().updateAndFetchById(id, { room1: roomData });
+    } else if (!existingData.room2) {
+      // Check if room2 is empty
+      await User.query().updateAndFetchById(id, { room2: roomData });
+    } else if (!existingData.room3) {
+      // Check if room3 is empty
+      await User.query().updateAndFetchById(id, { room3: roomData });
+    } else {
+      res.status(400).end(`All rooms are occupied`);
+    }
   });
 
 export default router.handler();
