@@ -174,6 +174,20 @@ export default function Profile() {
     }
   };
 
+  const [showRateRoomPopup, setShowRateRoomPopup] = useState(false);
+
+  useEffect(() => {
+    // Check if the user has roomsLived and show the popup if needed
+    if (roomsLived.length > 0) {
+      setShowRateRoomPopup(true);
+    }
+  }, [roomsLived]);
+
+  const handlePopupClose = () => {
+    // Set showRateRoomPopup to false when the user closes the popup
+    setShowRateRoomPopup(false);
+  };
+
   return (
     <>
       <Head>
@@ -308,6 +322,21 @@ export default function Profile() {
             </div>
           </div>
         </div>
+
+        {showRateRoomPopup && (
+          <div className={styles.popup}>
+            <div className={styles.popupContent}>
+              <p>Don&apos;t forget to rate a room!</p>
+              <button
+                type="button"
+                className={styles.popupButton}
+                onClick={handlePopupClose}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </main>
     </>
   );
