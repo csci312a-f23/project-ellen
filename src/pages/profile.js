@@ -17,7 +17,6 @@ export default function Profile() {
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
   const [dorm, setDorm] = useState("");
-  const [newRoom, setNewRoom] = useState(null);
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
