@@ -114,7 +114,10 @@ function DormSearchBar({ name }) {
         </button>
       </div>
       <div className="SearchBar-results">
-        <ul className={styles["SearchBar-results"]}>
+        <ul
+          className={styles["SearchBar-results"]}
+          aria-label="SearchBar-results"
+        >
           {results &&
             results.map((room) => (
               <li key={room} onClick={() => handleRoomView(room)}>
@@ -130,5 +133,8 @@ function DormSearchBar({ name }) {
 export default DormSearchBar;
 
 DormSearchBar.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
 };

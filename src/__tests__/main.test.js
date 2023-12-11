@@ -100,9 +100,7 @@ describe("Review Form", () => {
 
 describe("Rooms Component", () => {
   beforeEach(() => {
-    act(() => {
-      render(<Rooms />);
-    });
+    render(<Rooms />);
   });
 
   test("displays the room image", () => {
@@ -151,8 +149,6 @@ describe("Profile page", () => {
     });
 
     render(<Profile />);
-    // eslint-disable-next-line
-    console.log(mockRouter.pathname);
 
     await waitFor(() => {
       expect(screen.getByText("John Doe")).toBeInTheDocument();

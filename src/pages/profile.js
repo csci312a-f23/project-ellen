@@ -121,8 +121,6 @@ export default function Profile() {
 
   const handleAddRoom = () => {
     addRoom();
-
-    // console.log(`New room: ${dorm} ${newRoom}`);
   };
 
   useEffect(() => {
