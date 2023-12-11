@@ -1,3 +1,4 @@
+import React from "react";
 import {
   act,
   render,
@@ -7,6 +8,7 @@ import {
 } from "@testing-library/react";
 import { useRouter } from "next/router";
 import DormSearchBar from "./DormSearchBar";
+import "@testing-library/jest-dom";
 
 // mock the useRouter function
 jest.mock("next/router", () => ({
@@ -143,7 +145,7 @@ describe("DormSearchBar test", () => {
       render(<DormSearchBar name="Battell" />);
     });
 
-    expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Room...")).toBeInTheDocument();
     expect(screen.getByLabelText("SearchBar-results")).toBeInTheDocument();
   });
 
@@ -176,7 +178,7 @@ describe("DormSearchBar test", () => {
     const roomNum = "Room: 101";
     const notRoomNum = "Room: 102";
 
-    const searchInput = screen.getByPlaceholderText("Search...");
+    const searchInput = screen.getByPlaceholderText("Room...");
 
     act(() => {
       fireEvent.change(searchInput, { target: { value: "101" } });
