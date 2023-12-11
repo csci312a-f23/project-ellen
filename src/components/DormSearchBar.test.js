@@ -178,8 +178,10 @@ describe("DormSearchBar test", () => {
 
     const searchInput = screen.getByPlaceholderText("Search...");
 
-    fireEvent.change(searchInput, { target: { value: "101" } });
-    fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    act(() => {
+      fireEvent.change(searchInput, { target: { value: "101" } });
+      fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    });
 
     await waitFor(() => {
       expect(screen.getByText(roomNum)).toBeInTheDocument();
@@ -198,10 +200,15 @@ describe("DormSearchBar test", () => {
     });
 
     await waitFor(() => {
-      fireEvent.click(screen.getByText("Room: 100"));
+      const clicker = screen.getByText("Room: 100").closest("li");
+      act(() => {
+        fireEvent.click(clicker);
+      });
     });
 
-    expect(mockPush).toHaveBeenCalledWith("/dorms/Battell/100");
+    await waitFor(() => {
+      expect(mockPush).toHaveBeenCalledWith("/dorms/Battell/100");
+    });
   });
 
   test("Filters based on filter thing", async () => {
@@ -218,11 +225,15 @@ describe("DormSearchBar test", () => {
 
     const select = screen.getByRole("combobox");
 
-    fireEvent.change(select, { target: { value: "3" } });
+    act(() => {
+      fireEvent.change(select, { target: { value: "3" } });
+    });
 
     expect(select).toHaveValue("3");
 
-    fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    act(() => {
+      fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    });
 
     await waitFor(() => {
       const expectedRooms = "Room: 100";

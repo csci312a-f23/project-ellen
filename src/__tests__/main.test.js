@@ -100,9 +100,7 @@ describe("Review Form", () => {
 
 describe("Rooms Component", () => {
   beforeEach(() => {
-    act(() => {
-      render(<Rooms />);
-    });
+    render(<Rooms />);
   });
 
   test("displays the room image", () => {
