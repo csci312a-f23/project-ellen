@@ -21,9 +21,6 @@ router
       id2: req.user.id,
       ...req.body,
     };
-    console.log(id);
-    console.log(id2);
-    console.log(roomData);
     if (!id) {
       res.status(401).json({ error: "Unauthorized" });
     }
