@@ -98,19 +98,40 @@
   padding-left: 0;
 }
 
-.saveButtonContainer {
-  text-align: center;
-  margin-top: 10px;
-}
-
 .otherButtonsContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+  gap: 8px;
   justify-content: space-between;
+  background-color: white;
 }
 
 .saveButton {
-  background-color: #0074b3;
-  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  background-color: grey;
+  height: 25px;
+  width: 80px;
+}
+
+.rateButton {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-left: 20px;
+  height: 25px;
+  width: 80px;
+  background-color: grey;
+}
+
+.backButton {
   border: none;
   padding: 6px 12px;
   border-radius: 5px;
@@ -120,16 +141,19 @@
   margin-left: 20px;
 }
 
-.saveButton2 {
+.signOutButton {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
   background-color: #0074b3;
   color: white;
   border: none;
   padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
   font-size: 14px;
-  margin-right: 20px;
+  height: 30px;
+  width: 100px;
 }
 
 .saveButton:hover {

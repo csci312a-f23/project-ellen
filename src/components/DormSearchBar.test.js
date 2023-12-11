@@ -7,8 +7,8 @@ import {
   fireEvent,
 } from "@testing-library/react";
 import { useRouter } from "next/router";
-import DormSearchBar from "./DormSearchBar";
 import "@testing-library/jest-dom";
+import DormSearchBar from "./DormSearchBar";
 
 // mock the useRouter function
 jest.mock("next/router", () => ({

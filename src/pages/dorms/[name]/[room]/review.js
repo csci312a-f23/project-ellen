@@ -3,6 +3,7 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Button from "@mui/material/Button";
 import { authenticated } from "../../../../lib/middleware";
 import styles from "../../../../styles/Review.module.css";
 
@@ -110,20 +111,20 @@ function Review() {
         </div>
 
         <br />
-        <button
-          type="submit"
+        <Button
+          variant="contained"
           className={`${styles.button}`}
           onClick={handleSubmit}
         >
           Submit Review
-        </button>
-        <button
-          type="button"
+        </Button>
+        <Button
+          variant="contained"
           className={`${styles.cancelButton} ${styles.button}`}
           onClick={handleCancel}
         >
           Cancel
-        </button>
+        </Button>
       </form>
     </div>
   );

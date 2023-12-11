@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 // import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
 import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
 
@@ -181,31 +183,30 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
-        <div className={styles.title}>
-          <img
-            className={styles.pantherImage}
-            height={100}
-            width={300}
-            src="/images/panther.png"
-            alt="panther"
-          />
-          <h3>Middlebury Housing</h3>
-        </div>
         <div className={styles.otherButtonsContainer}>
           <Link href="/">
-            <button type="button" className={styles.saveButton}>
-              Back to Home
-            </button>
+            <IconButton aria-label="Back to Home" className={styles.backButton}>
+              <HomeIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+            </IconButton>
           </Link>
-          <button
-            type="button"
-            className={styles.saveButton2}
+          <div className={styles.title}>
+            <img
+              className={styles.pantherImage}
+              height={100}
+              width={300}
+              src="/images/panther.png"
+              alt="panther"
+            />
+            <h3>Middlebury Housing</h3>
+          </div>
+          <Button
+            variant="contained"
+            className={styles.signOutButton}
             onClick={handleSignOut}
           >
             Sign out
-          </button>{" "}
+          </Button>{" "}
         </div>
-
         <div className={styles.container}>
           <div className={styles.leftContainer}>
             <div className={styles.profile}>
@@ -224,13 +225,13 @@ export default function Profile() {
                   // eslint-disable-next-line react/no-array-index-key
                   <li key={index} className={styles.roomListItem}>
                     {room}
-                    <button
-                      type="button"
-                      className={styles.saveButton}
+                    <Button
+                      variant="contained"
+                      className={styles.rateButton}
                       onClick={() => handleRateRoom(room)}
                     >
                       Rate
-                    </button>
+                    </Button>
                   </li>
                 ))}
               </ul>
@@ -271,7 +272,6 @@ export default function Profile() {
               </div>
             </div>
           </div>
-
           <div className={styles.rightContainer}>
             <div className={styles.section2}>
               <div className={styles.h2}>Room Preferences:</div>
@@ -290,15 +290,13 @@ export default function Profile() {
                 ))}
               </ul>
             </div>
-            <div className={styles.saveButtonContainer}>
-              <button
-                type="button"
-                className={styles.saveButton}
-                onClick={handleSavePreferences}
-              >
-                Save
-              </button>
-            </div>
+            <Button
+              variant="contained"
+              className={styles.saveButton}
+              onClick={handleSavePreferences}
+            >
+              Save
+            </Button>
             <div className={styles.favorites}>
               <div className={styles.h2}>Favorites</div>
               <ul className={styles.roomList}>
