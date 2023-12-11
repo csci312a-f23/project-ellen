@@ -6,6 +6,10 @@ import { useEffect } from "react";
 // import { useState } from "react";
 import Head from "next/head";
 import Link from "next/link"; // Import the Link component
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DormSearchBar from "@/components/DormSearchBar";
 import { authenticated } from "../../lib/middleware";
 import DormMaps from "../../components/dormMaps";
@@ -34,37 +38,38 @@ export default function DormView() {
       </Head>
 
       <main className={styles.body}>
-        <Link href="/profile">
-          <button type="button" className={styles.profileButton}>
+        <div className={styles.otherButtonsContainer}>
+          <Link href="/">
+            <IconButton
+              aria-label="Back to Home"
+              className={styles.backButton2}
+            >
+              <HomeIcon style={{ fontSize: "2rem", color: "#0074b3" }} />
+            </IconButton>
+          </Link>
+          <div className={styles.title}>
             <img
-              src="/images/UserIcon.jpeg"
-              alt="User Profile"
-              width={20}
-              height={20}
-              className={styles.userIcon}
+              className={styles.pantherImage}
+              height={100}
+              width={300}
+              src="/images/panther.png"
+              alt="panther"
             />
-            My Profile
-          </button>
-        </Link>
-        <Link href="/">
-          <button type="button" className={styles.backButton}>
-            Back to Home
-          </button>
-        </Link>
-        <div className={styles.h1}>
-          <img
-            height={100}
-            width={300}
-            src="/images/panther.png"
-            alt="panther"
-          />
-          <h3>Middlebury Housing</h3>
+            <h3>Middlebury Housing</h3>
+          </div>
+          <Link href="/profile">
+            <Button
+              variant="contained"
+              startIcon={<AccountCircleIcon style={{ fontSize: "1.5rem" }} />}
+              className={styles.profileButton}
+              style={{ textTransform: "none" }}
+            >
+              My Profile
+            </Button>
+          </Link>
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.h2}>
-              <h2>Find A Room</h2>
-            </article>
             <article className={styles.stuff}>
               <DormSearchBar name={name} />
             </article>

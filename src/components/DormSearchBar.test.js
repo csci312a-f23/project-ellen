@@ -1,3 +1,4 @@
+import React from "react";
 import {
   act,
   render,
@@ -6,6 +7,7 @@ import {
   fireEvent,
 } from "@testing-library/react";
 import { useRouter } from "next/router";
+import "@testing-library/jest-dom";
 import DormSearchBar from "./DormSearchBar";
 
 // mock the useRouter function
