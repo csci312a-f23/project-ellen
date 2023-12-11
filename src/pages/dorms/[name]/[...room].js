@@ -5,29 +5,47 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Link from "next/link"; // Import the Link component
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import MapIcon from "@mui/icons-material/Map";
+import DormSearchBar from "@/components/DormSearchBar";
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
-
-import DormSearchBar from "../../../components/DormSearchBar";
 
 export default function Rooms() {
   const [dormName, setDormName] = useState(null);
   const [dormDimensions, setDormDimensions] = useState(null);
   const [dormReview, setDormReview] = useState([]);
-  const [dormRating, setDormRating] = useState(null);
+  const [dormRating, setDormRating] = useState([]);
+  const [beds, setBeds] = useState(null);
   const [dormNumber, setDormNumber] = useState(null);
+  const [type, setType] = useState(null); // only because I'm don't feel like adding to add type (single, double, etc,) to the database
 
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  const { room } = router.query;
+  const { name, room } = router.query;
+
+  const normRoom = room;
+
+  function getType() {
+    if (beds === 1) {
+      setType("Single");
+    } else if (beds === 2) {
+      setType("Double");
+    } else if (beds === 3) {
+      setType("Triple");
+    }
+  }
 
   async function getRoom(currentRoomNumber) {
     if (!currentRoomNumber) {
-      setDormName("Battell");
+      setDormName(name);
       setDormDimensions(173);
       setDormReview([]);
-      setDormRating(4);
+      setDormRating([]);
       setDormNumber(123);
     } else {
       try {
@@ -40,11 +58,15 @@ export default function Rooms() {
         });
         if (response.ok) {
           const data = await response.json();
-          setDormName("Battell");
+          setDormName(data.dorm);
           setDormDimensions(data.dormDimensions);
+          setBeds(data.beds);
           setDormReview(data.reviews);
-          setDormRating(data.dormRating);
           setDormNumber(currentRoomNumber);
+
+          const ratings = data.reviews.map((review) => review.dormRating);
+
+          setDormRating(ratings);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -54,17 +76,19 @@ export default function Rooms() {
   }
 
   useEffect(() => {
-    getRoom(room);
-  }, [room]);
+    getRoom(normRoom);
+    getType();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [normRoom]);
 
   const handleClick = (command) => {
     if (command === "back") {
-      router.push(`/dorms/${encodeURIComponent(dormName)}`);
+      router.push(`/dorms/${encodeURIComponent(name)}`);
     }
   };
 
   const handleAddReview = () => {
-    router.push(`/dorms/${encodeURIComponent(dormName)}/${room}/review`);
+    router.push(`/dorms/${encodeURIComponent(name)}/${room}/review`);
   };
 
   useEffect(() => {
@@ -72,6 +96,19 @@ export default function Rooms() {
       router.push("/login");
     }
   }, [session, status, router]);
+
+  const calculateAvg = () => {
+    const sum = dormRating.reduce((acc, rating) => acc + Number(rating), 0);
+    const average = dormRating.length > 0 ? sum / dormRating.length : 0;
+    const averageFixed = average.toFixed(2);
+
+    return averageFixed;
+  };
+
+  const ratingAvg = calculateAvg(dormReview);
+
+  const wholeStars = Math.floor(ratingAvg);
+  const fractionStars = ratingAvg - wholeStars;
 
   return (
     <>
@@ -86,71 +123,84 @@ export default function Rooms() {
         />
       </Head>
       <main className={styles.body}>
-        <Link href="/profile">
-          <button type="button" className={styles.profileButton}>
+        <div className={styles.otherButtonsContainer}>
+          <Link href="/">
+            <IconButton
+              aria-label="Back to Home"
+              className={styles.backButton2}
+            >
+              <HomeIcon style={{ fontSize: "2rem", color: "#0074b3" }} />
+            </IconButton>
+          </Link>
+          <div className={styles.title}>
             <img
-              src="/images/UserIcon.jpeg"
-              alt="User Profile"
-              width={20}
-              height={20}
-              className={styles.userIcon}
+              className={styles.pantherImage}
+              height={100}
+              width={300}
+              src="/images/panther.png"
+              alt="panther"
             />
-            My Profile
-          </button>
-        </Link>
-        <div className={styles.h1}>
-          <img
-            height={100}
-            width={300}
-            src="/images/panther.png"
-            alt="panther"
-          />
-          <h3>Middlebury Housing</h3>
+            <h3>Middlebury Housing</h3>
+          </div>
+          <Link href="/profile">
+            <Button
+              variant="contained"
+              startIcon={<AccountCircleIcon style={{ fontSize: "1.5rem" }} />}
+              className={styles.profileButton}
+              style={{ textTransform: "none" }}
+            >
+              My Profile
+            </Button>
+          </Link>
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.h2}>
-              <h2>Find A Room</h2>
-            </article>
             <article className={styles.stuff}>
-              <DormSearchBar />
+              <DormSearchBar name={name} />
             </article>
           </div>
           <div className={styles.rightHalf}>
             <section className={styles.reviewsContainer}>
               <div className={styles.topLeft}>
-                <button
-                  type="button"
-                  className={styles.backButton1}
+                <IconButton
+                  aria-label="Back to Map"
+                  className={styles.mapButton}
                   onClick={() => handleClick("back")}
                 >
-                  Back to Map
-                </button>
+                  <MapIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+                </IconButton>
                 <div className={styles.h3}>{dormName}</div>
                 <div className={styles.h2}> Room : {dormNumber} </div>
+                <div className={styles.h2}> Type : {type} </div>
                 <div className={styles.h2}>
                   {" "}
                   Dimensions : {dormDimensions} sq ft{" "}
                 </div>
-                <div className={styles.h2}> Rating : {dormRating} </div>
+                <div className={styles.h2}> Average Rating : {ratingAvg} </div>
                 <div className="rating-box">
                   <div className={styles.starscontainer}>
-                    {Array.from({ length: dormRating }, (_, i) => (
+                    {Array.from({ length: wholeStars }, (_, i) => (
                       <i key={i} className="fas fa-star is-active" />
                     ))}
+                    {fractionStars > 0 && (
+                      <i className="fas fa-star-half-alt is-active" />
+                    )}
                     {/* Add unfilled stars */}
-                    {Array.from({ length: 5 - dormRating }, (_, i) => (
-                      <i key={i} className="far fa-star unfilled-star" />
-                    ))}
+                    {Array.from(
+                      { length: 5 - wholeStars - (fractionStars > 0 ? 1 : 0) },
+                      (_, i) => (
+                        <i key={i} className="far fa-star unfilled-star" />
+                      ),
+                    )}
                   </div>
                 </div>
-                <button
-                  type="button"
+                <Button
+                  variant="contained"
                   onClick={() => handleAddReview(room)}
                   className={styles.backButton1}
                 >
                   Add Review
-                </button>
+                </Button>
               </div>
               <div className={styles.topRight}>
                 <div className={styles.imageContainer}>

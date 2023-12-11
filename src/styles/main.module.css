@@ -43,7 +43,7 @@
   padding-bottom: 1.25rem;
   padding-top: 1.75rem;
   padding-left: 1.75rem;
-  font-family: "Arial Narrow", serif;
+  font-family: Arial, Times, serif;
   text-align: left;
   color: white;
 }
@@ -80,18 +80,14 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: rgb(117, 163, 205);
   color: white;
   padding: 8px 16px;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none;
-  width: 150px;
-  height: 50px;
   font-size: 16px;
   display: flex;
   align-items: center;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .userIcon {
@@ -131,7 +127,7 @@
 }
 /*create the star*/
 .my-star::before {
-  content: "\002605";
+  content: "\2605";
 }
 /*remove the default style (italic) of the star*/
 .my-star {
@@ -144,6 +140,7 @@
 /*set color on hover*/
 .my-star:not(.is-active):hover {
   color: #fb8900;
+  transition: color 0.2s ease;
 }
 
 .rating-box {
@@ -214,7 +211,7 @@
   cursor: pointer;
   border-radius: 10px;
   border: none;
-  margin-right: 85%;
+  margin-right: 86%;
   margin-top: 2.5%;
 }
 
@@ -270,4 +267,52 @@
 
 .reviewText {
   margin-top: 10px;
+  color: white;
+}
+
+.otherButtonsContainer {
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+  gap: 8px;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.backButton2 {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-left: 20px;
+  background-color: white;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  color: rgb(18, 57, 93);
+  text-shadow: 0 2px 2px rgb(117, 163, 205);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 25px 30px;
+  width: 100%;
+  background-color: white;
+}
+
+.mapButton {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 20px;
+  background-color: white;
+  margin-right: 93%;
+  margin-top: 2.5%;
 }

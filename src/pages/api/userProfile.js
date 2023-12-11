@@ -1,4 +1,3 @@
-// woooow
 import { createRouter } from "next-connect";
 import { authenticated } from "../../lib/middleware";
 import User from "../../../models/User";
