@@ -151,7 +151,6 @@ describe("Profile page", () => {
     });
 
     render(<Profile />);
-    console.log(mockRouter.pathname);
 
     await waitFor(() => {
       expect(screen.getByText("John Doe")).toBeInTheDocument();

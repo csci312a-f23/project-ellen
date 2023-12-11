@@ -1,138 +1,235 @@
-// import React from "react";
-// import { render, screen, waitFor, fireEvent } from "@testing-library/react";
-// // eslint-disable-next-line import/no-extraneous-dependencies
-// import mockRouter from "next-router-mock";
-// // eslint-disable-next-line import/no-extraneous-dependencies
-// import userEvent from "@testing-library/user-event";
-// import "@testing-library/jest-dom";
-// // eslint-disable-next-line import/no-extraneous-dependencies
-// import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
-// import DormSearchBar from "./DormSearchBar";
-// import testRooms from "../../data/test-data.json";
+import {
+  act,
+  render,
+  screen,
+  waitFor,
+  fireEvent,
+} from "@testing-library/react";
+import { useRouter } from "next/router";
+import DormSearchBar from "./DormSearchBar";
 
-// jest.mock("next/router", () => ({
-//   useRouter: jest.fn(),
-// }));
+// mock the useRouter function
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
 
-// // We wrap the actual fetch implementation during testing so that we can introduce
-// // the absolute URL (needed on teh server but not on the browser)
-// const originalFetch = global.fetch;
-// global.fetch = (url, ...params) => {
-//   if (typeof url === "string" && url.startsWith("/")) {
-//     return originalFetch(`http://0.0.0.0:3000${url}`, ...params);
-//   }
-//   return originalFetch(url, ...params);
-// };
+// mock the useRouter implementation
+useRouter.mockImplementation(() => ({
+  pathname: "/",
+  push: jest.fn(),
+}));
 
-// // Tell the mock router about the pages we will use (so we can use dynamic routes)
-// mockRouter.useParser(
-//   createDynamicRouteParser([
-//     // These paths should match those found in the `/pages` folder:
-//     // "/dorms/[...names]/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
-//     "/dorms/[...name]",
-//     "/app",
-//     "/document",
-//     "/index",
-//     "/profile",
-//     "/review",
-//     "/rooms",
-//   ]),
-// );
+// Mock the fetch function
+global.fetch = jest.fn();
 
-// describe("DormSearchBar", () => {
-//   beforeEach(() => {
-//     mockRouter.setCurrentUrl("/");
-//   });
-//   afterEach(() => {
-//     jest.resetAllMocks();
-//   });
+// Mock the response data
+const mockRoomsData = [
+  {
+    id: 100,
+    dorm: "Battell",
+    type: null,
+    beds: 3,
+    dormDimensions: 298,
+    dormReview: "Comfortable and clean room.",
+    dormRating: 5,
+  },
+  {
+    id: 101,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 184,
+    dormReview: "Noisy neighbors but great location.",
+    dormRating: 3,
+  },
+  {
+    id: 102,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 184,
+    dormReview: "Spacious and well-furnished.",
+    dormRating: 4,
+  },
+  {
+    id: 103,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 184,
+    dormReview: "Cozy atmosphere but limited storage space.",
+    dormRating: 3,
+  },
+  {
+    id: 104,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 184,
+    dormReview: "Excellent facilities and friendly staff.",
+    dormRating: 5,
+  },
+  {
+    id: 105,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 184,
+    dormReview: "Small room  but great price.",
+    dormRating: 3,
+  },
+  {
+    id: 106,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 184,
+    dormReview: "Convenient location but outdated furniture.",
+    dormRating: 4,
+  },
+  {
+    id: 107,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 184,
+    dormReview: "Clean and tidy but slow internet.",
+    dormRating: 3,
+  },
+  {
+    id: 108,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 170,
+    dormReview: "Comfortable beds and quiet surroundings.",
+    dormRating: 5,
+  },
+  {
+    id: 109,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 170,
+    dormReview: "Limited parking options.",
+    dormRating: 1,
+  },
+  {
+    id: 110,
+    dorm: "Battell",
+    type: null,
+    beds: 2,
+    dormDimensions: 170,
+    dormReview: "Friendly and helpful staff.",
+    dormRating: 5,
+  },
+];
 
-// //   test("Should display Battell rooms on initial render", async () => {
-// //     render(<DormSearchBar />);
+beforeEach(() => {
+  // Mock the fetch implementation
+  global.fetch.mockResolvedValueOnce({
+    ok: true,
+    json: () => Promise.resolve(mockRoomsData),
+  });
+});
 
-// //     await waitFor(() => {
-// //     // just check for first few rooms
-// //     const rooms = [
-// //       "Room: 100",
-// //       "Room: 101",
-// //       "Room: 102",
-// //       "Room: 103",
-// //       "Room: 104",
-// //       "Room: 105",
-// //       "Room: 106",
-// //       "Room: 107",
-// //       "Room: 108",
-// //     ];
-// //     rooms.forEach((room) => {
-// //       expect(screen.getByText(room)).toBeInTheDocument();
-// //     });
-// // });
-// //   });
+afterEach(() => {
+  jest.restoreAllMocks();
+});
 
-//   test("Should display Battell rooms on initial render", async () => {
-//     // render(<DormSearchBar />);
+describe("DormSearchBar test", () => {
+  test("Renders DormSearchBar component", () => {
+    act(() => {
+      render(<DormSearchBar name="Battell" />);
+    });
 
-//     // // Now, check for the presence of rooms
-//     // const rooms = [
-//     //   "Room: 100",
-//     //   "Room: 101",
-//     //   "Room: 102",
-//     //   // ... other rooms
-//     // ];
-//     // rooms.forEach((testRoom) => {
-//     //   expect(screen.getByText(testRoom)).toBeInTheDocument();
-//     // });
-//     render(<DormSearchBar name="Battell" />);
+    expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
+    expect(screen.getByLabelText("SearchBar-results")).toBeInTheDocument();
+  });
 
-//     // Assuming the data structure in testData is similar to the actual API response
-//     const roomsToCheck = testRooms
-//       .filter((room) => room.dorm === "Battell")
-//       .map((room) => `Room: ${room.id}`);
+  test("Displays Battell rooms on initial render", async () => {
+    act(() => {
+      render(<DormSearchBar name="Battell" />);
+    });
 
-//     await waitFor(() => {
-//       roomsToCheck.forEach((room) => {
-//         expect(screen.getByText(room)).toBeInTheDocument();
-//       });
-//     });
-//   });
+    // Wait for the rooms to be rendered
+    await waitFor(() => {
+      const rooms = ["Room: 100", "Room: 101", "Room: 102"]; // Update with actual room names
+      rooms.forEach((room) => {
+        expect(screen.getByText(room)).toBeInTheDocument();
+      });
+    });
+  });
 
-//   test("Should filter rooms based on search term", async () => {
-//     render(<DormSearchBar />);
+  test("Filters rooms based on search term", async () => {
+    act(() => {
+      render(<DormSearchBar name="Battell" />);
+    });
 
-//     const searchInput = screen.getByPlaceholderText("Search...");
+    await waitFor(() => {
+      const rooms = ["Room: 100", "Room: 101", "Room: 102"];
+      rooms.forEach((room) => {
+        expect(screen.getByText(room)).toBeInTheDocument();
+      });
+    });
 
-//     fireEvent.change(searchInput, { target: { value: "101" } });
-//     fireEvent.click(screen.getByRole("button", { name: "Search" }));
+    const roomNum = "Room: 101";
+    const notRoomNum = "Room: 102";
 
-//     await screen.findByRole("list", { name: "SearchBar-results" });
+    const searchInput = screen.getByPlaceholderText("Search...");
 
-//     const expectedResults = ["Room: 101"];
-//     const unexpectedResults = ["Room: 102", "Room: 103"]; // Add any other rooms
+    fireEvent.change(searchInput, { target: { value: "101" } });
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
 
-//     expectedResults.forEach((room) => {
-//         expect(screen.getByText(new RegExp(room))).toBeInTheDocument();
-//       });
+    await waitFor(() => {
+      expect(screen.getByText(roomNum)).toBeInTheDocument();
+      expect(screen.queryByText(notRoomNum)).toBeNull();
+    });
+  });
 
-//     // expectedResults.forEach((room) => {
-//     //   expect(screen.getByText(room)).toBeInTheDocument();
-//     // });
-//     unexpectedResults.forEach((room) => {
-//       expect(screen.queryByText(room)).toBeNull();
-//     });
-//   });
+  test("Navigates to the correct page when a room is clicked", async () => {
+    const mockPush = jest.fn();
+    useRouter.mockImplementation(() => ({
+      push: mockPush,
+    }));
 
-//   test("Navigates to the correct page when a room is clicked", async () => {
-//     render(<DormSearchBar />);
+    act(() => {
+      render(<DormSearchBar name="Battell" />);
+    });
 
-//     const roomNum = "Room: 100";
-//     const roomItem = screen.getByText(roomNum).closest("li");
-//     userEvent.click(roomItem);
+    await waitFor(() => {
+      fireEvent.click(screen.getByText("Room: 100"));
+    });
 
-//     mockRouter.push("/100");
+    expect(mockPush).toHaveBeenCalledWith("/dorms/Battell/100");
+  });
 
-//     await waitFor(() => {
-//       expect(mockRouter.pathname).toBe("/100");
-//       expect(mockRouter.asPath).toBe(`/${roomNum.split(" ").pop()}`);
-//     });
-//   });
-// });
+  test("Filters based on filter thing", async () => {
+    act(() => {
+      render(<DormSearchBar name="Battell" />);
+    });
+
+    await waitFor(() => {
+      const rooms = ["Room: 100", "Room: 101", "Room: 102"];
+      rooms.forEach((room) => {
+        expect(screen.getByText(room)).toBeInTheDocument();
+      });
+    });
+
+    const select = screen.getByRole("combobox");
+
+    fireEvent.change(select, { target: { value: "3" } });
+
+    expect(select).toHaveValue("3");
+
+    fireEvent.click(screen.getByRole("button", { name: "Search" }));
+
+    await waitFor(() => {
+      const expectedRooms = "Room: 100";
+      const unexpectedRooms = "Room: 101";
+
+      expect(screen.getByText(expectedRooms)).toBeInTheDocument();
+      expect(screen.queryByText(unexpectedRooms)).toBeNull();
+    });
+  });
+});

@@ -133,5 +133,8 @@ function DormSearchBar({ name }) {
 export default DormSearchBar;
 
 DormSearchBar.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
 };
