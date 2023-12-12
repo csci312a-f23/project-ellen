@@ -334,34 +334,35 @@ export default function Profile() {
             <div className={styles.section2}>
               <div className={styles.h2}>Your Room Reviews:</div>
               <ul className={styles.reviewList}>
-                {dormReview.map((review) => (
-                  <li key={review.id} className={styles.reviewItem}>
-                    <div className={styles.reviewRating}>
-                      {Array.from(
-                        { length: parseInt(review.dormRating, 10) },
-                        (_, i) => (
-                          <i key={i} className="fas fa-star is-active" />
-                        ),
-                      )}
-                    </div>
-                    <p className={styles.reviewText}>{review.roomId}</p>
-                    <p className={styles.reviewText}>{review.dormReview}</p>
-                    <Button
-                      variant="contained"
-                      className={styles.saveButton}
-                      onClick={() => editReview(review)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant="contained"
-                      className={styles.saveButton}
-                      onClick={() => deleteReview(review)}
-                    >
-                      Delete
-                    </Button>
-                  </li>
-                ))}
+                {dormReview &&
+                  dormReview.map((review) => (
+                    <li key={review.id} className={styles.reviewItem}>
+                      <div className={styles.reviewRating}>
+                        {Array.from(
+                          { length: parseInt(review.dormRating, 10) },
+                          (_, i) => (
+                            <i key={i} className="fas fa-star is-active" />
+                          ),
+                        )}
+                      </div>
+                      <p className={styles.reviewText}>{review.roomId}</p>
+                      <p className={styles.reviewText}>{review.dormReview}</p>
+                      <Button
+                        variant="contained"
+                        className={styles.saveButton}
+                        onClick={() => editReview(review)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={styles.saveButton}
+                        onClick={() => deleteReview(review)}
+                      >
+                        Delete
+                      </Button>
+                    </li>
+                  ))}
               </ul>
 
               <div className={styles.h2}>Room Preferences:</div>
