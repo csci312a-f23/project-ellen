@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import "@testing-library/jest-dom";
 import DormSearchBar from "./DormSearchBar";
 
+// await waitfor on whichever test in having problems
+
 // mock the useRouter function
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
@@ -140,13 +142,15 @@ afterEach(() => {
 });
 
 describe("DormSearchBar test", () => {
-  test("Renders DormSearchBar component", () => {
+  test("Renders DormSearchBar component", async () => {
     act(() => {
       render(<DormSearchBar name="Battell" />);
     });
 
-    expect(screen.getByPlaceholderText("Room...")).toBeInTheDocument();
-    expect(screen.getByLabelText("SearchBar-results")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByPlaceholderText("Room...")).toBeInTheDocument();
+      expect(screen.getByLabelText("SearchBar-results")).toBeInTheDocument();
+    });
   });
 
   test("Displays Battell rooms on initial render", async () => {

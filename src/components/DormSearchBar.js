@@ -24,7 +24,6 @@ function DormSearchBar({ name }) {
           "Content-Type": "application/json",
         },
       });
-
       if (response.ok) {
         const data = await response.json();
         setDorms(data);
