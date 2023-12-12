@@ -93,9 +93,24 @@
   margin-bottom: 15px;
 }
 
+.h4 {
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.reviewText {
+  font-size: 16px;
+  /* margin-top: 30px; */
+  margin-bottom: 10px;
+}
+
 .roomList {
   list-style: none;
   padding-left: 0;
+  padding-bottom: 0.5;
 }
 
 .otherButtonsContainer {
