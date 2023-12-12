@@ -172,7 +172,6 @@ export default function Profile() {
     const rateDorm = splitRoom[0];
     const roomNumber = splitRoom[1];
     router.push(`/dorms/${rateDorm}/${roomNumber}/review`);
-    // console.log(`Rated room: ${room}`);
   };
 
   const handleSignOut = async () => {
