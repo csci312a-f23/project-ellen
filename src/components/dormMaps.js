@@ -9,13 +9,14 @@ function DormMaps({ selectedDorm }) {
       secondFloor: "/images/Battell2F.png",
     },
     Stewart: {
-      // firstFloor: "/images/StewartF1.png",
+      firstFloor: "/images/missing_image.jpg",
       // secondFloor: "/images/StewartF2.png",
       // thirdFloor: "/images/StewartF3.png",
       // fourthFloor: "/images/StewartF4.png",
       // fifthFloor: "/images/StewartF5.png",
     },
     Hepburn: {
+      firstFloor: "/images/missing_image.jpg",
       // firstFloor: "/images/HepburnF1.png",
       // secondFloor: "/images/HepburnF2.png",
       // thirdFloor: "/images/HepburnF3.png",
@@ -23,6 +24,14 @@ function DormMaps({ selectedDorm }) {
       // fifthFloor: "/images/HepburnF5.png",
     },
     Allen: {
+      firstFloor: "/images/missing_image.jpg",
+      // basement: "/images/AllenB.png",
+      // firstFloor: "/images/AllenF1.png",
+      // secondFloor: "/images/AllenF2.png",
+      // thirdFloor: "/images/AllenF3.png",
+    },
+    Forest: {
+      firstFloor: "/images/missing_image.jpg",
       // basement: "/images/AllenB.png",
       // firstFloor: "/images/AllenF1.png",
       // secondFloor: "/images/AllenF2.png",
