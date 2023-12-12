@@ -15,10 +15,10 @@ const LeafletMap = () => {
     );
 
     const defaultIcon = new L.icon({
-      iconUrl: require('node_modules/leaflet/dist/images/marker-icon.png'), // your path may vary ...
-      iconSize: [8, 8],
-      iconAnchor: [2, 2],
-      popupAnchor: [0, -2]
+      iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Map_pin_icon.svg',
+      iconSize: [20, 30],
+      iconAnchor: [10, 15],
+      popupAnchor: [0, 0]
     });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -28,7 +28,7 @@ const LeafletMap = () => {
 
     L.marker([44.011309, -73.178091], {icon: defaultIcon}).addTo(map).bindPopup('<a href="/dorms/Battell">Battell</a>');
 
-    L.marker([44.010514, -73.179014]).addTo(map).bindPopup('<a href="/dorms/Forrest">Forrest</a>');
+    L.marker([44.010514, -73.179014], {icon: defaultIcon}).addTo(map).bindPopup('<a href="/dorms/Forrest">Forrest</a>');
 
     return () => {
       map.remove();
