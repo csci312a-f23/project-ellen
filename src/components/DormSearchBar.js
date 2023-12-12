@@ -62,14 +62,6 @@ function DormSearchBar({ name }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dorms]);
 
-  const handleRoomView = (roomNumber) => {
-    try {
-      router.push(`/dorms/${name}/${roomNumber}`);
-    } catch (error) {
-      console.error("Failed to navigate:", error);
-    }
-  };
-
   const handleOnClick = () => {
     const type = parseInt(roomType, 10);
 
@@ -81,6 +73,18 @@ function DormSearchBar({ name }) {
       )
       .map((room) => room.id);
     setResults(filteredRoomList);
+  };
+
+  useEffect(() => {
+    // handleOnClick();
+  }, [roomType, searchTerm]);
+
+  const handleRoomView = (roomNumber) => {
+    try {
+      router.push(`/dorms/${name}/${roomNumber}`);
+    } catch (error) {
+      console.error("Failed to navigate:", error);
+    }
   };
 
   return (
