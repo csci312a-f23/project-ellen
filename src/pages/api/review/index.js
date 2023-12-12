@@ -5,8 +5,6 @@ const router = createRouter();
 
 router
   .get(async (req, res) => {
-    // const {userId} = req.query;
-    // console.log(userId);
     let query = Reviews.query();
     if (req.query) {
       query = query
