@@ -121,7 +121,6 @@ export default function Profile() {
   }
 
   async function editReview(review) {
-    console.log(review.roomId);
     const reviewId = review.id;
     router.push({
       pathname: `dorms/Battell/${review.roomId}/reviews/${reviewId}`,
@@ -142,7 +141,7 @@ export default function Profile() {
           }),
         });
         if (response.ok) {
-          const data = await response.json();
+          await response.json();
           const response2 = await fetch(
             `/api/review/?userId=${session.user.id}`,
             {
@@ -153,9 +152,8 @@ export default function Profile() {
               }),
             },
           );
-          if (data) {
+          if (response2) {
             const data2 = await response2.json();
-            console.log(data);
             setDormReview(data2);
           }
         }
@@ -344,7 +342,7 @@ export default function Profile() {
                           ),
                         )}
                       </div>
-                      <p className={styles.reviewText}>{review.roomId}</p>
+                      <p className={styles.h4}>Battell {review.roomId}</p>
                       <p className={styles.reviewText}>{review.dormReview}</p>
                       <Button
                         variant="contained"
