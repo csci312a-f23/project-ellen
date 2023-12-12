@@ -17,7 +17,6 @@ export default function Profile() {
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
   const [dorm, setDorm] = useState("");
-  const [newRoom, setNewRoom] = useState(null);
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -31,6 +30,7 @@ export default function Profile() {
     "Gifford 221",
     // Add more rooms if needed
   ]);
+  const [newRoom, setNewRoom] = useState("");
   const [preferences, setPreferences] = useState({
     // this sort of setup is just if we want the checked list
     single: false,
@@ -82,6 +82,23 @@ export default function Profile() {
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
+
+          setRoomsLived([
+            data.room1 ? data.room1 : "Gifford 101",
+            data.room2 ? data.room2 : "Gifford 102",
+            data.room3 ? data.room3 : "Gifford 103",
+          ]);
+          setPreferences({
+            single: false,
+            double: false,
+            suite: false,
+            quiet: false,
+            freshmen: false,
+            sophomore: false,
+            junior: false,
+            senior: false,
+          });
+          setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -174,6 +191,7 @@ export default function Profile() {
     }
   };
 
+
   const [showRateRoomPopup, setShowRateRoomPopup] = useState(false);
 
   useEffect(() => {
@@ -188,6 +206,31 @@ export default function Profile() {
     setShowRateRoomPopup(false);
   };
 
+  async function handleNewRoom() {
+    console.log(`This is the new room ${newRoom}`);
+    // console.log(`This is the new id ${session.user.id}`);
+
+    const userData = {
+      googleId: session.user.id,
+      roomData: newRoom,
+    };
+
+    if (status === "authenticated" && session) {
+      const response = await fetch(`/api/userProfile/?id=${session.user.id}`, {
+        method: "PUT",
+        body: JSON.stringify(userData),
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+      });
+      if (response.ok) {
+        console.log(response);
+        console.log("Put successful");
+      }
+    }
+  }
+  
   return (
     <>
       <Head>
@@ -233,6 +276,19 @@ export default function Profile() {
               <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
+              <input
+                type="text"
+                placeholder="Room"
+                onChange={(text) => setNewRoom(text.target.value)}
+                value={newRoom}
+              />
+              <button
+                type="button"
+                className={styles.saveButton2}
+                onClick={handleNewRoom}
+              >
+                Add room
+              </button>{" "}
               <h2>Rooms I Have Lived In</h2>
               <ul className={styles.roomList}>
                 {roomsLived.map((room, index) => (
