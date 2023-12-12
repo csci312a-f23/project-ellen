@@ -11,6 +11,16 @@ function SearchBar() {
   const [results, setResults] = useState();
   const router = useRouter();
 
+  const handleOnClick = () => {
+    const filteredDorms = alldorms.dorms.filter((dorm) =>
+      dorm.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+    setResults(filteredDorms);
+    if (selectedOption !== "All") {
+      setSelectedOption("All");
+    }
+  };
+
   useEffect(() => {
     if (searchTerm === "") {
       if (selectedOption === "All") {
@@ -27,16 +37,6 @@ function SearchBar() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption, searchTerm]);
-
-  const handleOnClick = () => {
-    const filteredDorms = alldorms.dorms.filter((dorm) =>
-      dorm.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-    setResults(filteredDorms);
-    if (selectedOption !== "All") {
-      setSelectedOption("All");
-    }
-  };
 
   const handleDormView = (e) => {
     const dorm = e.target.innerText;
@@ -59,12 +59,13 @@ function SearchBar() {
           value={selectedOption}
           onChange={(e) => setSelectedOption(e.target.value)}
         >
-          <option value="All">All Dorms</option>
+          <option value="All">All </option>
           <option value="Freshman Dorms">Freshman Dorms</option>
           <option value="Sophomore Dorms"> Sophomore Dorms</option>
           <option value="Upperclassmen Dorms">Upperclassmen Dorms</option>
           <option value="Language Houses">Language Houses</option>
         </select>
+
         <button
           type="button"
           className={styles.searchButton}
