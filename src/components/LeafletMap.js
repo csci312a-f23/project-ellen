@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
-
 const LeafletMap = () => {
   const mapContainerRef = useRef(null);
 
@@ -15,12 +14,19 @@ const LeafletMap = () => {
       17,
     );
 
+    const defaultIcon = new L.icon({
+      iconUrl: require('node_modules/leaflet/dist/images/marker-icon.png'), // your path may vary ...
+      iconSize: [8, 8],
+      iconAnchor: [2, 2],
+      popupAnchor: [0, -2]
+    });
+
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="<https://www.openstreetmap.org/copyright>">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.marker([44.011309, -73.178091]).addTo(map).bindPopup('<a href="/dorms/Battell">Battell</a>');
+    L.marker([44.011309, -73.178091], {icon: defaultIcon}).addTo(map).bindPopup('<a href="/dorms/Battell">Battell</a>');
 
     L.marker([44.010514, -73.179014]).addTo(map).bindPopup('<a href="/dorms/Forrest">Forrest</a>');
 
