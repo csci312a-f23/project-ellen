@@ -334,7 +334,7 @@ export default function Profile() {
             <div className={styles.section2}>
               <div className={styles.h2}>Your Room Reviews:</div>
               <ul className={styles.reviewList}>
-                {dormReview &&
+                {Array.isArray(dormReview) &&
                   dormReview.map((review) => (
                     <li key={review.id} className={styles.reviewItem}>
                       <div className={styles.reviewRating}>
