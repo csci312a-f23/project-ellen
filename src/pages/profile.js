@@ -16,6 +16,7 @@ export default function Profile() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
+  const [dormReview, setDormReview] = useState([]);
 
   const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
@@ -77,9 +78,9 @@ export default function Profile() {
           setName(data.name);
 
           setRoomsLived([
-            data.room1 ? data.room1 : "Gifford 101",
-            data.room2 ? data.room2 : "Gifford 102",
-            data.room3 ? data.room3 : "Gifford 103",
+            data.room1 ? data.room1 : "",
+            data.room2 ? data.room2 : "",
+            data.room3 ? data.room3 : "",
           ]);
           setPreferences({
             single: false,
@@ -99,16 +100,82 @@ export default function Profile() {
     }
   }
 
+  async function getReviews(userProfile) {
+    if (userProfile) {
+      try {
+        const response = await fetch(`/api/review/?userId=${session.user.id}`, {
+          method: "GET",
+          headers: new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setDormReview(data);
+        }
+      } catch (error) {
+        console.log("Something went wrong");
+      }
+    }
+  }
+
+  async function editReview(review) {
+    console.log(review.roomId);
+    const reviewId = review.id;
+    router.push({
+      pathname: `dorms/Battell/${review.roomId}/reviews/${reviewId}`,
+      query: {
+        currentRating: review.dormRating,
+        currentReview: review.dormReview,
+      },
+    });
+  }
+  async function deleteReview(review) {
+    if (review) {
+      try {
+        const response = await fetch(`/api/review/?id=${review.id}`, {
+          method: "DELETE",
+          headers: new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const response2 = await fetch(
+            `/api/review/?userId=${session.user.id}`,
+            {
+              method: "GET",
+              headers: new Headers({
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              }),
+            },
+          );
+          if (data) {
+            const data2 = await response2.json();
+            console.log(data);
+            setDormReview(data2);
+          }
+        }
+      } catch (error) {
+        console.log("Something went wrong");
+      }
+    }
+  }
+
   useEffect(() => {
     if (status === "authenticated" && session) {
       getProfile(session.user.email);
+      getReviews(session.user.email, roomsLived);
     } else if (status === "loading") {
       // do nothing
     } else {
       router.push("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session, router]);
+  }, [session, router, dormReview]);
 
   const handlePreferenceChange = (preferenceName) => {
     // this is for the checked preferences list
@@ -150,15 +217,12 @@ export default function Profile() {
     }
   };
 
-
   const [showRateRoomPopup, setShowRateRoomPopup] = useState(false);
 
   useEffect(() => {
     // Check if the user has roomsLived and show the popup if needed
-    if (roomsLived.length > 0) {
-      setShowRateRoomPopup(true);
-    }
-  }, [roomsLived]);
+    setShowRateRoomPopup(true);
+  }, []);
 
   const handlePopupClose = () => {
     // Set showRateRoomPopup to false when the user closes the popup
@@ -189,7 +253,7 @@ export default function Profile() {
       }
     }
   }
-  
+
   return (
     <>
       <Head>
@@ -268,6 +332,38 @@ export default function Profile() {
           </div>
           <div className={styles.rightContainer}>
             <div className={styles.section2}>
+              <div className={styles.h2}>Your Room Reviews:</div>
+              <ul className={styles.reviewList}>
+                {dormReview.map((review) => (
+                  <li key={review.id} className={styles.reviewItem}>
+                    <div className={styles.reviewRating}>
+                      {Array.from(
+                        { length: parseInt(review.dormRating, 10) },
+                        (_, i) => (
+                          <i key={i} className="fas fa-star is-active" />
+                        ),
+                      )}
+                    </div>
+                    <p className={styles.reviewText}>{review.roomId}</p>
+                    <p className={styles.reviewText}>{review.dormReview}</p>
+                    <Button
+                      variant="contained"
+                      className={styles.saveButton}
+                      onClick={() => editReview(review)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className={styles.saveButton}
+                      onClick={() => deleteReview(review)}
+                    >
+                      Delete
+                    </Button>
+                  </li>
+                ))}
+              </ul>
+
               <div className={styles.h2}>Room Preferences:</div>
               <ul className={styles.roomList}>
                 {Object.entries(preferences).map(([preference, checked]) => (
