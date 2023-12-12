@@ -15,6 +15,9 @@ export default class User extends BaseModel {
         googleId: { type: "string" },
         name: { type: "string" },
         email: { type: "string" },
+        room1: { type: "string" },
+        room2: { type: "string" },
+        room3: { type: "string" },
       },
     };
   }

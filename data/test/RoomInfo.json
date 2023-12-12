@@ -1,0 +1,213 @@
+[
+  {
+    "id": 100,
+    "dorm": "Battell",
+    "type": "Triple",
+    "beds": 3,
+    "dimensions": 298,
+    "reviews": [{ "review": "Comfortable and clean room.", "rating": 5 }]
+  },
+  {
+    "id": 101,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 184,
+    "reviews": [
+      { "review": "Noisy neighbors, but great location.", "rating": 3 }
+    ]
+  },
+  {
+    "id": 102,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 184,
+    "reviews": [{ "review": "Spacious and well-furnished.", "rating": 4 }]
+  },
+  {
+    "id": 103,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 184,
+    "reviews": [
+      {
+        "review": "Cozy atmosphere, but limited storage space.",
+        "rating": 3
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 184,
+    "reviews": [
+      {
+        "review": "Excellent facilities and friendly staff.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 184,
+    "reviews": [{ "review": "Small id, but great price.", "rating": 3 }]
+  },
+  {
+    "id": 106,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 184,
+    "reviews": [
+      {
+        "review": "Convenient location, but outdated furniture.",
+        "rating": 4
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 184,
+    "reviews": [{ "review": "Clean and tidy, but slow internet.", "rating": 3 }]
+  },
+  {
+    "id": 108,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [
+      {
+        "review": "Comfortable beds and quiet surroundings.",
+        "rating": 5
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [{ "review": "Limited parking options.", "rating": 1 }]
+  },
+  {
+    "id": 110,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [{ "review": "Friendly and helpful staff.", "rating": 5 }]
+  },
+  {
+    "id": 111,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [{ "review": "Well-maintained common areas.", "rating": 4 }]
+  },
+  {
+    "id": 112,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [
+      {
+        "review": "Decent size id, but outdated decor.",
+        "rating": 3
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [{ "review": "Noisy ventilation system.", "rating": 2 }]
+  },
+  {
+    "id": 115,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [{ "review": "Good Wi-Fi connectivity.", "rating": 4 }]
+  },
+  {
+    "id": 116,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [{ "review": "Poor sound insulation.", "rating": 1 }]
+  },
+  {
+    "id": 117,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [
+      { "review": "Close to campus and dining options.", "rating": 5 }
+    ]
+  },
+  {
+    "id": 118,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 186,
+    "reviews": [{ "review": "Cozy and homely atmosphere.", "rating": 4 }]
+  },
+  {
+    "id": 119,
+    "dorm": "Battell",
+    "type": "Double",
+    "beds": 2,
+    "dimensions": 170,
+    "reviews": [{ "review": "Insufficient lighting in the id.", "rating": 2 }]
+  },
+  {
+    "id": 120,
+    "dorm": "Battell",
+    "type": "Single",
+    "beds": 1,
+    "dimensions": 107,
+    "reviews": [{ "review": "Responsive maintenance team.", "rating": 5 }]
+  },
+  {
+    "id": 200,
+    "dorm": "Battell",
+    "type": "Triple",
+    "beds": 3,
+    "dimensions": 302,
+    "reviews": [{ "review": "Adequate kitchen facilities.", "rating": 3 }]
+  },
+  {
+    "id": 201,
+    "dorm": "Forest",
+    "beds": 1,
+    "dimensions": 134,
+    "reviews": [{ "review": "Friendly and helpful staff.", "rating": 5 }]
+  },
+  {
+    "id": 173,
+    "dorm": "Stewart",
+    "beds": 2,
+    "dimensions": 234,
+    "reviews": [{ "review": "something.", "rating": 5 }]
+  }
+]

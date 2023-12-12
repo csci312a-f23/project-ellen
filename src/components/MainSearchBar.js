@@ -95,6 +95,7 @@ function SearchBar() {
         setResults(langHouses);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedOption, searchTerm]);
 
   const handleOnClick = () => {
@@ -119,7 +120,7 @@ function SearchBar() {
         <input
           className={styles.input}
           type="text"
-          placeholder="Search..."
+          placeholder="Dorm..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -128,7 +129,7 @@ function SearchBar() {
           value={selectedOption}
           onChange={(e) => setSelectedOption(e.target.value)}
         >
-          <option value="All">All</option>
+          <option value="All">All Dorms</option>
           <option value="Freshman Dorms">Freshman Dorms</option>
           <option value="Sophomore Dorms"> Sophomore Dorms</option>
           <option value="Upperclassmen Dorms">Upperclassmen Dorms</option>

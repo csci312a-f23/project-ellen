@@ -32,8 +32,9 @@
   font-size: 1.75rem;
   padding-bottom: 0.75rem;
   padding-top: 0.75rem;
+  padding-left: 1.75rem;
   font-family: Arial, Times, serif;
-  text-align: center;
+  text-align: left;
   color: white;
 }
 
@@ -41,11 +42,21 @@
   font-size: 3rem;
   padding-bottom: 1.25rem;
   padding-top: 1.75rem;
+  padding-left: 1.75rem;
+  font-family: Arial, Times, serif;
+  text-align: left;
+  color: white;
+}
+
+.h4 {
+  font-size: 2rem;
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+  padding-left: 1.75rem;
   font-family: Arial, Times, serif;
   text-align: center;
   color: white;
 }
-
 /* Pattern styles */
 .container {
   display: grid;
@@ -69,18 +80,14 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: rgb(117, 163, 205);
   color: white;
   padding: 8px 16px;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none;
-  width: 150px;
-  height: 50px;
   font-size: 16px;
   display: flex;
   align-items: center;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .userIcon {
@@ -104,6 +111,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  overflow: auto;
 }
 
 .pantherImage {
@@ -119,7 +127,7 @@
 }
 /*create the star*/
 .my-star::before {
-  content: "\002605";
+  content: "\2605";
 }
 /*remove the default style (italic) of the star*/
 .my-star {
@@ -132,6 +140,7 @@
 /*set color on hover*/
 .my-star:not(.is-active):hover {
   color: #fb8900;
+  transition: color 0.2s ease;
 }
 
 .rating-box {
@@ -167,7 +176,8 @@
 }
 .starscontainer {
   display: flex;
-  justify-content: center; /* Horizontal centering */
+  justify-content: left; /* Horizontal centering */
+  padding-left: 1.75rem;
   align-items: center; /* Vertical centering */
   color: white;
   padding-top: 0.75rem;
@@ -177,9 +187,10 @@
 
 .imageContainer {
   display: flex;
-  justify-content: center; /* Horizontal centering */
+  justify-content: right; /* Horizontal centering */
   align-items: center; /* Vertical centering */
   padding-top: 3rem;
+  padding-right: 1.75rem;
 }
 
 .backButton {
@@ -200,10 +211,108 @@
   cursor: pointer;
   border-radius: 10px;
   border: none;
-  margin-right: 85%;
+  margin-right: 86%;
   margin-top: 2.5%;
 }
 
 .backButton:hover {
   background-color: #005a99;
+}
+
+.reviewsContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 70% 30%;
+}
+
+.topLeft {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.topRight {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.bottomRow {
+  grid-row: 2;
+  grid-column: span 2;
+  overflow: hidden;
+  padding: 50px;
+}
+
+.bottomContainer {
+  height: 1px;
+  overflow: auto;
+  padding: 10px;
+}
+
+/* main.module.css */
+
+.reviewList {
+  list-style: none;
+  padding: 0;
+}
+
+.reviewItem {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.reviewRating {
+  color: #ffc107; /* Set the color for the stars */
+}
+
+.reviewText {
+  margin-top: 10px;
+  color: white;
+}
+
+.otherButtonsContainer {
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+  gap: 8px;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.backButton2 {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-left: 20px;
+  background-color: white;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  color: rgb(18, 57, 93);
+  text-shadow: 0 2px 2px rgb(117, 163, 205);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 25px 30px;
+  width: 100%;
+  background-color: white;
+}
+
+.mapButton {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 20px;
+  background-color: white;
+  margin-right: 93%;
+  margin-top: 2.5%;
 }

@@ -6,9 +6,11 @@ import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/dorms/[name]/[room]/review";
 import Rooms from "../pages/dorms/[name]/[...room]";
+import Profile from "../pages/profile";
 
 jest.mock("next-auth/react", () => ({
   useSession: jest.fn(),
+  signOut: jest.fn(),
 }));
 
 // Replace the router with the mock
@@ -27,6 +29,7 @@ mockRouter.useParser(
     "/profile",
     "/review",
     "/rooms",
+    "/login",
   ]),
 );
 
@@ -80,9 +83,6 @@ describe("Review Form", () => {
     userEvent.type(ratingInput, "4");
     userEvent.type(commentTextarea, "Great place to stay!");
 
-    // const mockSubmit = jest.fn();
-    // submitButton.onclick = mockSubmit;
-
     userEvent.click(submitButton);
 
     expect(mockRouter.pathname).toBe("/");
@@ -100,9 +100,7 @@ describe("Review Form", () => {
 
 describe("Rooms Component", () => {
   beforeEach(() => {
-    act(() => {
-      render(<Rooms />);
-    });
+    render(<Rooms />);
   });
 
   test("displays the room image", () => {
@@ -129,4 +127,100 @@ describe("Rooms Component", () => {
     const reviews = screen.getByText(/Reviews/i);
     expect(reviews).toBeInTheDocument();
   });
+});
+
+describe("Profile page", () => {
+  beforeEach(() => {
+    act(() => {
+      render(<Profile />);
+    });
+  });
+
+  test("renders user details correctly when authenticated", async () => {
+    const mockSession = {
+      user: {
+        name: "John Doe",
+        email: "john@example.com",
+      },
+    };
+    useSession.mockReturnValueOnce({
+      data: mockSession,
+      status: "authenticated",
+    });
+
+    render(<Profile />);
+
+    await waitFor(() => {
+      expect(screen.getByText("John Doe")).toBeInTheDocument();
+      expect(screen.getByText("john@example.com")).toBeInTheDocument();
+    });
+  });
+
+  // test("redirects to login page when not authenticated", async () => {
+  //   useSession.mockReturnValueOnce({ data: null, status: "unauthenticated" });
+
+  //   render(<Profile />);
+  //   console.log(mockRouter.pathname);
+
+  //   await waitFor(() => {
+  //     expect(mockRouter.useRouter().push).toHaveBeenCalledWith("/login");
+  //     // expect(mockRouter.pathname).toBe("/login");
+  //   });
+  // });
+
+  // test("signs out the user and redirects to login page", async () => {
+  //   const mockSession = {
+  //     user: {
+  //       name: "John Doe",
+  //       email: "john@example.com",
+  //     },
+  //   };
+  //   useSession.mockReturnValueOnce({ data: mockSession, status: "authenticated" });
+
+  //   render(<Profile />);
+
+  //   const signOutButton = screen.getAllByText("Sign out")[0];
+  //   userEvent.click(signOutButton);
+  //   console.log(signOutButton);
+
+  //   // expect(mockRouter.pathname).toBe("/login");
+
+  //   await waitFor(() => {
+  //     // expect(signOut).toHaveBeenCalled();
+  //     // expect(mockRouter().push).toHaveBeenCalledWith("/login");
+  //     expect(mockRouter.pathname).toBe("/login");
+  //   });
+  // });
+
+  // test("redirects to login page when signing out an authenticated user", async () => {
+  //   useSession.mockReturnValueOnce({
+  //     data: {
+  //       user: {
+  //         name: "John Doe",
+  //         email: "john.doe@example.com",
+  //       },
+  //     },
+  //     status: "authenticated",
+  //   });
+
+  //   render(<Profile />);
+
+  //   const signOutButton = screen.getAllByText("Sign out")[0];
+
+  //   // await waitFor(() => {
+  //   //   userEvent.click(signOutButton);
+  //   // });
+
+  //   userEvent.click(signOutButton);
+
+  //   // Ensure signOut function is called
+  //   expect(signOut).toHaveBeenCalled();
+
+  //   // Simulate the successful sign-out
+  //   signOut.mockResolvedValueOnce({ url: "/login" });
+
+  //   await waitFor(() => {
+  //     expect(mockRouter.push).toHaveBeenCalledWith("/login");
+  //   });
+  // });
 });

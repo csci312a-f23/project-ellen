@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -8,7 +9,7 @@ exports.up = function (knex) {
     table.string("userId");
     table.string("roomId");
     table.text("dormReview");
-    table.text("dormRating");
+    table.integer("dormRating");
   });
 };
 

@@ -1,6 +1,6 @@
 import { Model } from "objection";
 import BaseModel from "./BaseModels";
-import Review from "./Review";
+import Reviews from "./Reviews";
 
 export default class Room extends BaseModel {
   // Table name is the only required property.
@@ -16,9 +16,11 @@ export default class Room extends BaseModel {
       required: ["id"],
       properties: {
         id: { type: "integer" },
-        type: { type: "string" },
+        dorm: { type: "string" },
+        dormReview: { type: "string" },
+        dormRating: { type: "integer" },
         beds: { type: "integer" },
-        dimensions: { type: "integer" },
+        dormDimensions: { type: "string" },
       },
     };
   }
@@ -27,22 +29,10 @@ export default class Room extends BaseModel {
     return {
       reviews: {
         relation: Model.HasManyRelation,
-        modelClass: Review,
+        modelClass: Reviews,
         join: {
           from: "Room.id",
-          to: "Review.roomId",
-        },
-      },
-      related: {
-        relation: Model.HasManyRelation,
-        modelClass: Room,
-        join: {
-          from: "Room.id",
-          through: {
-            from: "RelatedReview.roomId",
-            to: "RelatedReview.userId",
-          },
-          to: "Room.id",
+          to: "Reviews.roomId",
         },
       },
     };

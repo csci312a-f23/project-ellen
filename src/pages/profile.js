@@ -1,26 +1,36 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-console */
 import Head from "next/head";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
 import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
-import UserIcon from "../../public/images/UserIcon.jpeg";
 
 export default function Profile() {
   const router = useRouter();
   const { data: session, status } = useSession();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  // const [userPhoto, setUserPhoto] = useState(null);
+  const [dorm, setDorm] = useState("");
 
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
+  const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
     "Battell 101",
     "Gifford 221",
     // Add more rooms if needed
   ]);
+  const [newRoom, setNewRoom] = useState("");
   const [preferences, setPreferences] = useState({
     // this sort of setup is just if we want the checked list
     single: false,
@@ -42,9 +52,9 @@ export default function Profile() {
   async function getProfile(userProfile) {
     setName(session.user.name);
     setEmail(session.user.email);
-    // setUserPhoto(UserIcon);
 
     if (!userProfile) {
+      setName("John Smith");
       setRoomsLived(["Battell 101", "Gifford 221"]);
       setPreferences({
         single: false,
@@ -59,18 +69,36 @@ export default function Profile() {
       setFavorites(["Forest 314", "Painter 121"]);
     } else {
       try {
-        const response = await fetch("/api/user", {
-          method: "GET",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
+        const response = await fetch(
+          `/api/userProfile/?id=${session.user.id}`,
+          {
+            method: "GET",
+            headers: new Headers({
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            }),
+          },
+        );
         if (response.ok) {
           const data = await response.json();
-          setRoomsLived(data.roomsLived);
-          setPreferences(data.preferences);
-          setFavorites(data.favorites);
+          setName(data.name);
+
+          setRoomsLived([
+            data.room1 ? data.room1 : "Gifford 101",
+            data.room2 ? data.room2 : "Gifford 102",
+            data.room3 ? data.room3 : "Gifford 103",
+          ]);
+          setPreferences({
+            single: false,
+            double: false,
+            suite: false,
+            quiet: false,
+            freshmen: false,
+            sophomore: false,
+            junior: false,
+            senior: false,
+          });
+          setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -78,15 +106,50 @@ export default function Profile() {
     }
   }
 
+  async function addRoom() {
+    const newRoomInt = parseInt(newRoom, 10);
+    const data = {
+      id: newRoomInt,
+      dorm,
+    };
+
+    try {
+      const response = await fetch("/api/rooms", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log(responseData);
+        // After successfully adding the room, navigate to the review page
+        router.push(`/dorms/${dorm}/${newRoom}/review`);
+      } else {
+        console.error("Failed to add room:", response.status);
+      }
+    } catch (error) {
+      console.error("Error adding room:", error);
+    }
+  }
+
+  const handleAddRoom = () => {
+    addRoom();
+  };
+
   useEffect(() => {
     if (status === "authenticated" && session) {
-      getProfile();
+      getProfile(session.user.email);
     } else if (status === "loading") {
       // do nothing
     } else {
       router.push("/login");
     }
-  }, [session, status, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session, router]);
 
   const handlePreferenceChange = (preferenceName) => {
     // this is for the checked preferences list
@@ -104,9 +167,12 @@ export default function Profile() {
     console.log("Selected Preferences:", selectedPreferences);
   };
 
-  const handleRateRoom = (roomName) => {
-    router.push(`/dorms/Battell/${roomName}/review`);
-    console.log(`Rated room: ${roomName}`);
+  const handleRateRoom = (room) => {
+    const splitRoom = room.split(" ");
+    const rateDorm = splitRoom[0];
+    const roomNumber = splitRoom[1];
+    router.push(`/dorms/${rateDorm}/${roomNumber}/review`);
+    // console.log(`Rated room: ${room}`);
   };
 
   const handleSignOut = async () => {
@@ -125,6 +191,31 @@ export default function Profile() {
     }
   };
 
+  async function handleNewRoom() {
+    console.log(`This is the new room ${newRoom}`);
+    // console.log(`This is the new id ${session.user.id}`);
+
+    const userData = {
+      googleId: session.user.id,
+      roomData: newRoom,
+    };
+
+    if (status === "authenticated" && session) {
+      const response = await fetch(`/api/userProfile/?id=${session.user.id}`, {
+        method: "PUT",
+        body: JSON.stringify(userData),
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+      });
+      if (response.ok) {
+        console.log(response);
+        console.log("Put successful");
+      }
+    }
+  }
+
   return (
     <>
       <Head>
@@ -134,36 +225,35 @@ export default function Profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.body}>
-        <div className={styles.title}>
-          <img
-            className={styles.pantherImage}
-            height={100}
-            width={300}
-            src="/images/panther.png"
-            alt="panther"
-          />
-          <h3>Middlebury Housing</h3>
-        </div>
         <div className={styles.otherButtonsContainer}>
           <Link href="/">
-            <button type="button" className={styles.saveButton}>
-              Back to Home
-            </button>
+            <IconButton aria-label="Back to Home" className={styles.backButton}>
+              <HomeIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+            </IconButton>
           </Link>
-          <button
-            type="button"
-            className={styles.saveButton2}
+          <div className={styles.title}>
+            <img
+              className={styles.pantherImage}
+              height={100}
+              width={300}
+              src="/images/panther.png"
+              alt="panther"
+            />
+            <h3>Middlebury Housing</h3>
+          </div>
+          <Button
+            variant="contained"
+            className={styles.signOutButton}
             onClick={handleSignOut}
           >
             Sign out
-          </button>{" "}
+          </Button>{" "}
         </div>
-
         <div className={styles.container}>
           <div className={styles.leftContainer}>
             <div className={styles.profile}>
-              <Image
-                src={UserIcon}
+              <img
+                src="images/UserIcon.jpeg"
                 alt="User Profile"
                 className={styles.userIcon}
               />
@@ -171,25 +261,72 @@ export default function Profile() {
               <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
+              <input
+                type="text"
+                placeholder="Room"
+                onChange={(text) => setNewRoom(text.target.value)}
+                value={newRoom}
+              />
+              <button
+                type="button"
+                className={styles.saveButton2}
+                onClick={handleNewRoom}
+              >
+                Add room
+              </button>{" "}
               <h2>Rooms I Have Lived In</h2>
               <ul className={styles.roomList}>
                 {roomsLived.map((room, index) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <li key={index} className={styles.roomListItem}>
                     {room}
-                    <button
-                      type="button"
-                      className={styles.saveButton}
+                    <Button
+                      variant="contained"
+                      className={styles.rateButton}
                       onClick={() => handleRateRoom(room)}
                     >
                       Rate
-                    </button>
+                    </Button>
                   </li>
                 ))}
               </ul>
+              <div>
+                <button
+                  type="button"
+                  className="dropdown-btn"
+                  onClick={toggleDropdown}
+                >
+                  Add Room
+                </button>
+
+                {isDropdownVisible && (
+                  <>
+                    <div className="dropdown-content">
+                      <label>
+                        Dorm:
+                        <input
+                          type="text"
+                          value={dorm}
+                          onChange={(e) => setDorm(e.target.value)}
+                        />
+                      </label>
+                      <label>
+                        Room:{" "}
+                        <input
+                          type="number"
+                          value={newRoom}
+                          onChange={(e) => setNewRoom(e.target.value)}
+                        />
+                      </label>
+                    </div>
+                    <button type="button" onClick={handleAddRoom}>
+                      Submit
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
           </div>
-
           <div className={styles.rightContainer}>
             <div className={styles.section2}>
               <div className={styles.h2}>Room Preferences:</div>
@@ -208,15 +345,13 @@ export default function Profile() {
                 ))}
               </ul>
             </div>
-            <div className={styles.saveButtonContainer}>
-              <button
-                type="button"
-                className={styles.saveButton}
-                onClick={handleSavePreferences}
-              >
-                Save
-              </button>
-            </div>
+            <Button
+              variant="contained"
+              className={styles.saveButton}
+              onClick={handleSavePreferences}
+            >
+              Save
+            </Button>
             <div className={styles.favorites}>
               <div className={styles.h2}>Favorites</div>
               <ul className={styles.roomList}>

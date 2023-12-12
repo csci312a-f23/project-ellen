@@ -172,6 +172,7 @@
     "dormDimensions": "184",
     "dormReview": "Spacious common areas for socializing.",
     "dormRating": 4,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -179,6 +180,7 @@
     "dormDimensions": "184",
     "dormReview": "Uncomfortable mattress.",
     "dormRating": 1,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -186,6 +188,7 @@
     "dormDimensions": "184",
     "dormReview": "Convenient laundry facilities.",
     "dormRating": 4,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -193,6 +196,7 @@
     "dormDimensions": "200",
     "dormReview": "Friendly and inclusive community.",
     "dormRating": 5,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -200,6 +204,7 @@
     "dormDimensions": "184",
     "dormReview": "Limited privacy in shared rooms.",
     "dormRating": 3,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -207,6 +212,7 @@
     "dormDimensions": "184",
     "dormReview": "Well-equipped study areas.",
     "dormRating": 4,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -214,6 +220,7 @@
     "dormDimensions": "184",
     "dormReview": "Noisy heating system.",
     "dormRating": 2,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -221,6 +228,7 @@
     "dormDimensions": "184",
     "dormReview": "Clean and well-maintained bathrooms.",
     "dormRating": 5,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -228,6 +236,7 @@
     "dormDimensions": "184",
     "dormReview": "Inconsistent water temperature in showers.",
     "dormRating": 1,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -235,6 +244,7 @@
     "dormDimensions": "170",
     "dormReview": "Close to public transportation.",
     "dormRating": 4,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -242,6 +252,7 @@
     "dormDimensions": "170",
     "dormReview": "Limited natural light in the room.",
     "dormRating": 2,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -249,6 +260,7 @@
     "dormDimensions": "170",
     "dormReview": "Peaceful and quiet environment.",
     "dormRating": 5,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -256,6 +268,7 @@
     "dormDimensions": "170",
     "dormReview": "Good security measures in place.",
     "dormRating": 4,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -263,6 +276,7 @@
     "dormDimensions": "170",
     "dormReview": "Unreliable elevator.",
     "dormRating": 2,
+    "beds": 2,
     "dorm": "Battell"
   },
   {
@@ -277,6 +291,7 @@
     "dormDimensions": "170",
     "dormReview": "Limited social events organized.",
     "dormRating": 3,
+    "beds": 2,
     "dorm": "Battell"
   },
   {

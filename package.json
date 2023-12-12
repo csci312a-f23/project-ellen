@@ -21,6 +21,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.20",
     "ajv-formats": "^2.1.1",
     "db-errors": "^0.2.3",
     "knex": "^3.0.1",

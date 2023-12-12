@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Button from "@mui/material/Button";
 import { authenticated } from "../../../../lib/middleware";
 import styles from "../../../../styles/Review.module.css";
 
@@ -15,8 +17,7 @@ function Review() {
   const { room } = router.query;
 
   const handleRatingChange = (event) => {
-    const newRating = parseInt(event.target.value, 10);
-    setRating(newRating);
+    setRating(Number(event.target.value));
   };
 
   const handleCommentChange = (event) => {
@@ -28,11 +29,11 @@ function Review() {
       try {
         const data = {
           userId: session.user.id.toString(),
-          roomId: room.at(0),
+          roomId: room.split(" ")[0],
           dormReview: comment,
           dormRating: rating,
         };
-        console.log("This the data sent:", data);
+
         const response = await fetch(`/api/review/${room}`, {
           method: "POST",
           body: JSON.stringify(data),
@@ -45,8 +46,7 @@ function Review() {
         if (response.ok) {
           const responseData = await response.json();
           console.log("This is the response data:", responseData);
-        } else {
-          console.log("Server error:", response.status);
+          router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
         }
       } catch (error) {
         console.error("Something went wrong:", error);
@@ -57,7 +57,6 @@ function Review() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     postReview();
-    router.push(`/dorms/${encodeURIComponent(name)}/${room}`);
   };
   const handleCancel = (event) => {
     event.preventDefault();
@@ -83,7 +82,10 @@ function Review() {
         <h3>Middlebury Housing</h3>
       </div>
       <h1 className={styles.header}>Leave a Review!</h1>
-      <h3> Room: {room} </h3>
+      <h3>
+        {" "}
+        {name} {room}{" "}
+      </h3>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div>
           <label>Rating:</label>
@@ -109,20 +111,20 @@ function Review() {
         </div>
 
         <br />
-        <button
-          type="submit"
+        <Button
+          variant="contained"
           className={`${styles.button}`}
           onClick={handleSubmit}
         >
           Submit Review
-        </button>
-        <button
-          type="button"
+        </Button>
+        <Button
+          variant="contained"
           className={`${styles.cancelButton} ${styles.button}`}
           onClick={handleCancel}
         >
           Cancel
-        </button>
+        </Button>
       </form>
     </div>
   );

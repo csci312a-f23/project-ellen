@@ -18,7 +18,6 @@ router
         .throwIfNotFound();
       res.status(200).json(review);
     } catch (error) {
-      console.error("Error inserting review:", error);
       res.status(400).end(`Error with review`);
     }
   });
