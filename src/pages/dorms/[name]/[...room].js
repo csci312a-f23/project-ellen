@@ -187,7 +187,7 @@ export default function Rooms() {
                     {fractionStars > 0 && (
                       <i className="fas fa-star-half-alt is-active" />
                     )}
-                    {/* Add unfilled stars */}
+
                     {Array.from(
                       { length: 5 - wholeStars - (fractionStars > 0 ? 1 : 0) },
                       (_, i) => (
