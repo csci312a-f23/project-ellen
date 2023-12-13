@@ -316,14 +316,16 @@ export default function Profile() {
                   // eslint-disable-next-line react/no-array-index-key
                   <li key={index} className={styles.roomListItem}>
                     {room}
-                    <Button
-                      variant="contained"
-                      className={styles.rateButton}
-                      onClick={() => handleRateRoom(room)}
-                      style={{ textTransform: "none" }}
-                    >
-                      Rate
-                    </Button>
+                    {room !== "" && (
+                      <Button
+                        variant="contained"
+                        className={styles.rateButton}
+                        onClick={() => handleRateRoom(room)}
+                        style={{ textTransform: "none" }}
+                      >
+                        Rate
+                      </Button>
+                    )}
                   </li>
                 ))}
               </ul>

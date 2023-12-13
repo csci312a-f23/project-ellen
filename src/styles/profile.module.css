@@ -178,6 +178,10 @@
   background-color: #bebebe;
 }
 
+.addButton:hover {
+  background-color: #bebebe;
+}
+
 .signOutButton:hover {
   background-color: #bebebe;
 }
