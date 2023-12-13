@@ -14,6 +14,8 @@ function Review() {
   const { room } = router.query;
   const { id } = router.query;
   const { currentReview, currentRating } = router.query;
+  console.log(currentReview);
+  console.log(currentRating);
 
   const [rating, setRating] = useState(currentRating);
   const [comment, setComment] = useState(currentReview);

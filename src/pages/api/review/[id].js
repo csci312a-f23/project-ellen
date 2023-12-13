@@ -21,25 +21,24 @@ router
       res.status(400).end(`Error with review`);
     }
   })
+
   .put(async (req, res) => {
     const { id, dormReview, dormRating } = {
       id: req.body.reviewId,
       dormReview: req.body.dormReview,
-      dormRating: req.body.dormRating,
+      dormRating: Number(req.body.dormRating),
     };
 
     try {
       const review = await Reviews.query()
-        .updateAndFetchById(id, {
-          dormReview,
-          dormRating,
-        })
+        .updateAndFetchById(id, { dormReview, dormRating })
         .throwIfNotFound();
       res.status(200).json(review);
     } catch (error) {
       res.status(400).end(`Error with review`);
     }
   })
+
   .delete(async (req, res) => {
     try {
       const review = await Reviews.query()
