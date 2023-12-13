@@ -17,12 +17,17 @@ import styles from "../../styles/main.module.css";
 
 export default function DormView() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const { name } = router.query;
 
   useEffect(() => {
-    if (!session) {
+    // this fixes the leaflet map bug
+    if (status === "authenticated" && session) {
+      // do nothing
+    } else if (status === "loading") {
+      // do nothing
+    } else {
       router.push("/login");
     }
   }, [session, router]);
