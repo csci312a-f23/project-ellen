@@ -1,46 +1,51 @@
 /* SearchBar.module.css */
 
 .body {
-  font-family: Arial, sans-serif;
+  font-family: "Optima", sans-serif;
   color: white;
 }
 
 .input {
-  background-color: #0074b3;
-  color: white;
+  background-color: #b8d5ff;
+  color: black;
   padding: 6px 10px;
   border-radius: 10px;
   border: none;
+  font-family: "Optima", sans-serif;
 }
 
 .input::placeholder {
-  color: #ffffff;
+  color: black;
+  font-family: "Optima", sans-serif;
 }
 
 .select {
   width: 25%;
-  background-color: #0074b3;
-  color: white;
+  background-color: #b8d5ff;
+  color: black;
   padding: 6px 12px;
   cursor: pointer;
   border-radius: 10px;
   border: none;
+  font-family: "Optima", sans-serif;
+  margin-left: 2px;
 }
 
 .searchButton {
-  background-color: #0074b3;
-  color: white;
+  background-color: #b8d5ff;
+  color: black;
   border: none;
   padding: 6px 12px;
   border-radius: 10px;
   cursor: pointer;
   margin-top: 10px;
   font-size: 14px;
+  font-family: "Optima", sans-serif;
 }
 
 .reviewButton {
   margin-bottom: 5px;
-  background-color: #0074b3;
+  background-color: #b8d5ff;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -58,15 +63,18 @@
   scrollbar-color: blue gray;
   padding-top: 20px;
   margin-top: 20px;
+  font-family: "Optima", sans-serif;
+  cursor: pointer;
 }
 
 .SearchBar-results li {
-  color: white;
-  font-family: Arial, sans-serif;
+  color: black;
+  font-family: "Optima", sans-serif;
+  cursor: pointer;
   display: flex;
   align-items: flex-start;
   padding-left: 2px;
   list-style: none;
   padding: 8px;
-  border-bottom: 1px solid rgb(55, 83, 140); /* Optional: add a separator between items */
+  border-bottom: 1px solid #b8d5ff; /* Optional: add a separator between items */
 }

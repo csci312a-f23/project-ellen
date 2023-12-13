@@ -125,11 +125,8 @@ export default function Rooms() {
       <main className={styles.body}>
         <div className={styles.otherButtonsContainer}>
           <Link href="/">
-            <IconButton
-              aria-label="Back to Home"
-              className={styles.backButton2}
-            >
-              <HomeIcon style={{ fontSize: "2rem", color: "#0074b3" }} />
+            <IconButton aria-label="Back to Home" className={styles.homeButton}>
+              <HomeIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
             </IconButton>
           </Link>
           <div className={styles.title}>
@@ -153,21 +150,24 @@ export default function Rooms() {
             </Button>
           </Link>
         </div>
-        <section className={styles.container}>
+        <div className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.stuff}>
-              <DormSearchBar name={name} />
-            </article>
+            <div className={styles.leftContainer}>
+              <article className={styles.stuff}>
+                <DormSearchBar name={name} />
+              </article>
+            </div>
           </div>
+
           <div className={styles.rightHalf}>
-            <section className={styles.reviewsContainer}>
+            <div className={styles.rightContainer}>
               <div className={styles.topLeft}>
                 <IconButton
                   aria-label="Back to Map"
                   className={styles.mapButton}
                   onClick={() => handleClick("back")}
                 >
-                  <MapIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+                  <MapIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
                 </IconButton>
                 <div className={styles.h3}>{dormName}</div>
                 <div className={styles.h2}> Room : {dormNumber} </div>
@@ -197,23 +197,28 @@ export default function Rooms() {
                 <Button
                   variant="contained"
                   onClick={() => handleAddReview(room)}
-                  className={styles.backButton1}
+                  className={styles.reviewButton}
+                  style={{ color: "black", textTransform: "none" }}
                 >
                   Add Review
                 </Button>
               </div>
+
               <div className={styles.topRight}>
                 <div className={styles.imageContainer}>
                   <img
                     src="/images/battell.png"
                     alt="Room Photo"
-                    width={605}
-                    height={403}
+                    width={487}
+                    height={325}
                   />
                 </div>
               </div>
-              <div className={styles.bottomRow}>
+              <div className={styles.reviewsRow}>
                 <div className={styles.h4}> Reviews </div>
+              </div>
+
+              <div className={styles.bottomRow}>
                 <ul className={styles.reviewList}>
                   {dormReview.map((review) => (
                     <li key={review.id} className={styles.reviewItem}>
@@ -230,9 +235,9 @@ export default function Rooms() {
                   ))}
                 </ul>
               </div>
-            </section>
+            </div>
           </div>
-        </section>
+        </div>
       </main>
     </>
   );

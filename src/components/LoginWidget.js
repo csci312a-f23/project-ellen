@@ -2,6 +2,7 @@ import Button from "@mui/material/Button";
 import GoogleIcon from "@mui/icons-material/Google";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import styles from "../styles/login.module.css";
 
 export default function LoginWidget() {
   const router = useRouter();
@@ -19,9 +20,17 @@ export default function LoginWidget() {
   return (
     <Button
       variant="contained"
-      startIcon={<GoogleIcon />}
+      startIcon={<GoogleIcon style={{ fontSize: "2rem" }} />}
       color="primary"
       onClick={handleSignIn}
+      className={styles.button}
+      style={{
+        textTransform: "none",
+        fontFamily: "Optima, sans-serif",
+        backgroundColor: "#B8D5FF",
+        color: "black",
+        hover: "#bebebe",
+      }}
     >
       Sign in with Google
     </Button>

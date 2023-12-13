@@ -27,7 +27,7 @@ export default function Profile() {
 
   const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
-    "Battell 101",
+    "Battell 101   ", // three spaces
     "Gifford 221",
     // Add more rooms if needed
   ]);
@@ -188,7 +188,7 @@ export default function Profile() {
         <div className={styles.otherButtonsContainer}>
           <Link href="/">
             <IconButton aria-label="Back to Home" className={styles.backButton}>
-              <HomeIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+              <HomeIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
             </IconButton>
           </Link>
           <div className={styles.title}>
@@ -205,6 +205,7 @@ export default function Profile() {
             variant="contained"
             className={styles.signOutButton}
             onClick={handleSignOut}
+            style={{ textTransform: "none" }}
           >
             Sign out
           </Button>{" "}
@@ -231,6 +232,7 @@ export default function Profile() {
                       variant="contained"
                       className={styles.rateButton}
                       onClick={() => handleRateRoom(room)}
+                      style={{ textTransform: "none" }}
                     >
                       Rate
                     </Button>
@@ -240,7 +242,7 @@ export default function Profile() {
               <div>
                 <button
                   type="button"
-                  className="dropdown-btn"
+                  className={styles.dropdownBtn}
                   onClick={toggleDropdown}
                 >
                   Add Room
@@ -255,6 +257,12 @@ export default function Profile() {
                           type="text"
                           value={dorm}
                           onChange={(e) => setDorm(e.target.value)}
+                          style={{
+                            borderRadius: "5px",
+                            padding: "2px 10px",
+                            fontFamily: "Optima, sans-serif",
+                            margin: "5px",
+                          }}
                         />
                       </label>
                       <label>
@@ -263,10 +271,20 @@ export default function Profile() {
                           type="number"
                           value={newRoom}
                           onChange={(e) => setNewRoom(e.target.value)}
+                          style={{
+                            borderRadius: "5px",
+                            padding: "2px 10px",
+                            fontFamily: "Optima, sans-serif",
+                            margin: "5px",
+                          }}
                         />
                       </label>
                     </div>
-                    <button type="button" onClick={handleAddRoom}>
+                    <button
+                      type="button"
+                      onClick={handleAddRoom}
+                      className={styles.saveButton}
+                    >
                       Submit
                     </button>
                   </>
@@ -296,6 +314,7 @@ export default function Profile() {
               variant="contained"
               className={styles.saveButton}
               onClick={handleSavePreferences}
+              style={{ textTransform: "none" }}
             >
               Save
             </Button>

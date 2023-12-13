@@ -206,7 +206,7 @@ function DormMaps({ selectedDorm }) {
 
   return (
     <div>
-      <h1 className={styles.dormTitle}>{selectedDorm}</h1>
+      <div className={styles.dormTitle}>{selectedDorm}</div>
       {Object.entries(selectedDormImages).map(([floorName, imagePath]) => (
         <div key={floorName}>
           <h4 className={styles.floorTitle}>
