@@ -43,9 +43,13 @@
   font-family: "Optima", sans-serif;
 }
 
+.searchButton:hover {
+  background-color: #bebebe;
+}
+
 .reviewButton {
   margin-bottom: 5px;
-  background-color: #b8d5ff;
+  background-color: #0074b3;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -63,18 +67,17 @@
   scrollbar-color: blue gray;
   padding-top: 20px;
   margin-top: 20px;
-  font-family: "Optima", sans-serif;
   cursor: pointer;
 }
 
 .SearchBar-results li {
   color: black;
   font-family: "Optima", sans-serif;
-  cursor: pointer;
   display: flex;
   align-items: flex-start;
   padding-left: 2px;
   list-style: none;
   padding: 8px;
+  cursor: pointer;
   border-bottom: 1px solid #b8d5ff; /* Optional: add a separator between items */
 }

@@ -8,6 +8,9 @@ import LeafletMap from "@/components/LeafletMap";
 
 import Link from "next/link"; // Import the Link component
 import SearchBar from "@/components/MainSearchBar";
+import Button from "@mui/material/Button";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 import styles from "../styles/main.module.css";
 
 export default function Home() {
@@ -33,16 +36,14 @@ export default function Home() {
 
       <main className={styles.body}>
         <Link href="/profile">
-          <button type="button" className={styles.profileButton}>
-            <img
-              src="/images/UserIcon.jpeg"
-              alt="User Profile"
-              width={20}
-              height={20}
-              className={styles.userIcon}
-            />
+          <Button
+            variant="contained"
+            startIcon={<AccountCircleIcon style={{ fontSize: "1.5rem" }} />}
+            className={styles.profileButton}
+            style={{ textTransform: "none" }}
+          >
             My Profile
-          </button>
+          </Button>
         </Link>
         <div className={styles.h1}>
           <img
@@ -56,15 +57,16 @@ export default function Home() {
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.h2}>
-              <h2>Find A Dorm</h2>
-            </article>
-            <article className={styles.stuff}>
-              <SearchBar />
-            </article>
+            <div className={styles.leftContainer}>
+              <article className={styles.stuff}>
+                <SearchBar />
+              </article>
+            </div>
           </div>
           <div className={styles.rightHalf}>
-            <LeafletMap />
+            <div className={styles.mainRightContainer}>
+              <LeafletMap />
+            </div>
           </div>
         </section>
       </main>

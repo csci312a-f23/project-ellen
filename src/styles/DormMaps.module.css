@@ -1,8 +1,9 @@
 .dormTitle {
-  color: white;
+  color: black;
   text-align: center;
   padding-top: 4rem;
   font-size: 60px;
+  font-family: "Optima", sans-serif;
 }
 
 .floorTitle {
@@ -14,5 +15,23 @@
 .dormImage {
   display: block;
   margin: auto;
-  padding: 4rem 0;
+  z-index: 1;
+  margin-bottom: 5rem;
+}
+
+.popup {
+  position: fixed;
+  background-color: #b8d5ff; /* Background color */
+  border: 1px solid #ccc; /* Border color */
+  padding: 10px; /* Padding around content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle lift */
+  z-index: 10; /* Ensure the popup appears above the image */
+  font-size: 14px; /* Adjust font size */
+  color: rgb(55, 83, 140);
+  border-radius: 4px; /* Optional: Rounded corners */
+  max-width: 150px; /* Optional: Set a maximum width */
+  height: 7%;
+  top: 60%; /* Adjust the top position as needed */
+  left: 30%; /* Adjust the left position as needed */
+  transform: translateX(-50%);
 }

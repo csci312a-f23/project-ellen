@@ -1,0 +1,56 @@
+{
+  "freshmanDorms": [
+    "Battell",
+    "Allen",
+    "Hepburn",
+    "Stewart",
+    "Forest(Feb Area)"
+  ],
+  "sophomoreDorms": ["Gifford", "Hadley", "Milliken", "Coffrin", "Pearsons"],
+  "upperclassDorms": [
+    "LaForce",
+    "Lang",
+    "Kelly",
+    "Painter",
+    "Atwater",
+    "Munford",
+    "Chrome",
+    "Forest",
+    "Voter",
+    "Star",
+    "Ridgeline"
+  ],
+  "langHouses": [
+    "German House - The Deanery",
+    "Arabic House - Sperry House",
+    "Spanish House - Perkins",
+    "Italian House - Longwell"
+  ],
+  "dorms": [
+    "Battell",
+    "Allen",
+    "Hepburn",
+    "Stewart",
+    "Forest(Feb Area)",
+    "Gifford",
+    "Hadley",
+    "Milliken",
+    "Coffrin",
+    "Pearsons",
+    "LaForce",
+    "Lang",
+    "Kelly",
+    "Painter",
+    "Atwater",
+    "Munford",
+    "Chrome",
+    "Forest",
+    "Voter",
+    "Star",
+    "Ridgeline",
+    "German House - The Deanery",
+    "Arabic House - Sperry House",
+    "Spanish House - Perkins",
+    "Italian House - Longwell"
+  ]
+}

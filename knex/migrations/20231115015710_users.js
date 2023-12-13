@@ -9,6 +9,9 @@ exports.up = function (knex) {
     table.string("googleId");
     table.string("name");
     table.text("email");
+    table.string("room1");
+    table.string("room2");
+    table.string("room3");
   });
 };
 

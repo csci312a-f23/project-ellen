@@ -108,3 +108,18 @@
   justify-content: center; /* Horizontal centering */
   align-items: center; /* Vertical centering */
 }
+
+.backButton {
+  background-color: #0074b3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.backButton:hover {
+  background-color: #005a99;
+}

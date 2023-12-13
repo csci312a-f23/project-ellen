@@ -43,7 +43,7 @@ const LeafletMap = () => {
     <div
       id="mapid"
       ref={mapContainerRef}
-      style={{ height: "850px", width: "1000px" }}
+      style={{ height: "610px", width: "1015px" }}
     />
   );
 };

@@ -3,13 +3,28 @@
 /* pick a background color */
 
 .body {
-  font-family: Arial, sans-serif;
+  font-family: "Optima", sans-serif;
+  background-color: rgb(18, 57, 93);
+  color: white;
+  min-height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   padding: 20px;
 }
 
-.profile {
-  display: flex;
-  align-items: center;
+.leftContainer,
+.rightContainer {
+  border: 2px solid #0074b3;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  /* background-color: rgb(245, 245, 220); */
+  background-color: rgb(255, 255, 255);
+  color: black;
 }
 
 .userIcon {
@@ -18,39 +33,159 @@
   border-radius: 50%;
   object-fit: cover;
   margin-right: 20px;
+  /* padding-bottom: 15px; */
+  border: 3px solid black;
 }
 
 .h1 {
   font-size: 24px;
   font-weight: bold;
+  margin-top: 15px;
 }
 
-.section {
-  margin-top: 20px;
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-family: "Optima", sans-serif;
+  text-align: center;
+  color: rgb(18, 57, 93);
+  text-shadow: 0 2px 2px rgb(117, 163, 205);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 25px 30px;
+  width: 100%;
+  background-color: white;
+}
+
+.h3 {
+  font-size: 3rem;
+  padding-bottom: 1.25rem;
+  padding-top: 1.75rem;
+  font-family: Arial, Times, serif;
+  text-align: center;
+  color: white;
+}
+
+.pantherImage {
+  display: block;
+  margin: 0;
+  padding: 0rem;
+}
+
+.profile,
+.section1,
+.section2,
+.favorites {
+  margin: 0;
+  padding: 10px;
+}
+
+.section1 {
+  padding-top: 100px;
 }
 
 .h2 {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
-  margin-top: 5px;
+  /* margin-top: 30px; */
+  margin-bottom: 15px;
 }
 
 .roomList {
-  list-style: disc;
-  padding-left: 20px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.otherButtonsContainer {
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+  gap: 8px;
+  justify-content: space-between;
+  background-color: white;
 }
 
 .saveButton {
-  background-color: #0074b3;
-  color: white;
   border: none;
   padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
   font-size: 14px;
+  background-color: #b8d5ff;
+  height: 25px;
+  width: 80px;
+  color: black;
+  font-family: "Optima", sans-serif;
+  margin: 5px;
+}
+
+.rateButton {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-left: 20px;
+  height: 25px;
+  width: 80px;
+  color: black;
+  background-color: #b8d5ff;
+  font-family: "Optima", sans-serif;
+}
+
+.backButton {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+.signOutButton {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  right: 10px; /* Adjust the right position as needed */
+  background-color: #b8d5ff;
+  color: black;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 30px;
+  width: 100px;
+  font-family: "Optima", sans-serif;
+}
+
+.addButton {
+  background-color: #b8d5ff;
+  border-radius: 5px;
+  color: black;
+  border: none;
+  padding: 6px 12px;
+  font-family: "Optima", sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.rateButton:hover {
+  background-color: #bebebe;
+}
+
+.signOutButton:hover {
+  background-color: #bebebe;
 }
 
 .saveButton:hover {
-  background-color: #005a99;
+  background-color: #bebebe;
+}
+
+.dropdownBtn:hover {
+  background-color: #bebebe;
 }
