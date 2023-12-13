@@ -7,7 +7,7 @@
 
   background-color: rgb(18, 57, 93);
   color: white;
-  font-family: sans-serif;
+  font-family: "Optima", sans-serif;
   font-size: 1.25rem;
   height: 54rem;
 }
@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Optima", sans-serif;
   text-align: center;
   color: rgb(18, 57, 93);
   text-shadow: 0 2px 2px rgb(117, 163, 205);
@@ -34,9 +34,9 @@
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Optima", sans-serif;
   text-align: center;
-  color: rgb(18, 57, 93);
+  color: black;
   text-shadow: 0 2px 2px rgb(117, 163, 205);
   border-color: #a0a1a1;
   background-size: cover;
@@ -46,11 +46,9 @@
 
 .h3 {
   font-size: 3rem;
-  padding-bottom: 1.25rem;
-  padding-top: 1.75rem;
-  font-family: Arial, Times, serif;
+  font-family: "Optima", sans-serif;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 .pantherImage {
@@ -92,6 +90,7 @@
 .comment {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+  width: 59%;
 }
 
 .cancelButton {
@@ -101,16 +100,28 @@
   padding: 15px;
 }
 
-/* button {
-  background-color: #007bff; 
-  color: white;
+.button {
+  background-color: #b8d5ff;
+  color: black;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
   font-size: 1rem;
   margin-top: 10px;
+  font-family: "Optima", sans-serif;
 }
 
-button:hover {
-  background-color: #0056b3; 
-} */
+.button:hover {
+  background-color: #bebebe;
+}
+
+.container {
+  border: 2px solid #0074b3;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  /* background-color: rgb(245, 245, 220); */
+  background-color: rgb(255, 255, 255);
+  color: black;
+  width: 50%;
+}

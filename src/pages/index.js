@@ -57,12 +57,16 @@ export default function Home() {
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.stuff}>
-              <SearchBar />
-            </article>
+            <div className={styles.leftContainer}>
+              <article className={styles.stuff}>
+                <SearchBar />
+              </article>
+            </div>
           </div>
           <div className={styles.rightHalf}>
-            <LeafletMap />
+            <div className={styles.mainRightContainer}>
+              <LeafletMap />
+            </div>
           </div>
         </section>
       </main>

@@ -3,7 +3,7 @@
 /* pick a background color */
 
 .body {
-  font-family: Arial, sans-serif;
+  font-family: "Optima", sans-serif;
   background-color: rgb(18, 57, 93);
   color: white;
   min-height: 100vh;
@@ -48,7 +48,7 @@
   align-items: center;
   justify-content: center;
   font-size: 4rem;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Optima", sans-serif;
   text-align: center;
   color: rgb(18, 57, 93);
   text-shadow: 0 2px 2px rgb(117, 163, 205);
@@ -93,24 +93,9 @@
   margin-bottom: 15px;
 }
 
-.h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color: black;
-  margin-top: 10px;
-  margin-bottom: 15px;
-}
-
-.reviewText {
-  font-size: 16px;
-  /* margin-top: 30px; */
-  margin-bottom: 10px;
-}
-
 .roomList {
   list-style: none;
   padding-left: 0;
-  padding-bottom: 0.5;
 }
 
 .otherButtonsContainer {
@@ -128,9 +113,12 @@
   cursor: pointer;
   margin-top: 10px;
   font-size: 14px;
-  background-color: grey;
+  background-color: #b8d5ff;
   height: 25px;
   width: 80px;
+  color: black;
+  font-family: "Optima", sans-serif;
+  margin: 5px;
 }
 
 .rateButton {
@@ -143,7 +131,9 @@
   margin-left: 20px;
   height: 25px;
   width: 80px;
-  background-color: grey;
+  color: black;
+  background-color: #b8d5ff;
+  font-family: "Optima", sans-serif;
 }
 
 .backButton {
@@ -160,8 +150,8 @@
   position: absolute;
   top: 10px; /* Adjust the top position as needed */
   right: 10px; /* Adjust the right position as needed */
-  background-color: #0074b3;
-  color: white;
+  background-color: #b8d5ff;
+  color: black;
   border: none;
   padding: 6px 12px;
   border-radius: 5px;
@@ -169,30 +159,33 @@
   font-size: 14px;
   height: 30px;
   width: 100px;
+  font-family: "Optima", sans-serif;
+}
+
+.addButton {
+  background-color: #b8d5ff;
+  border-radius: 5px;
+  color: black;
+  border: none;
+  padding: 6px 12px;
+  font-family: "Optima", sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.rateButton:hover {
+  background-color: #bebebe;
+}
+
+.signOutButton:hover {
+  background-color: #bebebe;
 }
 
 .saveButton:hover {
-  background-color: #005a99;
+  background-color: #bebebe;
 }
 
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  color: black;
-}
-
-.popup-content {
-  text-align: center;
-}
-
-.popup button {
-  margin-top: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
+.dropdownBtn:hover {
+  background-color: #bebebe;
 }

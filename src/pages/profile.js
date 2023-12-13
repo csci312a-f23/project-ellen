@@ -263,7 +263,7 @@ export default function Profile() {
         <div className={styles.otherButtonsContainer}>
           <Link href="/">
             <IconButton aria-label="Back to Home" className={styles.backButton}>
-              <HomeIcon style={{ fontSize: "2rem", color: "0074b3" }} />
+              <HomeIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
             </IconButton>
           </Link>
           <div className={styles.title}>
@@ -280,6 +280,7 @@ export default function Profile() {
             variant="contained"
             className={styles.signOutButton}
             onClick={handleSignOut}
+            style={{ textTransform: "none" }}
           >
             Sign out
           </Button>{" "}
@@ -304,7 +305,7 @@ export default function Profile() {
               />
               <button
                 type="button"
-                className={styles.saveButton2}
+                className={styles.addButton}
                 onClick={handleNewRoom}
               >
                 Add room
@@ -319,6 +320,7 @@ export default function Profile() {
                       variant="contained"
                       className={styles.rateButton}
                       onClick={() => handleRateRoom(room)}
+                      style={{ textTransform: "none" }}
                     >
                       Rate
                     </Button>
@@ -382,6 +384,7 @@ export default function Profile() {
               variant="contained"
               className={styles.saveButton}
               onClick={handleSavePreferences}
+              style={{ textTransform: "none" }}
             >
               Save
             </Button>

@@ -40,11 +40,8 @@ export default function DormView() {
       <main className={styles.body}>
         <div className={styles.otherButtonsContainer}>
           <Link href="/">
-            <IconButton
-              aria-label="Back to Home"
-              className={styles.backButton2}
-            >
-              <HomeIcon style={{ fontSize: "2rem", color: "#0074b3" }} />
+            <IconButton aria-label="Back to Home" className={styles.homeButton}>
+              <HomeIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
             </IconButton>
           </Link>
           <div className={styles.title}>
@@ -70,12 +67,18 @@ export default function DormView() {
         </div>
         <section className={styles.container}>
           <div className={styles.leftHalf}>
-            <article className={styles.stuff}>
-              <DormSearchBar name={name} />
-            </article>
+            <div className={styles.leftContainer}>
+              <article className={styles.stuff}>
+                <DormSearchBar name={name} />
+              </article>
+            </div>
           </div>
           <div className={styles.rightHalf}>
-            <DormMaps selectedDorm={name} />
+            <div className={styles.mainRightContainer}>
+              <div className={styles.mapRow}>
+                <DormMaps selectedDorm={name} />
+              </div>
+            </div>
           </div>
         </section>
       </main>
