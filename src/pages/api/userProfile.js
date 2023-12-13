@@ -1,4 +1,5 @@
 import { createRouter } from "next-connect";
+import { authenticated } from "../../lib/middleware";
 import User from "../../../models/User";
 
 const router = createRouter();
@@ -13,19 +14,40 @@ router
     res.status(200).json(userProfile);
   })
 
-  .put(async (req, res) => {
-    const { id, ...updatedRoom } = req.body;
-    // req.query.id is a string, and so needs to be converted to an integer before comparison
-    if (id !== parseInt(req.query.id, 10)) {
-      // Verify id in the url, e.g, /api/rooms/10, matches the id the request body
-      res.status(400).end(`URL and object does not match`);
-      return;
+  .put(authenticated, async (req, res) => {
+    const { id, id2, roomData } = {
+      id: req.user.googleId,
+      id2: req.user.id,
+      ...req.body,
+    };
+    if (!id) {
+      res.status(401).json({ error: "Unauthorized" });
     }
 
-    const room = await User.query()
-      .updateAndFetchById(req.query.id, updatedRoom)
-      .throwIfNotFound();
-    res.status(200).json(room);
+    const existingData = await User.query().findById(id2);
+    res.status(200).json(existingData);
+
+    // If room1 is empty
+    if (!existingData.room1) {
+      await User.query().updateAndFetchById(id2, {
+        googleId: String(id),
+        room1: roomData,
+      });
+    } else if (!existingData.room2) {
+      // Else if room2 is empty
+      await User.query().updateAndFetchById(id2, {
+        googleId: String(id),
+        room2: roomData,
+      });
+    } else if (!existingData.room3) {
+      // Else if room3 is empty
+      await User.query().updateAndFetchById(id2, {
+        googleId: String(id),
+        room3: roomData,
+      });
+    } else {
+      res.status(400).end(`All rooms are occupied`);
+    }
   });
 
 export default router.handler();

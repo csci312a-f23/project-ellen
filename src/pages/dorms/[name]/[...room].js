@@ -21,7 +21,6 @@ export default function Rooms() {
   const [dormRating, setDormRating] = useState([]);
   const [beds, setBeds] = useState(null);
   const [dormNumber, setDormNumber] = useState(null);
-  const [type, setType] = useState(null); // only because I'm don't feel like adding to add type (single, double, etc,) to the database
 
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -32,12 +31,15 @@ export default function Rooms() {
 
   function getType() {
     if (beds === 1) {
-      setType("Single");
-    } else if (beds === 2) {
-      setType("Double");
-    } else if (beds === 3) {
-      setType("Triple");
+      return "Single";
     }
+    if (beds === 2) {
+      return "Double ";
+    }
+    if (beds === 3) {
+      return "Triple";
+    }
+    return "N/A";
   }
 
   async function getRoom(currentRoomNumber) {
@@ -77,7 +79,7 @@ export default function Rooms() {
 
   useEffect(() => {
     getRoom(normRoom);
-    getType();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [normRoom]);
 
@@ -171,7 +173,7 @@ export default function Rooms() {
                 </IconButton>
                 <div className={styles.h3}>{dormName}</div>
                 <div className={styles.h2}> Room : {dormNumber} </div>
-                <div className={styles.h2}> Type : {type} </div>
+                <div className={styles.h2}> Type : {getType(beds)} </div>
                 <div className={styles.h2}>
                   {" "}
                   Dimensions : {dormDimensions} sq ft{" "}
@@ -185,7 +187,7 @@ export default function Rooms() {
                     {fractionStars > 0 && (
                       <i className="fas fa-star-half-alt is-active" />
                     )}
-                    {/* Add unfilled stars */}
+
                     {Array.from(
                       { length: 5 - wholeStars - (fractionStars > 0 ? 1 : 0) },
                       (_, i) => (

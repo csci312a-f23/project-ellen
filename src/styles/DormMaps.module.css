@@ -15,8 +15,8 @@
 .dormImage {
   display: block;
   margin: auto;
-  /* padding: 4rem 0; */
   z-index: 1;
+  margin-bottom: 5rem;
 }
 
 .popup {

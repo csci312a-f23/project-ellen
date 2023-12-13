@@ -24,7 +24,6 @@ function DormSearchBar({ name }) {
           "Content-Type": "application/json",
         },
       });
-
       if (response.ok) {
         const data = await response.json();
         setDorms(data);
@@ -63,14 +62,6 @@ function DormSearchBar({ name }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dorms]);
 
-  const handleRoomView = (roomNumber) => {
-    try {
-      router.push(`/dorms/${name}/${roomNumber}`);
-    } catch (error) {
-      console.error("Failed to navigate:", error);
-    }
-  };
-
   const handleOnClick = () => {
     const type = parseInt(roomType, 10);
 
@@ -82,6 +73,18 @@ function DormSearchBar({ name }) {
       )
       .map((room) => room.id);
     setResults(filteredRoomList);
+  };
+
+  useEffect(() => {
+    // handleOnClick();
+  }, [roomType, searchTerm]);
+
+  const handleRoomView = (roomNumber) => {
+    try {
+      router.push(`/dorms/${name}/${roomNumber}`);
+    } catch (error) {
+      console.error("Failed to navigate:", error);
+    }
   };
 
   return (
@@ -114,7 +117,10 @@ function DormSearchBar({ name }) {
         </button>
       </div>
       <div className="SearchBar-results">
-        <ul className={styles["SearchBar-results"]}>
+        <ul
+          className={styles["SearchBar-results"]}
+          aria-label="SearchBar-results"
+        >
           {results &&
             results.map((room) => (
               <li key={room} onClick={() => handleRoomView(room)}>
@@ -130,5 +136,8 @@ function DormSearchBar({ name }) {
 export default DormSearchBar;
 
 DormSearchBar.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
 };

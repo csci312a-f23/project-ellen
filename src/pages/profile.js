@@ -16,21 +16,15 @@ export default function Profile() {
   const router = useRouter();
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
-  const [dorm, setDorm] = useState("");
-  const [newRoom, setNewRoom] = useState(null);
-
-  const [isDropdownVisible, setDropdownVisible] = useState(false);
-
-  const toggleDropdown = () => {
-    setDropdownVisible(!isDropdownVisible);
-  };
+  const [dormReview, setDormReview] = useState([]);
 
   const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([
-    "Battell 101   ", // three spaces
+    "Battell 101",
     "Gifford 221",
     // Add more rooms if needed
   ]);
+  const [newRoom, setNewRoom] = useState("");
   const [preferences, setPreferences] = useState({
     // this sort of setup is just if we want the checked list
     single: false,
@@ -82,6 +76,23 @@ export default function Profile() {
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
+
+          setRoomsLived([
+            data.room1 ? data.room1 : "",
+            data.room2 ? data.room2 : "",
+            data.room3 ? data.room3 : "",
+          ]);
+          setPreferences({
+            single: false,
+            double: false,
+            suite: false,
+            quiet: false,
+            freshmen: false,
+            sophomore: false,
+            junior: false,
+            senior: false,
+          });
+          setFavorites(["Forest 314", "Painter 121"]);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -89,52 +100,80 @@ export default function Profile() {
     }
   }
 
-  async function addRoom() {
-    const newRoomInt = parseInt(newRoom, 10);
-    const data = {
-      id: newRoomInt,
-      dorm,
-    };
-
-    try {
-      const response = await fetch("/api/rooms", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log(responseData);
-        // After successfully adding the room, navigate to the review page
-        router.push(`/dorms/${dorm}/${newRoom}/review`);
-      } else {
-        console.error("Failed to add room:", response.status);
+  async function getReviews(userProfile) {
+    if (userProfile) {
+      try {
+        const response = await fetch(`/api/review/?userId=${session.user.id}`, {
+          method: "GET",
+          headers: new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setDormReview(data);
+        }
+      } catch (error) {
+        console.log("Something went wrong");
       }
-    } catch (error) {
-      console.error("Error adding room:", error);
     }
   }
 
-  const handleAddRoom = () => {
-    addRoom();
-
-    // console.log(`New room: ${dorm} ${newRoom}`);
-  };
+  async function editReview(review) {
+    const reviewId = review.id;
+    router.push({
+      pathname: `dorms/Battell/${review.roomId}/reviews/${reviewId}`,
+      query: {
+        currentRating: review.dormRating,
+        currentReview: review.dormReview,
+      },
+    });
+  }
+  async function deleteReview(review) {
+    if (review) {
+      try {
+        const response = await fetch(`/api/review/?id=${review.id}`, {
+          method: "DELETE",
+          headers: new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }),
+        });
+        if (response.ok) {
+          await response.json();
+          const response2 = await fetch(
+            `/api/review/?userId=${session.user.id}`,
+            {
+              method: "GET",
+              headers: new Headers({
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              }),
+            },
+          );
+          if (response2) {
+            const data2 = await response2.json();
+            setDormReview(data2);
+          }
+        }
+      } catch (error) {
+        console.log("Something went wrong");
+      }
+    }
+  }
 
   useEffect(() => {
     if (status === "authenticated" && session) {
       getProfile(session.user.email);
+      getReviews(session.user.email, roomsLived);
     } else if (status === "loading") {
       // do nothing
     } else {
       router.push("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session, router]);
+  }, [session, router, dormReview]);
 
   const handlePreferenceChange = (preferenceName) => {
     // this is for the checked preferences list
@@ -157,7 +196,6 @@ export default function Profile() {
     const rateDorm = splitRoom[0];
     const roomNumber = splitRoom[1];
     router.push(`/dorms/${rateDorm}/${roomNumber}/review`);
-    // console.log(`Rated room: ${room}`);
   };
 
   const handleSignOut = async () => {
@@ -175,6 +213,43 @@ export default function Profile() {
       console.error("Error signing out:", error);
     }
   };
+
+  const [showRateRoomPopup, setShowRateRoomPopup] = useState(false);
+
+  useEffect(() => {
+    // Check if the user has roomsLived and show the popup if needed
+    setShowRateRoomPopup(true);
+  }, []);
+
+  const handlePopupClose = () => {
+    // Set showRateRoomPopup to false when the user closes the popup
+    setShowRateRoomPopup(false);
+  };
+
+  async function handleNewRoom() {
+    console.log(`This is the new room ${newRoom}`);
+    // console.log(`This is the new id ${session.user.id}`);
+
+    const userData = {
+      googleId: session.user.id,
+      roomData: newRoom,
+    };
+
+    if (status === "authenticated" && session) {
+      const response = await fetch(`/api/userProfile/?id=${session.user.id}`, {
+        method: "PUT",
+        body: JSON.stringify(userData),
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+      });
+      if (response.ok) {
+        console.log(response);
+        console.log("Put successful");
+      }
+    }
+  }
 
   return (
     <>
@@ -222,6 +297,19 @@ export default function Profile() {
               <div className={styles.h1}>{email}</div>
             </div>
             <div className={styles.section1}>
+              <input
+                type="text"
+                placeholder="Room"
+                onChange={(text) => setNewRoom(text.target.value)}
+                value={newRoom}
+              />
+              <button
+                type="button"
+                className={styles.addButton}
+                onClick={handleNewRoom}
+              >
+                Add room
+              </button>{" "}
               <h2>Rooms I Have Lived In</h2>
               <ul className={styles.roomList}>
                 {roomsLived.map((room, index) => (
@@ -239,61 +327,43 @@ export default function Profile() {
                   </li>
                 ))}
               </ul>
-              <div>
-                <button
-                  type="button"
-                  className={styles.dropdownBtn}
-                  onClick={toggleDropdown}
-                >
-                  Add Room
-                </button>
-
-                {isDropdownVisible && (
-                  <>
-                    <div className="dropdown-content">
-                      <label>
-                        Dorm:
-                        <input
-                          type="text"
-                          value={dorm}
-                          onChange={(e) => setDorm(e.target.value)}
-                          style={{
-                            borderRadius: "5px",
-                            padding: "2px 10px",
-                            fontFamily: "Optima, sans-serif",
-                            margin: "5px",
-                          }}
-                        />
-                      </label>
-                      <label>
-                        Room:{" "}
-                        <input
-                          type="number"
-                          value={newRoom}
-                          onChange={(e) => setNewRoom(e.target.value)}
-                          style={{
-                            borderRadius: "5px",
-                            padding: "2px 10px",
-                            fontFamily: "Optima, sans-serif",
-                            margin: "5px",
-                          }}
-                        />
-                      </label>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleAddRoom}
-                      className={styles.saveButton}
-                    >
-                      Submit
-                    </button>
-                  </>
-                )}
-              </div>
             </div>
           </div>
           <div className={styles.rightContainer}>
             <div className={styles.section2}>
+              <div className={styles.h2}>Your Room Reviews:</div>
+              <ul className={styles.reviewList}>
+                {Array.isArray(dormReview) &&
+                  dormReview.map((review) => (
+                    <li key={review.id} className={styles.reviewItem}>
+                      <div className={styles.reviewRating}>
+                        {Array.from(
+                          { length: parseInt(review.dormRating, 10) },
+                          (_, i) => (
+                            <i key={i} className="fas fa-star is-active" />
+                          ),
+                        )}
+                      </div>
+                      <p className={styles.h4}>Battell {review.roomId}</p>
+                      <p className={styles.reviewText}>{review.dormReview}</p>
+                      <Button
+                        variant="contained"
+                        className={styles.saveButton}
+                        onClick={() => editReview(review)}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                        variant="contained"
+                        className={styles.saveButton}
+                        onClick={() => deleteReview(review)}
+                      >
+                        Delete
+                      </Button>
+                    </li>
+                  ))}
+              </ul>
+
               <div className={styles.h2}>Room Preferences:</div>
               <ul className={styles.roomList}>
                 {Object.entries(preferences).map(([preference, checked]) => (
@@ -329,6 +399,21 @@ export default function Profile() {
             </div>
           </div>
         </div>
+
+        {showRateRoomPopup && (
+          <div className={styles.popup}>
+            <div className={styles.popupContent}>
+              <p>Don&apos;t forget to rate a room!</p>
+              <button
+                type="button"
+                className={styles.popupButton}
+                onClick={handlePopupClose}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </main>
     </>
   );

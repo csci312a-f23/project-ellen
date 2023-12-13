@@ -118,6 +118,7 @@
   width: 80px;
   color: black;
   font-family: "Optima", sans-serif;
+  margin: 5px;
 }
 
 .rateButton {
@@ -161,7 +162,7 @@
   font-family: "Optima", sans-serif;
 }
 
-.dropdownBtn {
+.addButton {
   background-color: #b8d5ff;
   border-radius: 5px;
   color: black;
@@ -170,6 +171,7 @@
   font-family: "Optima", sans-serif;
   margin-top: 5px;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 
 .rateButton:hover {

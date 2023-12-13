@@ -3,6 +3,7 @@ import Home from "@/pages/index";
 import { useSession } from "next-auth/react";
 import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
+// import { useRouter } from 'next/router';
 import userEvent from "@testing-library/user-event";
 import Review from "../pages/dorms/[name]/[room]/review";
 import Rooms from "../pages/dorms/[name]/[...room]";
@@ -13,6 +14,8 @@ jest.mock("next-auth/react", () => ({
   signOut: jest.fn(),
 }));
 
+global.fetch = jest.fn();
+
 // Replace the router with the mock
 // eslint-disable-next-line global-require, import/no-extraneous-dependencies
 jest.mock("next/router", () => require("next-router-mock"));
@@ -21,7 +24,7 @@ jest.mock("next/router", () => require("next-router-mock"));
 mockRouter.useParser(
   createDynamicRouteParser([
     // These paths should match those found in the `/pages` folder:
-    // "/dorms/[...names]/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
+    "/dorms/[name]/[...room]", // something wrong with this one, I think it doesn't like the endpoint of [...room]
     "/dorms/[...name]",
     "/app",
     "/document",
@@ -36,7 +39,8 @@ mockRouter.useParser(
 jest.mock("next/router", () => ({
   useRouter() {
     return {
-      query: { room: "100" },
+      // query: { room: "100" },
+      query: { name: "Battell", room: "100" },
       push: jest.fn(),
     };
   },
@@ -53,7 +57,9 @@ afterEach(() => {
 
 describe("End-to-end testing", () => {
   test("Render index.js component", async () => {
-    render(<Home />);
+    await waitFor(() => {
+      render(<Home />);
+    });
   });
 });
 
@@ -98,41 +104,120 @@ describe("Review Form", () => {
   });
 });
 
-describe("Rooms Component", () => {
-  beforeEach(() => {
+// Mock the response data
+const mockRoomsData = {
+  id: 100,
+  dorm: "Battell",
+  type: null,
+  beds: 3,
+  dormDimensions: 298,
+  dormReview: "Comfortable and clean room.",
+  dormRating: 5,
+  reviews: [
+    {
+      id: 1,
+      userId: "298",
+      roomId: "100",
+      dormReview: "Comfortable and clean room.",
+      dormRating: "5",
+    },
+    {
+      id: 138,
+      userId: "1",
+      roomId: "100",
+      dormReview: "testing",
+      dormRating: "1",
+    },
+    {
+      id: 139,
+      userId: "1",
+      roomId: "100",
+      dormReview: "testing",
+      dormRating: "1",
+    },
+    {
+      id: 146,
+      userId: "2",
+      roomId: "100",
+      dormReview: "ASDhioda",
+      dormRating: "5",
+    },
+  ],
+};
+
+describe("Rooms Page", () => {
+  beforeEach(async () => {
+    global.fetch.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(mockRoomsData),
+    });
+
     act(() => {
       render(<Rooms />);
     });
   });
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
 
-  test("displays the room image", () => {
+  test("displays the room image", async () => {
+    await waitFor(() => {
+      const dormsearch = screen.getByText("Search");
+      expect(dormsearch).toBeInTheDocument();
+    });
     const image = screen.getByAltText("Room Photo");
-    expect(image).toBeInTheDocument();
+    await waitFor(() => {
+      expect(image).toBeInTheDocument();
+    });
   });
 
-  test("displays the room dimensions", () => {
-    const dimensions = screen.getByText(/Dimensions/i);
-    expect(dimensions).toBeInTheDocument();
+  test("displays the room dimensions", async () => {
+    await waitFor(() => {
+      const dimensions = screen.getByText(/Dimensions/i);
+      expect(dimensions).toBeInTheDocument();
+    });
   });
 
-  test("displays the room number", () => {
-    const roomNumber = screen.getByText(/Room :/i);
-    expect(roomNumber).toBeInTheDocument();
+  test("displays the room number", async () => {
+    await waitFor(() => {
+      const roomNumber = screen.getByText(/Room :/i);
+      expect(roomNumber).toBeInTheDocument();
+    });
   });
 
-  test("displays the room rating", () => {
+  test("displays the room rating", async () => {
     const rating = screen.getByText(/Rating :/i);
-    expect(rating).toBeInTheDocument();
+    await waitFor(() => {
+      expect(rating).toBeInTheDocument();
+    });
   });
 
-  test("displays the room reviews", () => {
-    const reviews = screen.getByText(/Reviews/i);
-    expect(reviews).toBeInTheDocument();
+  test("displays the room reviews", async () => {
+    await waitFor(() => {
+      const reviews = screen.getByText(/Reviews/i);
+      expect(reviews).toBeInTheDocument();
+    });
   });
 });
 
+const testUserData = {
+  id: 4,
+  name: "Caroline Haggerty",
+  email: "chaggerty@middlebury.edu",
+  room1: null,
+  room2: null,
+  room3: null,
+};
+
 describe("Profile page", () => {
+  // slight console error on this
+
   beforeEach(() => {
+    global.fetch.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(testUserData),
+    });
+
     act(() => {
       render(<Profile />);
     });
@@ -151,80 +236,10 @@ describe("Profile page", () => {
     });
 
     render(<Profile />);
-    // eslint-disable-next-line
-    console.log(mockRouter.pathname);
 
     await waitFor(() => {
       expect(screen.getByText("John Doe")).toBeInTheDocument();
       expect(screen.getByText("john@example.com")).toBeInTheDocument();
     });
   });
-
-  // test("redirects to login page when not authenticated", async () => {
-  //   useSession.mockReturnValueOnce({ data: null, status: "unauthenticated" });
-
-  //   render(<Profile />);
-  //   console.log(mockRouter.pathname);
-
-  //   await waitFor(() => {
-  //     expect(mockRouter.useRouter().push).toHaveBeenCalledWith("/login");
-  //     // expect(mockRouter.pathname).toBe("/login");
-  //   });
-  // });
-
-  // test("signs out the user and redirects to login page", async () => {
-  //   const mockSession = {
-  //     user: {
-  //       name: "John Doe",
-  //       email: "john@example.com",
-  //     },
-  //   };
-  //   useSession.mockReturnValueOnce({ data: mockSession, status: "authenticated" });
-
-  //   render(<Profile />);
-
-  //   const signOutButton = screen.getAllByText("Sign out")[0];
-  //   userEvent.click(signOutButton);
-  //   console.log(signOutButton);
-
-  //   // expect(mockRouter.pathname).toBe("/login");
-
-  //   await waitFor(() => {
-  //     // expect(signOut).toHaveBeenCalled();
-  //     // expect(mockRouter().push).toHaveBeenCalledWith("/login");
-  //     expect(mockRouter.pathname).toBe("/login");
-  //   });
-  // });
-
-  // test("redirects to login page when signing out an authenticated user", async () => {
-  //   useSession.mockReturnValueOnce({
-  //     data: {
-  //       user: {
-  //         name: "John Doe",
-  //         email: "john.doe@example.com",
-  //       },
-  //     },
-  //     status: "authenticated",
-  //   });
-
-  //   render(<Profile />);
-
-  //   const signOutButton = screen.getAllByText("Sign out")[0];
-
-  //   // await waitFor(() => {
-  //   //   userEvent.click(signOutButton);
-  //   // });
-
-  //   userEvent.click(signOutButton);
-
-  //   // Ensure signOut function is called
-  //   expect(signOut).toHaveBeenCalled();
-
-  //   // Simulate the successful sign-out
-  //   signOut.mockResolvedValueOnce({ url: "/login" });
-
-  //   await waitFor(() => {
-  //     expect(mockRouter.push).toHaveBeenCalledWith("/login");
-  //   });
-  // });
 });
