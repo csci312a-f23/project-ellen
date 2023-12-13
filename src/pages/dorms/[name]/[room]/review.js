@@ -81,51 +81,55 @@ function Review() {
         />
         <h3>Middlebury Housing</h3>
       </div>
-      <h1 className={styles.header}>Leave a Review!</h1>
-      <h3>
-        {" "}
-        {name} {room}{" "}
-      </h3>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div>
-          <label>Rating:</label>
-          <input
-            type="number"
-            min="1"
-            max="5"
-            value={rating}
-            onChange={handleRatingChange}
-            className={styles.ratingInp}
-          />
-          <p className={styles.ratingTotal}> / 5</p>
+      <div className={styles.container}>
+        <div className={styles.h1}>Leave a Review!</div>
+        <div className={styles.h3}>
+          {" "}
+          {name} {room}{" "}
         </div>
-        <br />
-        <div className={styles.comment}>
-          <label>Comment:</label>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div>
+            <label>Rating:</label>
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value={rating}
+              onChange={handleRatingChange}
+              className={styles.ratingInp}
+            />
+            <p className={styles.ratingTotal}> / 5</p>
+          </div>
           <br />
-          <textarea
-            className={styles.textarea}
-            value={comment}
-            onChange={handleCommentChange}
-          />
-        </div>
+          <div className={styles.comment}>
+            <label>Comment:</label>
+            <br />
+            <textarea
+              className={styles.textarea}
+              value={comment}
+              onChange={handleCommentChange}
+            />
+          </div>
 
-        <br />
-        <Button
-          variant="contained"
-          className={`${styles.button}`}
-          onClick={handleSubmit}
-        >
-          Submit Review
-        </Button>
-        <Button
-          variant="contained"
-          className={`${styles.cancelButton} ${styles.button}`}
-          onClick={handleCancel}
-        >
-          Cancel
-        </Button>
-      </form>
+          <br />
+          <Button
+            variant="contained"
+            className={`${styles.button}`}
+            onClick={handleSubmit}
+            style={{ textTransform: "none" }}
+          >
+            Submit Review
+          </Button>
+          <Button
+            variant="contained"
+            className={`${styles.cancelButton} ${styles.button}`}
+            onClick={handleCancel}
+            style={{ textTransform: "none" }}
+          >
+            Cancel
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
