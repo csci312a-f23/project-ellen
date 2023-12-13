@@ -17,31 +17,13 @@ export default function Profile() {
   const { data: session, status } = useSession();
   const [email, setEmail] = useState("");
   const [dormReview, setDormReview] = useState([]);
+  const [over, setOver] = useState(false);
 
   const [name, setName] = useState("Johnny Apple");
-  const [roomsLived, setRoomsLived] = useState([
-    "Battell 101",
-    "Gifford 221",
-    // Add more rooms if needed
-  ]);
+  const [roomsLived, setRoomsLived] = useState([]);
   const [newRoom, setNewRoom] = useState("");
-  const [preferences, setPreferences] = useState({
-    // this sort of setup is just if we want the checked list
-    single: false,
-    double: false,
-    quiet: false,
-    suite: false,
-    freshmen: false,
-    sophomore: false,
-    junior: false,
-    senior: false,
-    // Add more preferences if needed
-  });
-  const [favorites, setFavorites] = useState([
-    "Forest 314",
-    "Painter 121",
-    // Add more favorite rooms if needed
-  ]);
+  const [preferences, setPreferences] = useState({});
+  const [favorites, setFavorites] = useState([]);
 
   async function getProfile(userProfile) {
     setName(session.user.name);
@@ -82,6 +64,11 @@ export default function Profile() {
             data.room2 ? data.room2 : "",
             data.room3 ? data.room3 : "",
           ]);
+
+          if (data.room3 !== null) {
+            setOver(true);
+          }
+
           setPreferences({
             single: false,
             double: false,
@@ -305,7 +292,10 @@ export default function Profile() {
               />
               <button
                 type="button"
-                className={styles.addButton}
+                disabled={over}
+                className={`${styles.addButton} ${
+                  over ? styles.disabledButton : ""
+                }`}
                 onClick={handleNewRoom}
               >
                 Add room
@@ -328,7 +318,7 @@ export default function Profile() {
                     )}
                   </li>
                 ))}
-              </ul>
+              </ul>{" "}
             </div>
           </div>
           <div className={styles.rightContainer}>
