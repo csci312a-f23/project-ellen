@@ -26,6 +26,17 @@ router
       .throwIfNotFound();
 
     res.status(200).json(room);
+  })
+  .delete(async (req, res) => {
+    try {
+      const room = await Room.query()
+        .where("id", req.body.id)
+        .del()
+        .throwIfNotFound();
+      res.status(200).json(room);
+    } catch (error) {
+      res.status(400).end(`Error with deleting review`);
+    }
   });
 
 export default router.handler();

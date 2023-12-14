@@ -117,6 +117,7 @@ export default function Profile() {
       },
     });
   }
+
   async function deleteReview(review) {
     if (review) {
       try {
@@ -238,6 +239,30 @@ export default function Profile() {
     }
   }
 
+  async function handleDeleteRoom(room) {
+    const splitRoom = room.split(" ");
+
+    const roomId = splitRoom[1];
+    console.log(`This is the room id to delete ${roomId}`);
+    try {
+      if (status === "authenticated" && session) {
+        const response = await fetch(`/api/rooms/${roomId}`, {
+          method: "DELETE",
+          headers: new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }),
+        });
+        if (response.ok) {
+          console.log(response);
+          console.log("Delete successful");
+        }
+      }
+    } catch (error) {
+      console.log("Something went wrong", error);
+    }
+  }
+
   return (
     <>
       <Head>
@@ -307,14 +332,24 @@ export default function Profile() {
                   <li key={index} className={styles.roomListItem}>
                     {room}
                     {room !== "" && (
-                      <Button
-                        variant="contained"
-                        className={styles.rateButton}
-                        onClick={() => handleRateRoom(room)}
-                        style={{ textTransform: "none" }}
-                      >
-                        Rate
-                      </Button>
+                      <>
+                        <Button
+                          variant="contained"
+                          className={styles.rateButton}
+                          onClick={() => handleRateRoom(room)}
+                          style={{ textTransform: "none" }}
+                        >
+                          Rate
+                        </Button>
+                        <Button
+                          variant="contained"
+                          className={styles.rateButton}
+                          onClick={() => handleDeleteRoom(room)}
+                          style={{ textTransform: "none" }}
+                        >
+                          Delete
+                        </Button>
+                      </>
                     )}
                   </li>
                 ))}
