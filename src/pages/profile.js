@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-console */
-import Head from "next/head";
+
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 // import Image from "next/image";
@@ -252,170 +252,157 @@ export default function Profile() {
   }
 
   return (
-    <>
-      <Head>
-        <title>User Profile - MiddHousing</title>
-        <meta name="description" content="User profile page for MiddHousing" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles.body}>
-        <div className={styles.otherButtonsContainer}>
-          <Link href="/">
-            <IconButton aria-label="Back to Home" className={styles.backButton}>
-              <HomeIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
-            </IconButton>
-          </Link>
-          <div className={styles.title}>
-            <img
-              className={styles.pantherImage}
-              height={100}
-              width={300}
-              src="/images/panther.png"
-              alt="panther"
-            />
-            <h3>Middlebury Housing</h3>
-          </div>
-          <Button
-            variant="contained"
-            className={styles.signOutButton}
-            onClick={handleSignOut}
-            style={{ textTransform: "none" }}
-          >
-            Sign out
-          </Button>{" "}
+    <main className={styles.body}>
+      <div className={styles.otherButtonsContainer}>
+        <Link href="/">
+          <IconButton aria-label="Back to Home" className={styles.backButton}>
+            <HomeIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
+          </IconButton>
+        </Link>
+        <div className={styles.title}>
+          <img
+            className={styles.pantherImage}
+            height={100}
+            width={300}
+            src="/images/panther.png"
+            alt="panther"
+          />
+          <h3>Middlebury Housing</h3>
         </div>
-        <div className={styles.container}>
-          <div className={styles.leftContainer}>
-            <div className={styles.profile}>
-              <img
-                src="images/UserIcon.jpeg"
-                alt="User Profile"
-                className={styles.userIcon}
-              />
-              <div className={styles.h1}>{name}</div>
-              <div className={styles.h1}>{email}</div>
-            </div>
-            <div className={styles.section1}>
-              <input
-                type="text"
-                placeholder="Room"
-                onChange={(text) => setNewRoom(text.target.value)}
-                value={newRoom}
-              />
-              <button
-                type="button"
-                className={styles.addButton}
-                onClick={handleNewRoom}
-              >
-                Add room
-              </button>{" "}
-              <h2>Rooms I Have Lived In</h2>
-              <ul className={styles.roomList}>
-                {roomsLived.map((room, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <li key={index} className={styles.roomListItem}>
-                    {room}
+        <Button
+          variant="contained"
+          className={styles.signOutButton}
+          onClick={handleSignOut}
+          style={{ textTransform: "none" }}
+        >
+          Sign out
+        </Button>{" "}
+      </div>
+      <div className={styles.container}>
+        <div className={styles.leftContainer}>
+          <div className={styles.profile}>
+            <img
+              src="images/UserIcon.jpeg"
+              alt="User Profile"
+              className={styles.userIcon}
+            />
+            <div className={styles.h1}>{name}</div>
+            <div className={styles.h1}>{email}</div>
+          </div>
+          <div className={styles.section1}>
+            <input
+              type="text"
+              placeholder="Room"
+              onChange={(text) => setNewRoom(text.target.value)}
+              value={newRoom}
+            />
+            <button
+              type="button"
+              className={styles.addButton}
+              onClick={handleNewRoom}
+            >
+              Add room
+            </button>{" "}
+            <h2>Rooms I Have Lived In</h2>
+            <ul className={styles.roomList}>
+              {roomsLived.map((room, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index} className={styles.roomListItem}>
+                  {room}
+                  <Button
+                    variant="contained"
+                    className={styles.rateButton}
+                    onClick={() => handleRateRoom(room)}
+                    style={{ textTransform: "none" }}
+                  >
+                    Rate
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className={styles.rightContainer}>
+          <div className={styles.section2}>
+            <div className={styles.h2}>Your Room Reviews:</div>
+            <ul className={styles.reviewList}>
+              {Array.isArray(dormReview) &&
+                dormReview.map((review) => (
+                  <li key={review.id} className={styles.reviewItem}>
+                    <div className={styles.reviewRating}>
+                      {Array.from({ length: parseInt(review.dormRating, 10) })}
+                    </div>
+                    <p className={styles.h4}>Battell {review.roomId}</p>
+                    <p className={styles.reviewText}>{review.dormReview}</p>
                     <Button
                       variant="contained"
-                      className={styles.rateButton}
-                      onClick={() => handleRateRoom(room)}
-                      style={{ textTransform: "none" }}
+                      className={styles.saveButton}
+                      onClick={() => editReview(review)}
                     >
-                      Rate
+                      Edit
+                    </Button>
+                    <Button
+                      variant="contained"
+                      className={styles.saveButton}
+                      onClick={() => deleteReview(review)}
+                    >
+                      Delete
                     </Button>
                   </li>
                 ))}
-              </ul>
-            </div>
-          </div>
-          <div className={styles.rightContainer}>
-            <div className={styles.section2}>
-              <div className={styles.h2}>Your Room Reviews:</div>
-              <ul className={styles.reviewList}>
-                {Array.isArray(dormReview) &&
-                  dormReview.map((review) => (
-                    <li key={review.id} className={styles.reviewItem}>
-                      <div className={styles.reviewRating}>
-                        {Array.from(
-                          { length: parseInt(review.dormRating, 10) },
-                          (_, i) => (
-                            <i key={i} className="fas fa-star is-active" />
-                          ),
-                        )}
-                      </div>
-                      <p className={styles.h4}>Battell {review.roomId}</p>
-                      <p className={styles.reviewText}>{review.dormReview}</p>
-                      <Button
-                        variant="contained"
-                        className={styles.saveButton}
-                        onClick={() => editReview(review)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="contained"
-                        className={styles.saveButton}
-                        onClick={() => deleteReview(review)}
-                      >
-                        Delete
-                      </Button>
-                    </li>
-                  ))}
-              </ul>
+            </ul>
 
-              <div className={styles.h2}>Room Preferences:</div>
-              <ul className={styles.roomList}>
-                {Object.entries(preferences).map(([preference, checked]) => (
-                  <li key={preference}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={() => handlePreferenceChange(preference)}
-                      />{" "}
-                      {preference}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <Button
-              variant="contained"
-              className={styles.saveButton}
-              onClick={handleSavePreferences}
-              style={{ textTransform: "none" }}
-            >
-              Save
-            </Button>
-            <div className={styles.favorites}>
-              <div className={styles.h2}>Favorites</div>
-              <ul className={styles.roomList}>
-                {favorites.map((room, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <li key={index}>{room}</li>
-                ))}
-              </ul>
-            </div>
+            <div className={styles.h2}>Room Preferences:</div>
+            <ul className={styles.roomList}>
+              {Object.entries(preferences).map(([preference, checked]) => (
+                <li key={preference}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => handlePreferenceChange(preference)}
+                    />{" "}
+                    {preference}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Button
+            variant="contained"
+            className={styles.saveButton}
+            onClick={handleSavePreferences}
+            style={{ textTransform: "none" }}
+          >
+            Save
+          </Button>
+          <div className={styles.favorites}>
+            <div className={styles.h2}>Favorites</div>
+            <ul className={styles.roomList}>
+              {favorites.map((room, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={index}>{room}</li>
+              ))}
+            </ul>
           </div>
         </div>
+      </div>
 
-        {showRateRoomPopup && (
-          <div className={styles.popup}>
-            <div className={styles.popupContent}>
-              <p>Don&apos;t forget to rate a room!</p>
-              <button
-                type="button"
-                className={styles.popupButton}
-                onClick={handlePopupClose}
-              >
-                Close
-              </button>
-            </div>
+      {showRateRoomPopup && (
+        <div className={styles.popup}>
+          <div className={styles.popupContent}>
+            <p>Don&apos;t forget to rate a room!</p>
+            <button
+              type="button"
+              className={styles.popupButton}
+              onClick={handlePopupClose}
+            >
+              Close
+            </button>
           </div>
-        )}
-      </main>
-    </>
+        </div>
+      )}
+    </main>
   );
 }
 
