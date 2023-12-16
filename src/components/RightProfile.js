@@ -28,7 +28,7 @@ export default function RightProfile({
   async function deleteReview(review) {
     if (review) {
       try {
-        // Optimistic Update: Remove the review from the local state immediately
+        // Removes the review from the UI while we wait for the server to respond
         const updatedDormReview = dormReview.filter((r) => r.id !== review.id);
         setDormReview(updatedDormReview);
 
@@ -44,7 +44,6 @@ export default function RightProfile({
         if (response.ok) {
           await response.json();
 
-          // Fetch the updated reviews from the server
           const response2 = await fetch(`/api/review/?userId=${id}`, {
             method: "GET",
             headers: new Headers({
@@ -55,18 +54,15 @@ export default function RightProfile({
 
           if (response2.ok) {
             const data2 = await response2.json();
-            // Update the state with the actual data from the server
+
             setDormReview(data2);
           } else {
-            // Handle errors if the second request fails
             console.error("Failed to fetch updated reviews after deletion");
           }
         } else {
-          // Handle errors if the first request fails
           console.error("Failed to delete the review");
         }
       } catch (error) {
-        // Log any unexpected errors
         console.error("Something went wrong:", error);
       }
     }
@@ -163,12 +159,14 @@ export default function RightProfile({
 
 RightProfile.propTypes = {
   id: PropTypes.string.isRequired,
-  dormReview: PropTypes.arrayOf({
-    roomId: PropTypes.string.isRequired,
-    userID: PropTypes.string.isRequired,
-    dormReview: PropTypes.string.isRequired,
-    dormRating: PropTypes.number.isRequired,
-  }).isRequired,
+  dormReview: PropTypes.arrayOf(
+    PropTypes.shape({
+      roomId: PropTypes.string.isRequired,
+      userID: PropTypes.string.isRequired,
+      dormReview: PropTypes.string.isRequired,
+      dormRating: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   setDormReview: PropTypes.func.isRequired,
   setPreferences: PropTypes.func.isRequired,
   preferences: PropTypes.objectOf(PropTypes.bool).isRequired,
