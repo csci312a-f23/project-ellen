@@ -138,7 +138,6 @@ export default function Profile() {
     // Set showRateRoomPopup to false when the user closes the popup
     setShowRateRoomPopup(false);
   };
-  // const id = session.user.id;
 
   return (
     <>

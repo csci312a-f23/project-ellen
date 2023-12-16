@@ -30,7 +30,7 @@ export default function DormView() {
     } else {
       router.push("/login");
     }
-  }, [session, router]);
+  }, [session, router, status]);
 
   return (
     <>
