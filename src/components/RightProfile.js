@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import Button from "@mui/material/Button";
 import styles from "../styles/profile.module.css";
 
 export default function RightProfile({
-  id,
   dormReview,
   setDormReview,
   preferences,
@@ -13,6 +13,7 @@ export default function RightProfile({
   favorites,
 }) {
   const router = useRouter();
+  const { data: session } = useSession();
 
   async function editReview(review) {
     const reviewId = review.id;
@@ -44,13 +45,16 @@ export default function RightProfile({
         if (response.ok) {
           await response.json();
 
-          const response2 = await fetch(`/api/review/?userId=${id}`, {
-            method: "GET",
-            headers: new Headers({
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            }),
-          });
+          const response2 = await fetch(
+            `/api/review/?userId=${session.user.id}`,
+            {
+              method: "GET",
+              headers: new Headers({
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              }),
+            },
+          );
 
           if (response2.ok) {
             const data2 = await response2.json();
@@ -158,7 +162,6 @@ export default function RightProfile({
 }
 
 RightProfile.propTypes = {
-  id: PropTypes.string.isRequired,
   dormReview: PropTypes.arrayOf(
     PropTypes.shape({
       roomId: PropTypes.string.isRequired,

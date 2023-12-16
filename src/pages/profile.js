@@ -65,6 +65,7 @@ export default function Profile() {
             data.room3 ? data.room3 : "",
           ]);
 
+          // disables the addroom button if the user has already lived in 3 rooms
           setOver(data.room3 !== null);
 
           // setPreferences(preferences);
