@@ -15,8 +15,7 @@ const LeafletMap = () => {
       17,
     );
 
-    // eslint-disable-next-line new-cap
-    const defaultIcon = new L.icon({
+    const defaultIcon = new L.Icon({
       iconUrl:
         "https://upload.wikimedia.org/wikipedia/commons/e/ed/Map_pin_icon.svg",
       iconSize: [20, 30],
