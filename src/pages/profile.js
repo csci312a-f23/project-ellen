@@ -3,12 +3,14 @@
 import Head from "next/head";
 import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-// import Image from "next/image";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
+import LeftProfile from "@/components/LeftProfile";
+import RightProfile from "@/components/RightProfile";
 import { authenticated } from "../lib/middleware";
 import styles from "../styles/profile.module.css";
 
@@ -21,9 +23,21 @@ export default function Profile() {
 
   const [name, setName] = useState("Johnny Apple");
   const [roomsLived, setRoomsLived] = useState([]);
-  const [newRoom, setNewRoom] = useState("");
-  const [preferences, setPreferences] = useState({});
-  const [favorites, setFavorites] = useState([]);
+
+  // Set preferences and favorites here becuase we aren't using them yet
+  // Just takes up more space
+  const [preferences, setPreferences] = useState({
+    single: false,
+    double: false,
+    suite: false,
+    quiet: false,
+    freshmen: false,
+    sophomore: false,
+    junior: false,
+    senior: false,
+  });
+
+  const [favorites, setFavorites] = useState(["Forest 314", "Painter 121"]);
 
   async function getProfile(userProfile) {
     setName(session.user.name);
@@ -32,17 +46,6 @@ export default function Profile() {
     if (!userProfile) {
       setName("John Smith");
       setRoomsLived(["Battell 101", "Gifford 221"]);
-      setPreferences({
-        single: false,
-        double: false,
-        suite: false,
-        quiet: false,
-        freshmen: false,
-        sophomore: false,
-        junior: false,
-        senior: false,
-      });
-      setFavorites(["Forest 314", "Painter 121"]);
     } else {
       try {
         const response = await fetch(
@@ -65,21 +68,10 @@ export default function Profile() {
             data.room3 ? data.room3 : "",
           ]);
 
-          if (data.room3 !== null) {
-            setOver(true);
-          }
+          setOver(data.room3 !== null);
 
-          setPreferences({
-            single: false,
-            double: false,
-            suite: false,
-            quiet: false,
-            freshmen: false,
-            sophomore: false,
-            junior: false,
-            senior: false,
-          });
-          setFavorites(["Forest 314", "Painter 121"]);
+          // setPreferences(preferences);
+          // setFavorites(favorites);
         }
       } catch (error) {
         console.log("Something went wrong");
@@ -107,50 +99,6 @@ export default function Profile() {
     }
   }
 
-  async function editReview(review) {
-    const reviewId = review.id;
-    router.push({
-      pathname: `dorms/Battell/${review.roomId}/reviews/${reviewId}`,
-      query: {
-        currentRating: review.dormRating,
-        currentReview: review.dormReview,
-      },
-    });
-  }
-
-  async function deleteReview(review) {
-    if (review) {
-      try {
-        const response = await fetch(`/api/review/?id=${review.id}`, {
-          method: "DELETE",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
-        if (response.ok) {
-          await response.json();
-          const response2 = await fetch(
-            `/api/review/?userId=${session.user.id}`,
-            {
-              method: "GET",
-              headers: new Headers({
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              }),
-            },
-          );
-          if (response2) {
-            const data2 = await response2.json();
-            setDormReview(data2);
-          }
-        }
-      } catch (error) {
-        console.log("Something went wrong");
-      }
-    }
-  }
-
   useEffect(() => {
     if (status === "authenticated" && session) {
       getProfile(session.user.email);
@@ -161,30 +109,7 @@ export default function Profile() {
       router.push("/login");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session, router, dormReview]);
-
-  const handlePreferenceChange = (preferenceName) => {
-    // this is for the checked preferences list
-    setPreferences((prevPreferences) => ({
-      ...prevPreferences,
-      [preferenceName]: !prevPreferences[preferenceName],
-    }));
-  };
-
-  const handleSavePreferences = () => {
-    // will be updated once we have database set up
-    const selectedPreferences = Array.from(
-      document.querySelectorAll('input[type="checkbox"]:checked'),
-    ).map((checkbox) => checkbox.name); // doesn't fully work
-    console.log("Selected Preferences:", selectedPreferences);
-  };
-
-  const handleRateRoom = (room) => {
-    const splitRoom = room.split(" ");
-    const rateDorm = splitRoom[0];
-    const roomNumber = splitRoom[1];
-    router.push(`/dorms/${rateDorm}/${roomNumber}/review`);
-  };
+  }, [session, router]);
 
   const handleSignOut = async () => {
     if (!session) {
@@ -213,55 +138,7 @@ export default function Profile() {
     // Set showRateRoomPopup to false when the user closes the popup
     setShowRateRoomPopup(false);
   };
-
-  async function handleNewRoom() {
-    console.log(`This is the new room ${newRoom}`);
-    // console.log(`This is the new id ${session.user.id}`);
-
-    const userData = {
-      googleId: session.user.id,
-      roomData: newRoom,
-    };
-
-    if (status === "authenticated" && session) {
-      const response = await fetch(`/api/userProfile/?id=${session.user.id}`, {
-        method: "PUT",
-        body: JSON.stringify(userData),
-        headers: new Headers({
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }),
-      });
-      if (response.ok) {
-        console.log(response);
-        console.log("Put successful");
-      }
-    }
-  }
-
-  async function handleDeleteRoom(room) {
-    const splitRoom = room.split(" ");
-
-    const roomId = splitRoom[1];
-    console.log(`This is the room id to delete ${roomId}`);
-    try {
-      if (status === "authenticated" && session) {
-        const response = await fetch(`/api/rooms/${roomId}`, {
-          method: "DELETE",
-          headers: new Headers({
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }),
-        });
-        if (response.ok) {
-          console.log(response);
-          console.log("Delete successful");
-        }
-      }
-    } catch (error) {
-      console.log("Something went wrong", error);
-    }
-  }
+  // const id = session.user.id;
 
   return (
     <>
@@ -298,139 +175,29 @@ export default function Profile() {
           </Button>{" "}
         </div>
         <div className={styles.container}>
-          <div className={styles.leftContainer}>
-            <div className={styles.profile}>
-              <img
-                src="images/UserIcon.jpeg"
-                alt="User Profile"
-                className={styles.userIcon}
-              />
-              <div className={styles.h1}>{name}</div>
-              <div className={styles.h1}>{email}</div>
-            </div>
-            <div className={styles.section1}>
-              <input
-                type="text"
-                placeholder="Room"
-                onChange={(text) => setNewRoom(text.target.value)}
-                value={newRoom}
-              />
-              <button
-                type="button"
-                disabled={over}
-                className={`${styles.addButton} ${
-                  over ? styles.disabledButton : ""
-                }`}
-                onClick={handleNewRoom}
-              >
-                Add room
-              </button>{" "}
-              <h2>Rooms I Have Lived In</h2>
-              <ul className={styles.roomList}>
-                {roomsLived.map((room, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <li key={index} className={styles.roomListItem}>
-                    {room}
-                    {room !== "" && (
-                      <>
-                        <Button
-                          variant="contained"
-                          className={styles.rateButton}
-                          onClick={() => handleRateRoom(room)}
-                          style={{ textTransform: "none" }}
-                        >
-                          Rate
-                        </Button>
-                        <Button
-                          variant="contained"
-                          className={styles.rateButton}
-                          onClick={() => handleDeleteRoom(room)}
-                          style={{ textTransform: "none" }}
-                        >
-                          Delete
-                        </Button>
-                      </>
-                    )}
-                  </li>
-                ))}
-              </ul>{" "}
-            </div>
-          </div>
-          <div className={styles.rightContainer}>
-            <div className={styles.section2}>
-              <div className={styles.h2}>Your Room Reviews:</div>
-              <ul className={styles.reviewList}>
-                {Array.isArray(dormReview) &&
-                  dormReview.map((review) => (
-                    <li key={review.id} className={styles.reviewItem}>
-                      <div className={styles.reviewRating}>
-                        {Array.from(
-                          { length: parseInt(review.dormRating, 10) },
-                          (_, i) => (
-                            <i key={i} className="fas fa-star is-active" />
-                          ),
-                        )}
-                      </div>
-                      <p className={styles.h4}>Battell {review.roomId}</p>
-                      <p className={styles.reviewText}>{review.dormReview}</p>
-                      <Button
-                        variant="contained"
-                        className={styles.saveButton}
-                        onClick={() => editReview(review)}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant="contained"
-                        className={styles.saveButton}
-                        onClick={() => deleteReview(review)}
-                      >
-                        Delete
-                      </Button>
-                    </li>
-                  ))}
-              </ul>
-
-              <div className={styles.h2}>Room Preferences:</div>
-              <ul className={styles.roomList}>
-                {Object.entries(preferences).map(([preference, checked]) => (
-                  <li key={preference}>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={() => handlePreferenceChange(preference)}
-                      />{" "}
-                      {preference}
-                    </label>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <Button
-              variant="contained"
-              className={styles.saveButton}
-              onClick={handleSavePreferences}
-              style={{ textTransform: "none" }}
-            >
-              Save
-            </Button>
-            <div className={styles.favorites}>
-              <div className={styles.h2}>Favorites</div>
-              <ul className={styles.roomList}>
-                {favorites.map((room, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
-                  <li key={index}>{room}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          {/* split profile into sections to make code cleaner */}
+          <LeftProfile
+            over={over}
+            roomsLived={roomsLived}
+            name={name}
+            email={email}
+          />
+          <RightProfile
+            id={session?.user.id}
+            dormReview={dormReview}
+            setDormReview={setDormReview}
+            favorites={favorites}
+            setFavorites={setFavorites}
+            preferences={preferences}
+            setPreferences={setPreferences}
+          />
         </div>
 
         {showRateRoomPopup && (
           <div className={styles.popup}>
             <div className={styles.popupContent}>
               <p>Don&apos;t forget to rate a room!</p>
+              <br />
               <button
                 type="button"
                 className={styles.popupButton}
