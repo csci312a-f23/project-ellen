@@ -20,9 +20,9 @@ export default function Profile() {
   const [email, setEmail] = useState("");
   const [dormReview, setDormReview] = useState([]);
   const [over, setOver] = useState(false);
-
-  const [name, setName] = useState("Johnny Apple");
+  const [name, setName] = useState("");
   const [roomsLived, setRoomsLived] = useState([]);
+  const [showRateRoomPopup, setShowRateRoomPopup] = useState(false);
 
   // Set preferences and favorites here becuase we aren't using them yet
   // Just takes up more space
@@ -36,13 +36,11 @@ export default function Profile() {
     junior: false,
     senior: false,
   });
-
   const [favorites, setFavorites] = useState(["Forest 314", "Painter 121"]);
 
   async function getProfile(userProfile) {
     setName(session.user.name);
     setEmail(session.user.email);
-
     if (!userProfile) {
       setName("John Smith");
       setRoomsLived(["Battell 101", "Gifford 221"]);
@@ -61,7 +59,6 @@ export default function Profile() {
         if (response.ok) {
           const data = await response.json();
           setName(data.name);
-
           setRoomsLived([
             data.room1 ? data.room1 : "",
             data.room2 ? data.room2 : "",
@@ -101,7 +98,7 @@ export default function Profile() {
 
   useEffect(() => {
     if (status === "authenticated" && session) {
-      getProfile(session.user.email);
+      getProfile(session.user.name);
       getReviews(session.user.email, roomsLived);
     } else if (status === "loading") {
       // do nothing
@@ -127,12 +124,14 @@ export default function Profile() {
     }
   };
 
-  const [showRateRoomPopup, setShowRateRoomPopup] = useState(false);
-
   useEffect(() => {
-    // Check if the user has roomsLived and show the popup if needed
-    setShowRateRoomPopup(true);
-  }, []);
+    // Hides the popup if the user has rated 3 rooms
+    if (dormReview.length >= 3) {
+      setShowRateRoomPopup(false);
+    } else {
+      setShowRateRoomPopup(true);
+    }
+  }, [dormReview]);
 
   const handlePopupClose = () => {
     // Set showRateRoomPopup to false when the user closes the popup

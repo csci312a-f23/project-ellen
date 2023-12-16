@@ -22,7 +22,6 @@ export default function LeftProfile({ over, roomsLived, name, email }) {
 
   async function handleNewRoom() {
     console.log(`This is the new room ${newRoom}`);
-    // console.log(`This is the new id ${session.user.id}`);
 
     const userData = {
       googleId: session.user.id,
