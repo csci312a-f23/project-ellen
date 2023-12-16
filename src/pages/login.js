@@ -1,21 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Header from "@/components/Header";
 import LoginWidget from "../components/LoginWidget";
 import styles from "../styles/login.module.css";
 
 export default function LoginPage() {
   return (
     <div className={styles.body}>
-      <div className={styles.h1}>
-        <img
-          className={styles.pantherImage}
-          height={100}
-          width={300}
-          src="/images/panther.png"
-          alt="panther"
-        />
-        <h3>Middlebury Housing</h3>
-      </div>
+      <Header home={false} profile={false} />
       <LoginWidget />
     </div>
   );

@@ -2,13 +2,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
+
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import HomeIcon from "@mui/icons-material/Home";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 import MapIcon from "@mui/icons-material/Map";
 import DormSearchBar from "@/components/DormSearchBar";
+import Header from "@/components/Header";
 import { authenticated } from "../../../lib/middleware";
 import styles from "../../../styles/main.module.css";
 
@@ -112,33 +112,7 @@ export default function Rooms() {
 
   return (
     <main className={styles.body}>
-      <div className={styles.otherButtonsContainer}>
-        <Link href="/">
-          <IconButton aria-label="Back to Home" className={styles.homeButton}>
-            <HomeIcon style={{ fontSize: "2rem", color: "#B8D5FF" }} />
-          </IconButton>
-        </Link>
-        <div className={styles.title}>
-          <img
-            className={styles.pantherImage}
-            height={100}
-            width={300}
-            src="/images/panther.png"
-            alt="panther"
-          />
-          <h3>Middlebury Housing</h3>
-        </div>
-        <Link href="/profile">
-          <Button
-            variant="contained"
-            startIcon={<AccountCircleIcon style={{ fontSize: "1.5rem" }} />}
-            className={styles.profileButton}
-            style={{ textTransform: "none" }}
-          >
-            My Profile
-          </Button>
-        </Link>
-      </div>
+      <Header home profile />
       <div className={styles.container}>
         <div className={styles.leftHalf}>
           <div className={styles.leftContainer}>

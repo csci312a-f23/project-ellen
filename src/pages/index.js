@@ -4,13 +4,9 @@
 /* eslint-disable react/self-closing-comp */
 
 import LeafletMap from "@/components/LeafletMap";
-
-import Link from "next/link"; // Import the Link component
 import SearchBar from "@/components/MainSearchBar";
-import Button from "@mui/material/Button";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
 import Script from "next/script";
+import Header from "@/components/Header";
 import styles from "../styles/main.module.css";
 
 export default function Home() {
@@ -23,26 +19,7 @@ export default function Home() {
       ></Script>
 
       <main className={styles.body}>
-        <Link href="/profile">
-          <Button
-            variant="contained"
-            startIcon={<AccountCircleIcon style={{ fontSize: "1.5rem" }} />}
-            className={styles.profileButton}
-            style={{ textTransform: "none" }}
-          >
-            My Profile
-          </Button>
-        </Link>
-        <div className={styles.h1}>
-          <img
-            className={styles.pantherImage}
-            height={100}
-            width={300}
-            src="/images/panther.png"
-            alt="panther"
-          />
-          <h3>Middlebury Housing</h3>
-        </div>
+        <Header home={false} profile />
         <section className={styles.container}>
           <div className={styles.leftHalf}>
             <div className={styles.leftContainer}>
