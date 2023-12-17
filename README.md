@@ -12,6 +12,7 @@ MiddHousing is a webApp that allows students to find accurate information about 
 
 ## Development Environment
 
+```
 First run:
 npm install
 Need to set up a project with neon and add to your .env.local and .env.development.local file.
@@ -23,6 +24,7 @@ Then you should be able to run:
 npm run dev
 Docker should automatically start when you run npm run dev.
 MiddHousing requires a Google authentication client id and client secret, and next auth key in the .env.local and .env.development.local files.
+```
 
 ## Creation
 
