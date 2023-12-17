@@ -12,12 +12,12 @@ import styles from "../../styles/main.module.css";
 
 export default function DormView() {
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const { name } = router.query;
 
   useEffect(() => {
-    if (!session) {
+    if (!session && status === "unauthenticated") {
       router.push("/login");
     }
   }, [session, router]);
@@ -28,15 +28,17 @@ export default function DormView() {
       <section className={styles.container}>
         <div className={styles.leftHalf}>
           <div className={styles.leftContainer}>
-            <article className={styles.stuff}>
-              <DormSearchBar name={name} />
-            </article>
+            {name && (
+              <article className={styles.stuff}>
+                <DormSearchBar name={name} />
+              </article>
+            )}
           </div>
         </div>
         <div className={styles.rightHalf}>
           <div className={styles.mainRightContainer}>
             <div className={styles.mapRow}>
-              <DormMaps selectedDorm={name} />
+              {name && <DormMaps selectedDorm={name[0]} />}
             </div>
           </div>
         </div>
