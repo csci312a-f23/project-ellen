@@ -10,7 +10,19 @@ MiddHousing is a webApp that allows students to find accurate information about 
 
 # Project Skeleton
 
-TODO: Implement CI badges, provide a link to the deployed version of your application, and provide a brief description of the application functionality.
+## Development Environment
+
+First run:
+npm install
+Need to set up a project with neon and add to your .env.local and .env.development.local file.
+Run the following commands:
+npx knex migrate:latest
+npx knex seed:run
+These will migrate and seed the database.
+Then you should be able to run:
+npm run dev
+Docker should automatically start when you run npm run dev.
+MiddHousing requires a Google authentication client id and client secret, and next auth key in the .env.local and .env.development.local files.
 
 ## Creation
 
